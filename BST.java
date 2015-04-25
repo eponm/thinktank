@@ -1,226 +1,220 @@
-/* BST.java
+class BST{
+	private Node head;
 
-    DEPENDENCIES:
-        Node.java (with left, right, and parent pointers)
-
-    This BST takes in nodes and makes a binary search tree out of them.
-    Super simple.
-
-*/
-
-public class BST {
-
-    // Initialize the root
-    private Node t;
-
-    // Constructor
-    public BST() {
-        t = null;
-    } // BST
-
-
-    // Returns true when a tree is empty
-    public boolean isEmpty() {
-        return t==null;
-    } // isEmpty
-
-
-    // Find the node in the tree that matches a given 4-digit SSN key
-    // Immediately calls search(current, key) in order to recurse.
-    public Node search(int target) {
-        Node top = t;
-        return search(t, target);
-    } // search
-
-
-    // Searches for a given key in a given node's subtrees
-    private Node search(Node current, int key) {
-
-        if (current == null) {
-            return null;
-        } // Handles empty trees
-
-        else if (key == current.getKey()) {
-            return current;
-        } // Handles immediate matches
-
-        else if (key < current.getKey()) {
-            return search(current.getLeft(), key);
-        } // Handles key being lessthan current node and recurses
-
-        else {
-            return search(current.getRight(), key);
-        } // Handles key being greaterthan current node and recurses
-    } // search
-
-
-    // Puts a node into the tree.
-    // Immediately calls insert2(parent, nodeIn) in order to recurse.
-    public void insert(Node nodeIn) {
-        if (isEmpty()) {
-            t = nodeIn;
-        } // Handles empty trees
-
-        else {
-            insert2(t, nodeIn);
-        } // Recurses to get to the bottom of the tree
-    } // insert
-
-
-    // Puts a node into the tree.
-    private void insert2(Node parent, Node nodeIn) {
-
-        if (nodeIn.getKey() > parent.getKey()) {
-            if (parent.getRight() != null) {
-                insert2 (parent.getRight(), nodeIn);
-            } // if
-            else {
-                parent.setRight(nodeIn);
-                nodeIn.setParent(parent);
-            } // else
-        } // if
-        else {
-            if (parent.getLeft() != null) {
-                insert2(parent.getLeft(), nodeIn);
-            } // if
-            else {
-                parent.setLeft(nodeIn);
-                nodeIn.setParent(parent);
-            } // else
-        } // else
-    } // insert2
-
-
-    // Prints the keys of the nodes in the tree in order.
-    // Magically works. No idea why or how.
-    public void traverse() {
-        Node current = t;
-        traverse(current);
-        System.out.println();
-    } // traverse
-
-
-    // This is the part that makes things happen.
-    private void traverse(Node current) {
-        if (current != null) {
-            traverse(current.getLeft());
-            System.out.print(current.getKey() + " ");
-            traverse(current.getRight());
-        } // if
-    } //  traverse
-
-
-    // Prints a more verbose tree layout.
+	public BST(){
+		head = null;
+	}
+	public boolean isEmptyTree(){
+		return head==null;
+	}
+	public Node search(int key){
+		if(head==null) return null;
+		else if(key<head.getKey()){
+			return searchTwo(head.getLeft(),key);
+		}
+		else if(key>head.getKey()){
+			return searchTwo(head.getRight(),key);		
+		}
+		else{
+			return head;
+		}
+	}
+	public Node searchTwo(Node branch, int key){
+		if(key<branch.getKey()){
+			return searchTwo(branch.getLeft(),key);
+		}
+		else if(key>branch.getKey()){
+			return searchTwo(branch.getRight(),key);
+		}
+		else{
+			return branch;
+		}
+	}
+	public void insert(Node newNode){
+		if(head==null){
+			head=newNode;
+		}
+		else{
+			insertTwo(head,newNode);
+		}
+	}
+	private void insertTwo(Node branch,Node newNode){
+		if(newNode.getKey()<branch.getKey()){
+			if(branch.getLeft()==null){
+				branch.setLeft(newNode);
+			}
+			else{
+				insertTwo(branch.getLeft(),newNode);
+			}
+		}
+		else{
+			if(branch.getRight()==null){
+				branch.setRight(newNode);
+			}
+			else{
+				insertTwo(branch.getRight(),newNode);
+			}
+		}
+	}
+	public void traverse(){
+		if(head!=null){
+			traverseTwo(head.getLeft());
+			System.out.print(head.getKey()+" ");
+			traverseTwo(head.getRight());
+		}
+	}
+	private void traverseTwo(Node branch){
+		if(branch!=null){
+			traverseTwo(branch.getLeft());
+			System.out.print(branch.getKey()+" ");
+			traverseTwo(branch.getRight());
+		}
+	}
+	public void delete(Node target){
+		/*
+		make note that tree prioritizes elements of higher value
+		i.e. : when replacing elements, the tree will go LEFT, then the right-most
+		leaf, rather than going RIGHT and getting the leftmost leaf because the ladder is
+		of higher value. 
+		*/
+		if(head==null) return;
+		int key=target.getKey();
+		if(key<head.getKey()){
+			int side=0;
+			deleteTwo(head.getLeft(),key,head,side);
+		}
+		else if(key>head.getKey()){
+			int side=1;
+			deleteTwo(head.getRight(),key,head,side);		
+		}
+		else{
+			/*
+			pricipal of prioritizing higher values illustrated in this case:
+			*/
+			if(head.getLeft()==null&&head.getRight()==null){
+				head=null;
+			}
+			else if(head.getLeft()==null){
+				Node temp=head;
+				Node temp2=popMax(head.getRight(),head,0); //note how it only gets the maximum leftmost
+				//leaf of the RIGHT side if and only if getLeft() of head=null.
+				this.delete(temp2);
+				head=temp2;
+				head.setRight(temp.getLeft());
+				temp.setRight(null);
+			}
+			else{
+				Node temp=head;
+				Node temp2=popMax(head.getLeft(),head,1);
+				this.delete(temp2);
+				head=temp2;
+				head.setLeft(temp.getLeft());
+				head.setRight(temp.getRight());
+				temp.setLeft(temp.getLeft());
+			}
+		}
+	}
+	public void deleteTwo(Node target, int key, Node parent, int side){
+		if(key<target.getKey()){
+			side=0;
+			deleteTwo(target.getLeft(),key,target,side);
+		}
+		else if(key>target.getKey()){
+			side=1;
+			deleteTwo(target.getRight(),key,target,side);
+		}
+		else{
+			if(target.getLeft()==null&&target.getRight()==null){
+				if(side==0){
+					parent.setLeft(null);
+				}
+				else{
+					parent.setRight(null);
+				}
+			}
+			else if(target.getLeft()==null||target.getRight()==null){	
+				if(side==0){
+					if(target.getLeft()==null){
+						Node successor=popMax(target.getRight(),parent,0);
+						parent.setLeft(successor);
+						successor.setRight(target.getRight());
+					}
+					else{
+						Node successor=popMax(target.getLeft(),parent,1);
+						parent.setLeft(successor);
+						successor.setLeft(target.getLeft());
+					}
+				}
+				else{
+					if(target.getLeft()==null){
+						Node successor=popMax(target.getRight(),parent,0);
+						parent.setRight(successor);
+						successor.setRight(target.getRight());
+					}
+					else{
+						Node successor=popMax(target.getLeft(),parent,1);
+						parent.setRight(successor);
+						successor.setLeft(target.getLeft());
+					}
+				}
+			}
+			else{
+				if(side==0){
+					Node successor=popMax(target.getLeft(),parent,1);
+					parent.setLeft(successor);
+					successor.setRight(target.getRight());
+					successor.setLeft(target.getLeft());
+				}
+				else{
+					Node successor=popMax(target.getLeft(),parent,1);
+					parent.setRight(successor);
+					successor.setRight(target.getRight());
+					successor.setLeft(target.getLeft());
+				}
+			}
+		}
+	}
+	/* helper function for getting the maximum depth leaf in a certain direction, 
+	(used in delete). Takes a node and an int of either 0 or 1, 0==GO LEFT, 1==GO RIGHT.
+	While loops down the line until null until next==null. Then returns the current
+	Node the pointer is on.
+	*/
+	private Node popMax(Node branch, Node parent, int side){
+		if(side==0&&branch.getLeft()!=null){
+			return popMax(branch.getLeft(),branch,0);
+		}
+		else if(side==1&&branch.getRight()!=null){
+			return popMax(branch.getRight(),branch,1);
+		}
+		else{
+			if(side==0){
+				parent.setLeft(null);
+				return branch;
+			}
+			else{
+				parent.setRight(null);
+				return branch;
+			}
+		}
+	}
     public void printTree() {
-        printTree2(t);
-        System.out.println();
-    } // printTree
-
-
-    // This part recurses.
+    System.out.println();
+	printTree2(head);
+	System.out.println();
+    }
     private void printTree2(Node tree) {
-        if (tree != null) {
-            System.out.print(tree.getKey() + " -- ");
-            if (tree.getLeft() != null) {
-                System.out.print("Left: " + tree.getLeft().getKey() + " ");
-            } // if
-            else {
-                System.out.print("Left: null ");
-            } // else
-
-            if (tree.getRight() != null) {
-                System.out.print("Right: " + tree.getRight().getKey() + " ");
-            } // if
-            else {
-                System.out.print("Right: null ");
-            } // else
-
-            if (tree.getParent() != null) {
-                System.out.println("Parent: " + tree.strParent());
-            } // if
-            else {
-                System.out.println("Parent: null ");
-            } // else
-
-            printTree2(tree.getLeft());
-            printTree2(tree.getRight());
-
-        } // if
-    } // printtree2
-
-
-    // Returns the node of maximum value in the tree.
-    private Node getMax(Node root) {
-        if (root.getRight() == null) {
-            return root;
-        } // if
-        else {
-            return getMax(root.getRight());
-        } // else
-    } // getMax
-
-
-    // Deletes the first node to match the input target node.
-    // Immediately calls delete2(targetIn, position)
-    public void delete(Node targetIn) {
-        if (search(targetIn.getKey()) == null) {
-            System.out.println("No such node to delete");
-            return;
-        } // if
-        delete2(targetIn, t);
-    } // delete
-
-
-    // Recursive part.
-    private void delete2(Node targetIn, Node position) {
-
-        // Handle empty trees
-        if (isEmpty()) return;
-
-        // Then search down to the target node
-        if (targetIn.getKey() < position.getKey()) {
-            delete2(targetIn, position.getLeft());
-        } // if
-
-        else if (targetIn.getKey() > position.getKey()) {
-            delete2(targetIn, position.getRight());
-        } // Both will fail when the target is found, and move on...
-
-        else {
-            // If the node has two children:
-            if (position.getLeft() != null && position.getRight() != null) {
-                // Get the max node in its left subtree:
-                // Rewrite the target with the max's data
-                Node max = getMax(position.getLeft());
-                Node temp = max;
-                position.setName(max.getName());
-                position.setSSN(max.getSSN());
-                // Then wipe the max of the subtree
-                max.getParent().remChild(max);
-            } //if
-
-            // If the node has a right child:
-            else if (position.getRight() != null) {
-                // Move its parent to the next node:
-                Node temp = position;
-                position = position.getLeft();
-                // Then wipe the target
-                temp = null;
-            } //else if
-
-            // If the node has a left child instead:
-            else if (position.getRight() != null) {
-                Node temp = position;
-                position = position.getRight();
-                temp = null;
-            } //else if
-
-            else {
-                // If the node has no children, remove it.
-                position.getParent().remChild(position);
-            } // else
-        } // else
-    } // delete2
-
-
-} //class
+		if (tree != null) {
+		    System.out.print(tree.getKey() + " ");
+	            if (tree.getLeft() != null)
+		        System.out.print("Left: " + tree.getLeft().getKey() + " ");
+	            else
+	                System.out.print("Left: null ");
+	            if (tree.getRight() != null)
+		        System.out.println("Right: " + tree.getRight().getKey() + " ");
+	            else
+	                System.out.println("Right: null ");
+		    printTree2(tree.getLeft());
+		    printTree2(tree.getRight());
+	    }
+	}
+}
