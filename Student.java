@@ -23,6 +23,10 @@ class Student {
     //Queue ideaQueue; // This may need to be its own object.
     float avgIdeaRating;
 
+    Node leftChild;
+    Node rightChild;
+    Node parentNode;
+
     // Constructor
     // Params: Last name, short username, 4-digit SSN, 4-digit student number.
     public Student(StringBuffer surnameIn, StringBuffer usernameIn, int socSecNumIn, int studentIDIn) {
@@ -46,6 +50,29 @@ class Student {
     //editNames()
         // to change last name and username
 
+
+    // Set the left child of a Student in a BST to nextStudent.
+    // NOTE: this returns the Student with the modified pointers.
+    public Student setLeftChild(Student nextStudent) {
+        leftChild = nextStudent;
+        return this;
+    } // setLeftChild
+
+
+    // Set the right child of a Student in a BST to nextStudent.
+    // NOTE: this returns the Student with the modified pointers.
+    public Student setRightChild(Node nextStudent) {
+        rightChild = nextStudent;
+        return this;
+    } // setRightChild
+
+
+    // Set the parent of a Student in a BST to nextStudent.
+    // NOTE: this returns the Student with the modified pointers.
+    public Student setParent(Student nextStudent) {
+        leftChild = nextStudent;
+        return this;
+    } // setParent
 
 
 
