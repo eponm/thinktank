@@ -40,13 +40,18 @@ class Student {
     } // Constructor
 
 
-//  REQUIRED METHODS:
     //displayStudent()
         // to display student information as described in specifications
+
+
     //displayIdeas()
         // to display 10 recent ideas
+
+
     //deleteStudent()
         // to delete record (unsure if should delete ideas as well)
+
+
     //editNames()
         // to change last name and username
 
