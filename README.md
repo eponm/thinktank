@@ -1,11 +1,6 @@
 # Thinktank
 The G. Parker East Coast Thinktank database repository!
 
-##GitHub Standards
-* when you commit, make a message saying in brief what you've done to the file, or what is on the file
-* before you start working, PULL from the repository
-*resolving merge conflicts: best case meet with everyone, worst case shoot out a text and COMMENT where you fixed the merge
-
 ## Coding practices
 * Indentations are 4 spaces, *always*.
 * Comments precede methods and may be broken into separate lines if doing so would help the clarity of the comments.
