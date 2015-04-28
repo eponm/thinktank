@@ -2,15 +2,27 @@ import java.util.Scanner;
 
 public class Queue {
 
-    int front=0;
-    int end=0;
-    int n=0;
-    Idea[] queue= new Idea[10];
+    int size; // Left TBD in the constructors
+    int front = 0;
+    int end = 0;
+    int n = 0;
+    Idea[] queue;
+
+    public Queue() {
+        size = 128;
+        Idea[] queue = new Idea[size];
+    } // default constructor
+
+
+    public Queue(int sizeIn) {
+        size = sizeIn;
+        Idea[] queue = new Idea[size];
+    } // size-specific constructor
 
 
     public void enqueue(Idea x) {
         queue[end]=x;
-        end=(end+1) % 10;
+        end=(end + 1) % size;
     } // constructor
 
 /*
@@ -37,7 +49,7 @@ public class Queue {
 */
 
     public boolean isEmpty() {
-        if (front==end) {
+        if (front == end) {
             return true;
         }
         else {
@@ -47,7 +59,7 @@ public class Queue {
 
 
     public Idea front() {
-        if (isEmpty() ) {
+        if (isEmpty()) {
             return null;
         }
         else {
@@ -58,7 +70,7 @@ public class Queue {
 
     public Idea dequeue() {
         Idea temp=queue[front];
-        front=(front+1)% 10;
+        front=(front + 1) % size;
         return temp;
     } // dequeue
 
