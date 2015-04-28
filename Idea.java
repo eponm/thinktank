@@ -14,12 +14,12 @@ class Idea {
 
     int seqNum; // Assigned sequentially beginning from 0001
     int submittorKey;
-    StringBuffer description;
+    String description;
     int rating; // Must be 000–100
 
     // Constructor
     // Params: idea number, submittor SSN, a string description, and a rating.
-    public Idea(int seqNumIn, int submittorKeyIn, StringBuffer descriptionIn, int ratingIn) {
+    public Idea(int seqNumIn, int submittorKeyIn, String descriptionIn, int ratingIn) {
         seqNum = seqNumIn;
         submittorKey = submittorKeyIn;
         description = descriptionIn;

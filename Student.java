@@ -16,23 +16,23 @@
 
 class Student {
 
-    StringBuffer surname;
-    StringBuffer username;
+    String name;
+    String username;
     int socSecNum; // Must be 0001–9999
     int studentID; // Must be 0001–9999
     //Queue ideaQueue; // This may need to be its own object.
     float avgIdeaRating;
 
-    Node leftChild;
-    Node rightChild;
-    Node parentNode;
+    Student leftChild;
+    Student rightChild;
+    Student parentNode;
 
     // Constructor
     // Params: Last name, short username, 4-digit SSN, 4-digit student number.
-    public Student(StringBuffer surnameIn, StringBuffer usernameIn, int socSecNumIn, int studentIDIn) {
+    public Student(String nameIn, String usernameIn, int socSecNumIn, int studentIDIn) {
 
         // Place all of the input data into instance variables.
-        surname = surnameIn;
+        name = nameIn;
         username = usernameIn; // Checks for 4-digit-ness should be done beforehand
         socSecNum = socSecNumIn;
         studentID = studentIDIn;
@@ -66,7 +66,7 @@ class Student {
 
     // Set the right child of a Student in a BST to nextStudent.
     // NOTE: this returns the Student with the modified pointers.
-    public Student setRightChild(Node nextStudent) {
+    public Student setRightChild(Student nextStudent) {
         rightChild = nextStudent;
         return this;
     } // setRightChild
@@ -75,7 +75,7 @@ class Student {
     // Set the parent of a Student in a BST to nextStudent.
     // NOTE: this returns the Student with the modified pointers.
     public Student setParent(Student nextStudent) {
-        leftChild = nextStudent;
+        parentNode = nextStudent;
         return this;
     } // setParent
 
