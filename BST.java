@@ -17,7 +17,7 @@
 			printTree2()<---^^
 */
 
-class BST{
+public class BST{
 	private Student head;
 
 	//Constructor
@@ -263,7 +263,7 @@ class BST{
     }
 
     //helper function
-    //Params: Student
+    //Params: Student			
     private void printTree2(Student tree) {
 		if (tree != null) {
 		    System.out.print(tree.getKey() + " ");
