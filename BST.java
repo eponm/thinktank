@@ -1,5 +1,5 @@
 class BST{
-	private Node head;
+	private Student head;
 
 	public BST(){
 		head = null;
@@ -7,7 +7,7 @@ class BST{
 	public boolean isEmptyTree(){
 		return head==null;
 	}
-	public Node search(int key){
+	public Student search(int key){
 		if(head==null) return null;
 		else if(key<head.getKey()){
 			return searchTwo(head.getLeft(),key);
@@ -19,7 +19,7 @@ class BST{
 			return head;
 		}
 	}
-	public Node searchTwo(Node branch, int key){
+	public Student searchTwo(Student branch, int key){
 		if(key<branch.getKey()){
 			return searchTwo(branch.getLeft(),key);
 		}
@@ -30,29 +30,29 @@ class BST{
 			return branch;
 		}
 	}
-	public void insert(Node newNode){
+	public void insert(Student newStudent){
 		if(head==null){
-			head=newNode;
+			head=newStudent;
 		}
 		else{
-			insertTwo(head,newNode);
+			insertTwo(head,newStudent);
 		}
 	}
-	private void insertTwo(Node branch,Node newNode){
-		if(newNode.getKey()<branch.getKey()){
+	private void insertTwo(Student branch,Student newStudent){
+		if(newStudent.getKey()<branch.getKey()){
 			if(branch.getLeft()==null){
-				branch.setLeft(newNode);
+				branch.setLeft(newStudent);
 			}
 			else{
-				insertTwo(branch.getLeft(),newNode);
+				insertTwo(branch.getLeft(),newStudent);
 			}
 		}
 		else{
 			if(branch.getRight()==null){
-				branch.setRight(newNode);
+				branch.setRight(newStudent);
 			}
 			else{
-				insertTwo(branch.getRight(),newNode);
+				insertTwo(branch.getRight(),newStudent);
 			}
 		}
 	}
@@ -63,14 +63,14 @@ class BST{
 			traverseTwo(head.getRight());
 		}
 	}
-	private void traverseTwo(Node branch){
+	private void traverseTwo(Student branch){
 		if(branch!=null){
 			traverseTwo(branch.getLeft());
 			System.out.print(branch.getKey()+" ");
 			traverseTwo(branch.getRight());
 		}
 	}
-	public void delete(Node target){
+	public void delete(Student target){
 		/*
 		make note that tree prioritizes elements of higher value
 		i.e. : when replacing elements, the tree will go LEFT, then the right-most
@@ -95,8 +95,8 @@ class BST{
 				head=null;
 			}
 			else if(head.getLeft()==null){
-				Node temp=head;
-				Node temp2=popMax(head.getRight(),head,0); //note how it only gets the maximum leftmost
+				Student temp=head;
+				Student temp2=popMax(head.getRight(),head,0); //note how it only gets the maximum leftmost
 				//leaf of the RIGHT side if and only if getLeft() of head=null.
 				this.delete(temp2);
 				head=temp2;
@@ -104,8 +104,8 @@ class BST{
 				temp.setRight(null);
 			}
 			else{
-				Node temp=head;
-				Node temp2=popMax(head.getLeft(),head,1);
+				Student temp=head;
+				Student temp2=popMax(head.getLeft(),head,1);
 				this.delete(temp2);
 				head=temp2;
 				head.setLeft(temp.getLeft());
@@ -114,7 +114,7 @@ class BST{
 			}
 		}
 	}
-	public void deleteTwo(Node target, int key, Node parent, int side){
+	public void deleteTwo(Student target, int key, Student parent, int side){
 		if(key<target.getKey()){
 			side=0;
 			deleteTwo(target.getLeft(),key,target,side);
@@ -135,24 +135,24 @@ class BST{
 			else if(target.getLeft()==null||target.getRight()==null){	
 				if(side==0){
 					if(target.getLeft()==null){
-						Node successor=popMax(target.getRight(),parent,0);
+						Student successor=popMax(target.getRight(),parent,0);
 						parent.setLeft(successor);
 						successor.setRight(target.getRight());
 					}
 					else{
-						Node successor=popMax(target.getLeft(),parent,1);
+						Student successor=popMax(target.getLeft(),parent,1);
 						parent.setLeft(successor);
 						successor.setLeft(target.getLeft());
 					}
 				}
 				else{
 					if(target.getLeft()==null){
-						Node successor=popMax(target.getRight(),parent,0);
+						Student successor=popMax(target.getRight(),parent,0);
 						parent.setRight(successor);
 						successor.setRight(target.getRight());
 					}
 					else{
-						Node successor=popMax(target.getLeft(),parent,1);
+						Student successor=popMax(target.getLeft(),parent,1);
 						parent.setRight(successor);
 						successor.setLeft(target.getLeft());
 					}
@@ -160,13 +160,13 @@ class BST{
 			}
 			else{
 				if(side==0){
-					Node successor=popMax(target.getLeft(),parent,1);
+					Student successor=popMax(target.getLeft(),parent,1);
 					parent.setLeft(successor);
 					successor.setRight(target.getRight());
 					successor.setLeft(target.getLeft());
 				}
 				else{
-					Node successor=popMax(target.getLeft(),parent,1);
+					Student successor=popMax(target.getLeft(),parent,1);
 					parent.setRight(successor);
 					successor.setRight(target.getRight());
 					successor.setLeft(target.getLeft());
@@ -175,11 +175,11 @@ class BST{
 		}
 	}
 	/* helper function for getting the maximum depth leaf in a certain direction, 
-	(used in delete). Takes a node and an int of either 0 or 1, 0==GO LEFT, 1==GO RIGHT.
+	(used in delete). Takes a Student and an int of either 0 or 1, 0==GO LEFT, 1==GO RIGHT.
 	While loops down the line until null until next==null. Then returns the current
-	Node the pointer is on.
+	Student the pointer is on.
 	*/
-	private Node popMax(Node branch, Node parent, int side){
+	private Student popMax(Student branch, Student parent, int side){
 		if(side==0&&branch.getLeft()!=null){
 			return popMax(branch.getLeft(),branch,0);
 		}
@@ -202,7 +202,7 @@ class BST{
 	printTree2(head);
 	System.out.println();
     }
-    private void printTree2(Node tree) {
+    private void printTree2(Student tree) {
 		if (tree != null) {
 		    System.out.print(tree.getKey() + " ");
 	            if (tree.getLeft() != null)
