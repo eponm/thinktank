@@ -13,6 +13,8 @@ public class Queue {
         end=(end+1) % 10;
     } // constructor
 
+/*
+// Can't use getKey() with Idea objects. Edit later if necessary.
 
     public void printQueue() {
         System.out.println(front);
@@ -32,6 +34,7 @@ public class Queue {
         } // else
     } // printQueue
 
+*/
 
     public boolean isEmpty() {
         if (front==end) {
