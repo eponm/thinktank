@@ -27,4 +27,60 @@ class Idea {
     } // Constructor
 
 
+    /*********************
+    *   ACCESS METHODS   *
+    *********************/
+
+    // Access the idea's seqNum
+    public int getSeqNum() {
+        return seqNum;
+    } // getSeqNum
+
+
+    // Access the idea's submittor's key
+    public int getKey() {
+        return submittorKey;
+    } // getKey
+
+
+    // Access the idea's description
+    public String getDesc() {
+        return description;
+    } // getDesc
+
+
+    // access the idea's rating
+    public int getRating() {
+        return rating;
+    } // getRating
+
+
+    /*********************
+    *   SETTER METHODS   *
+    *********************/
+
+
+    // Set the seqNum
+    public void setSeqNum(int seqNumIn) {
+        seqNum = seqNumIn;
+    } //setSeqNum
+
+
+    // Set the submittorKey
+    public void setKey(int keyIn) {
+        submittorKey = keyIn;
+    } // setKey
+
+
+    // Set the description
+    public void setDesc(String descIn) {
+        description = descIn;
+    } // setDesc
+
+    // Set the rating
+    public void setRating(int ratingIn) {
+        rating = ratingIn;
+    } // setRating
+
+
 } // Idea
