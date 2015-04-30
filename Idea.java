@@ -17,6 +17,10 @@ class Idea {
     String description;
     int rating; // Must be 000–100
 
+    // For list traversal
+    Idea prior = null;
+    Idea next = null;
+
     // Constructor
     // Params: idea number, submittor SSN, a string description, and a rating.
     public Idea(int seqNumIn, int submittorKeyIn, String descriptionIn, int ratingIn) {
@@ -27,9 +31,22 @@ class Idea {
     } // Constructor
 
 
+
     /*********************
     *   ACCESS METHODS   *
     *********************/
+
+    // Access the idea's next idea in a list
+    public Idea getNext() {
+        return next;
+    } // getNext
+
+
+    // Access the idea's prior idea in a list
+    public Idea getPrior() {
+        return prior;
+    } // getNext
+
 
     // Access the idea's seqNum
     public int getSeqNum() {
@@ -58,6 +75,17 @@ class Idea {
     /*********************
     *   SETTER METHODS   *
     *********************/
+
+    // Set the idea's next idea
+    public void setNext(Idea nextIn) {
+        next = nextIn;
+    } // setNext
+
+
+    // Set the idea's prior idea
+    public void setPrior(Idea priorIn) {
+        prior = priorIn;
+    } // setNext
 
 
     // Set the seqNum
