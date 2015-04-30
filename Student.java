@@ -1,3 +1,4 @@
+
 /* Student.java
 
     Each student includes:
@@ -26,7 +27,6 @@ class Student {
     Student leftChild;
     Student rightChild;
     Student parentNode;
-
     // Constructor
     // Params: Last name, short username, 4-digit SSN, 4-digit student number.
     public Student(String nameIn, String usernameIn, int socSecNumIn, int studentIDIn) {
@@ -41,19 +41,21 @@ class Student {
 
 
     //displayStudent()
-        // to display student information as described in specifications
+    // to display student information as described in specifications
 
 
     //displayIdeas()
-        // to display 10 recent ideas
+    // to display 10 recent ideas
 
-
-    //deleteStudent()
-        // to delete record (unsure if should delete ideas as well)
 
 
     //editNames()
-        // to change last name and username
+    // to change last name and username
+    public Student editNames(String lastName, String newUsername){
+        name=lastName;
+        username=newUsername;
+        return this;
+    }
 
 
     // Set the left child of a Student in a BST to nextStudent.
