@@ -8,9 +8,19 @@ class TheBigTest {
     public void main(String[] args) {
 
         //BST testBST = new BST(); // BST NEEDS TO BE STUDENT-COMPATIBLE
-        //Queue testQueue = new Queue(); // QUEUE NEEDS TO BE IDEA-COMPATIBLE
+        Queue testQueue = new Queue();
         Student testStudent = new Student("testName", "tname", 0123, 6789);
         Idea testIdea = new Idea(9999, 0123, "Description goes here.", 100);
+        Idea anotherIdea = new Idea(8888, 3210, "Another description.", 50);
+
+
+        Heap testHeap = new Heap();
+
+
+        List testList = new List();
+        testList.insert(testIdea);
+        testList.insert(anotherIdea);
+        System.out.println(testList.searchReturn(0123).getSeqNum());
 
     } // main
 
