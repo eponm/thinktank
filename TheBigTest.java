@@ -3,9 +3,12 @@ Code to compile all dependencies at once. Probably convenient.
 Add in test code as needed. All correctly-coded tests should always pass; otherwise they should be rewritten or removed.
 */
 
+// FOLLOWING IMPORT REQUIRED IN ALL UPSTREAM MODULES
+import java.io.IOException; // For helpfully throwing exceptions if necessary
+
 class TheBigTest {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         //BST testBST = new BST(); // BST NEEDS TO BE STUDENT-COMPATIBLE
         Queue testQueue = new Queue();
@@ -14,7 +17,7 @@ class TheBigTest {
         Idea anotherIdea = new Idea(8888, 3210, "Another description.", 50);
 
 
-        //Heap testHeap = new Heap();
+        Heap testHeap = new Heap();
         // Add some code to test the heap here, please
 
 

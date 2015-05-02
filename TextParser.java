@@ -1,4 +1,6 @@
 import java.util.Scanner; // For scanning, obviously.
+
+// FOLLOWING IMPORT REQUIRED IN ALL UPSTREAM MODULES
 import java.io.IOException; // For helpfully throwing exceptions if necessary
 
 import java.nio.charset.Charset; // For explicit character encodings
@@ -22,13 +24,19 @@ public class TextParser {
     // Main method to verify that the module is functional
     // REQUIRES A TEST FILE NAMED TEST.TXT WITH KEY VALUE PAIRS AS KEY=VALUE
     public static void main(String... aArgs) throws IOException {
-        System.out.println("::: Testing TextParser :::");
-        // Safe to assume that test.txt will be in same directory? Sure, why not
-        TextParser parser = new TextParser("test.txt");
-        // Call over to the method to read in lines
-        parser.readAll();
-        System.out.println("Test complete. Great work, team.");
-        // That was easy
+        try {
+            System.out.println("::: Testing TextParser :::");
+            // Safe to assume that test.txt will be in same directory? Sure, why not
+            TextParser parser = new TextParser("test.txt");
+            // Call over to the method to read in lines
+            parser.readAll();
+            System.out.println("Test complete. Great work, team.");
+            // That was easy
+        } // try
+        catch (IOException x) {
+            System.out.println("Bad magic happened!");
+            System.exit(1);
+        } // catch
     } // main
 
 
@@ -47,6 +55,10 @@ public class TextParser {
                 readLineIn(scanner.nextLine());
             } // while
         } // try
+        catch (IOException x) {
+            System.out.println("Bad magic happened!");
+            System.exit(1);
+        } // catch
     } // readLineInByLine
 
 
