@@ -5,7 +5,7 @@ Add in test code as needed. All correctly-coded tests should always pass; otherw
 
 class TheBigTest {
 
-    public void main(String[] args) {
+    public static void main(String[] args) {
 
         //BST testBST = new BST(); // BST NEEDS TO BE STUDENT-COMPATIBLE
         Queue testQueue = new Queue();
@@ -14,13 +14,19 @@ class TheBigTest {
         Idea anotherIdea = new Idea(8888, 3210, "Another description.", 50);
 
 
-        Heap testHeap = new Heap();
+        //Heap testHeap = new Heap();
+        // Add some code to test the heap here, please
 
 
         List testList = new List();
         testList.insert(testIdea);
         testList.insert(anotherIdea);
+        System.out.println("Searching List after an insert. Should return 9999");
         System.out.println(testList.searchReturn(0123).getSeqNum());
+        // Outputs "9999"
+
+        TextParser reader = new TextParser("test.txt");
+        reader.readAll();
 
     } // main
 
