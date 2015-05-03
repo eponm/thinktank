@@ -47,7 +47,7 @@ public class BST{
             return head;
         } // else if
         else {
-            System.out.println("There is no matching object in this tree.")
+            System.out.println("There is no matching object in this tree.");
             return null;
         }
     } // search
@@ -56,14 +56,18 @@ public class BST{
     //Search method helper, used when searching for Student that isn't head
     //Params: Student, target Student SSN
     public Student searchTwo(Student branch, int key){
-        if(key<branch.getKey()){//if key is smaller than branch key
+        if (key<branch.getKey()){//if key is smaller than branch key
             return searchTwo(branch.getLeft(),key);
         }
-        else if(key>branch.getKey()){//if key is smaller than branch key
+        else if (key>branch.getKey()){//if key is smaller than branch key
             return searchTwo(branch.getRight(),key);
         }
-        else{//if key equals branch key
+        else if (branch.getKey() == key) { //if key equals branch key
             return branch;
+        }
+        else {
+            System.out.println("There is no matching object in this tree.");
+            return;
         }
     }//search
 
