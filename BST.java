@@ -36,14 +36,14 @@ public class BST{
 	//returns Student
 	//Params: target Student SSN
 	public Student search(int key){
-		if(head==null) return null;
-		else if(key<head.getKey()){
+		if(head==null) return null;//if there is no head
+		else if(key<head.getKey()){//if key is smaller than head key
 			return searchTwo(head.getLeft(),key);
 		}
-		else if(key>head.getKey()){
+		else if(key>head.getKey()){//if key is larger than head key
 			return searchTwo(head.getRight(),key);		
 		}
-		else{
+		else{//if the key equals head key
 			return head;
 		}
 	}
@@ -51,13 +51,13 @@ public class BST{
 	//Search method helper, used when searching for Student that isn't head
 	//Params: Student, target Student SSN	
 	public Student searchTwo(Student branch, int key){
-		if(key<branch.getKey()){
+		if(key<branch.getKey()){//if key is smaller than branch key
 			return searchTwo(branch.getLeft(),key);
 		}
-		else if(key>branch.getKey()){
+		else if(key>branch.getKey()){//if key is smaller than branch key
 			return searchTwo(branch.getRight(),key);
 		}
-		else{
+		else{//if key equals branch key
 			return branch;
 		}
 	}//search
@@ -66,10 +66,10 @@ public class BST{
 	//inserts Student into BST
 	//Params: Student to be inserted
 	public void insert(Student newStudent){
-		if(head==null){
+		if(head==null){//if there is no head
 			head=newStudent;
 		}
-		else{
+		else{//if there is a head
 			insertTwo(head,newStudent);
 		}
 	}
@@ -77,19 +77,19 @@ public class BST{
 	//insert helper
 	//Params: Student in tree, Student to be inserted
 	private void insertTwo(Student branch,Student newStudent){
-		if(newStudent.getKey()<branch.getKey()){
-			if(branch.getLeft()==null){
+		if(newStudent.getKey()<branch.getKey()){//if Student is smaller branch
+			if(branch.getLeft()==null){//if the branch left child is null
 				branch.setLeft(newStudent);
 			}
-			else{
+			else{//recursive call for next left branch down
 				insertTwo(branch.getLeft(),newStudent);
 			}
 		}
-		else{
-			if(branch.getRight()==null){
+		else{//if newStudent is larger than branch
+			if(branch.getRight()==null){//if the branch right child is null
 				branch.setRight(newStudent);
 			}
-			else{
+			else{//recursive call or next right branch down
 				insertTwo(branch.getRight(),newStudent);
 			}
 		}
@@ -126,22 +126,22 @@ public class BST{
 		*/
 		if(head==null) return;
 		int key=target.getKey();
-		if(key<head.getKey()){
+		if(key<head.getKey()){//if Student key is larger than head
 			int side=0;
 			deleteTwo(head.getLeft(),key,head,side);
 		}
-		else if(key>head.getKey()){
+		else if(key>head.getKey()){//if Student key is smaller than head
 			int side=1;
 			deleteTwo(head.getRight(),key,head,side);		
 		}
-		else{
+		else{//if Student key equals head
 			/*
 			pricipal of prioritizing higher values illustrated in this case:
 			*/
-			if(head.getLeft()==null&&head.getRight()==null){
+			if(head.getLeft()==null&&head.getRight()==null){//if head has no children
 				head=null;
 			}
-			else if(head.getLeft()==null){
+			else if(head.getLeft()==null){// if head has a right child
 				Student temp=head;
 				Student temp2=popMax(head.getRight(),head,0); //note how it only gets the maximum leftmost
 				//leaf of the RIGHT side if and only if getLeft() of head=null.
@@ -150,7 +150,7 @@ public class BST{
 				head.setRight(temp.getLeft());
 				temp.setRight(null);
 			}
-			else{
+			else{// if head has two children
 				Student temp=head;
 				Student temp2=popMax(head.getLeft(),head,1);
 				this.delete(temp2);
@@ -168,57 +168,57 @@ public class BST{
 	//Params: target Student, SSN of Student to be deleted, Parent of target, interger
 	//to represent what side of the parent the target is on (0[left] or 1[right])
 	public void deleteTwo(Student target, int key, Student parent, int side){
-		if(key<target.getKey()){
+		if(key<target.getKey()){//if Student key is smaller than target key
 			side=0;
 			deleteTwo(target.getLeft(),key,target,side);
 		}
-		else if(key>target.getKey()){
+		else if(key>target.getKey()){//if Student key is larger than target key
 			side=1;
 			deleteTwo(target.getRight(),key,target,side);
 		}
-		else{
-			if(target.getLeft()==null&&target.getRight()==null){
-				if(side==0){
+		else{//if Student key equals target key
+			if(target.getLeft()==null&&target.getRight()==null){//if the target has no children
+				if(side==0){//if the target is on the left side of parent
 					parent.setLeft(null);
 				}
-				else{
+				else{//if the target is on the right side of parent
 					parent.setRight(null);
 				}
 			}
-			else if(target.getLeft()==null||target.getRight()==null){	
-				if(side==0){
-					if(target.getLeft()==null){
+			else if(target.getLeft()==null||target.getRight()==null){//if the target has either a right or left child	
+				if(side==0){//if target is on the left side of parent
+					if(target.getLeft()==null){//if the target has a right child
 						Student successor=popMax(target.getRight(),parent,0);
 						parent.setLeft(successor);
 						successor.setRight(target.getRight());
 					}
-					else{
+					else{//if target has a left child
 						Student successor=popMax(target.getLeft(),parent,1);
 						parent.setLeft(successor);
 						successor.setLeft(target.getLeft());
 					}
 				}
-				else{
-					if(target.getLeft()==null){
+				else{//if target is on the right side of the parent
+					if(target.getLeft()==null){//if target has a left child
 						Student successor=popMax(target.getRight(),parent,0);
 						parent.setRight(successor);
 						successor.setRight(target.getRight());
 					}
-					else{
+					else{//if target has a right child
 						Student successor=popMax(target.getLeft(),parent,1);
 						parent.setRight(successor);
 						successor.setLeft(target.getLeft());
 					}
 				}
 			}
-			else{
-				if(side==0){
+			else{//if the target has two children
+				if(side==0){//if the target is on the left side of the parent
 					Student successor=popMax(target.getLeft(),parent,1);
 					parent.setLeft(successor);
 					successor.setRight(target.getRight());
 					successor.setLeft(target.getLeft());
 				}
-				else{
+				else{//if the target is on the right side of the parent
 					Student successor=popMax(target.getLeft(),parent,1);
 					parent.setRight(successor);
 					successor.setRight(target.getRight());
@@ -236,18 +236,18 @@ public class BST{
 	*/
 	//Params: target Student to be deleted, Parent of target, side of the parent (0 or 1)
 	private Student popMax(Student branch, Student parent, int side){
-		if(side==0&&branch.getLeft()!=null){
+		if(side==0&&branch.getLeft()!=null){//if going left and there is no left child
 			return popMax(branch.getLeft(),branch,0);
 		}
-		else if(side==1&&branch.getRight()!=null){
+		else if(side==1&&branch.getRight()!=null){//if going right and there is no right child
 			return popMax(branch.getRight(),branch,1);
 		}
-		else{
-			if(side==0){
+		else{//if going and there is a child
+			if(side==0){//if going left
 				parent.setLeft(null);
 				return branch;
 			}
-			else{
+			else{//if going right
 				parent.setRight(null);
 				return branch;
 			}
