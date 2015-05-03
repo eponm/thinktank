@@ -21,7 +21,7 @@ class Student {
     String username;
     int socSecNum; // Must be 0001–9999
     int studentID; // Must be 0001–9999
-    //Queue ideaQueue; // This may need to be its own object.
+    Queue ideaQueue; // This may need to be its own object.
     float avgIdeaRating;
 
     Student leftChild;
@@ -36,6 +36,7 @@ class Student {
         username = usernameIn; // Checks for 4-digit-ness should be done beforehand
         socSecNum = socSecNumIn;
         studentID = studentIDIn;
+        Queue ideaQueue = new Queue(10);
 
     } // Constructor
 
