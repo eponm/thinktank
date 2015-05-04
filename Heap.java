@@ -11,8 +11,14 @@
 //printHeap()
 
 public class Heap {
-    int n=0;
-    Idea[] heap=new Idea[128];
+    int n;
+    Idea[] heap;
+
+    // Constructor
+    public Heap() {
+      n = 0;
+      heap = new Idea[128];
+    } // constructor
 
     public boolean isEmptyHeap() {
         return n==0;
