@@ -1,24 +1,35 @@
+import java.util.Scanner; // For scanning, obviously.
+
+// FOLLOWING IMPORT REQUIRED IN ALL UPSTREAM MODULES
+import java.io.IOException; // For helpfully throwing exceptions if necessary
+
+import java.nio.charset.Charset; // For explicit character encodings
+import java.nio.charset.StandardCharsets; // For explicit character encodings
+
+import java.nio.file.Path; // For dealing with a file's full path and name, just in case
+import java.nio.file.Paths; // For dealing with a file's full path and name, just in case
+
+
 class ThinkTank {
 
-    public static void main(String[] args) {
+    private Path saveFile;
 
-        // First: Check for a config file.
-        // If one exists, load it into memory
-            // Check file encoding (probably UTF8)
-                /* Explicit encoding:
-                    FileInputStream fis = new FileInputStream("config.txt");
-                    InputStreamReader in = new InputStreamReader(fis, "UTF-8");
-                    Scanner scanner = new Scanner(file, "UTF-8");
-                */
-        // Else, write a default config
-                // See input streams above for encoding. Output is the same: e.g. FileOutputStream
-        // All of the following is read out of the config file:
+    public void main(String[] args) {
+
+        // Look for the save file and read it in through the text parser
+        saveFile = Paths.get("savedstate.txt"); // CHANGE SAVE FILE NAME HERE !
+        TextParser saveReader = new TextParser(String.valueOf(saveFile));
+
+        // Init an IdeaDB
+        // Implicitly initializes the heap and list for ideas
+        IdeaDB ideas = new IdeaDB();
+            // Load in all of the ideas
+            // Read in each idea
+            // Add it to the core list
+            // And if it was in the heap, add it to the heap
 
         // Init the student tree
-        // Init the idea heap
-
-        // Load the students into the tree in a manner that is not in order
-        // Load the ideas into the heap
+            // Add students in print order
 
 
 
