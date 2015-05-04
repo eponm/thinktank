@@ -49,6 +49,9 @@ class Student {
     // to display 10 recent ideas
 
 
+    //addToQueue(Idea newIdea)
+    // to add an idea into the student's queue
+    // also recalculates average rating of student's 10 ideas
 
     //editNames()
     // to change last name and username
