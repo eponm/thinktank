@@ -10,7 +10,7 @@ class TheBigTest {
 
     public static void main(String[] args) throws IOException {
 
-        //BST testBST = new BST(); // BST NEEDS TO BE STUDENT-COMPATIBLE
+        BinaryTree testBST = new BinaryTree();
         Queue testQueue = new Queue();
         Student testStudent = new Student("testName", "tname", 0123, 6789);
         Idea testIdea = new Idea(9999, 0123, "Description goes here.", 100);
