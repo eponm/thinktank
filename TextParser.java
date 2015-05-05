@@ -1,3 +1,17 @@
+/*
+Menu structure
+
+|——v Top idea
+|  |——> Sell idea
+|——> Add idea
+|——v Student lookup
+|  |——> Print ideas
+|  L——> Print record
+L——> Print all students
+
+*/
+
+
 import java.util.Scanner; // For scanning, obviously.
 
 // FOLLOWING IMPORT REQUIRED IN ALL UPSTREAM MODULES
@@ -10,7 +24,7 @@ import java.nio.file.Path; // For dealing with a file's full path and name, just
 import java.nio.file.Paths; // For dealing with a file's full path and name, just in case
 
 
-// This assumes that your input is UTF-8! Make sure that only a UTF-8 file gets passed in!
+// This assumes that the input is UTF-8! Make sure that only a UTF-8 file gets passed in!
 
 public class TextParser {
 
@@ -23,7 +37,7 @@ public class TextParser {
 
     // Main method to verify that the module is functional
     // REQUIRES A TEST FILE NAMED TEST.TXT WITH KEY VALUE PAIRS AS KEY=VALUE
-    public static void main(String... aArgs) throws IOException {
+    public static void main(String[] args) throws IOException {
         try {
             System.out.println("::: Testing TextParser :::");
             // Safe to assume that test.txt will be in same directory? Sure, why not
@@ -57,22 +71,21 @@ public class TextParser {
         } // try
         catch (IOException x) {
             System.out.println("Bad magic happened!");
-            System.exit(1);
         } // catch
-    } // readLineInByLine
+    } // readAll
 
 
     private void readLineIn(String line){
         // Instantiate a scanner to parse each line
         Scanner scanner = new Scanner(line);
-        // Tell the scanner to delimit with each equals sign
+        // Tell the scanner to delimit on each equals sign
         scanner.useDelimiter("=");
         // Get the next line, if there is one
         if (scanner.hasNext()) {
             // Lines will be pairs of data as "key = value", hopefully...
             String name = scanner.next();
             String value = scanner.next();
-            // Print values out (uses .trim() to eliminate surrounding whitespace)
+            // Print values out without surrounding whitespace)
             System.out.println("Key   " + name.trim() + "   with value   " + value.trim());
         } // if
         else {

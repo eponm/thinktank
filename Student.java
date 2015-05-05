@@ -92,6 +92,8 @@ class Student {
         return rightChild;
     }//gets rightChild
 
+
+
     //editNames()
     // to change last name and username
     public Student editNames(String lastName, String newUsername){

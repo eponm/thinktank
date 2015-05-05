@@ -12,6 +12,9 @@
 
 class Idea {
 
+    // To see whether or not an idea was in the heap upon last exit
+    boolean inHeap = false;
+
     int seqNum; // Assigned sequentially beginning from 0001
     int submittorKey;
     String description;
@@ -29,7 +32,6 @@ class Idea {
         description = descriptionIn;
         rating = ratingIn;
     } // Constructor
-
 
 
     /*********************
@@ -72,6 +74,13 @@ class Idea {
     } // getRating
 
 
+    // Checks whether an idea was in the heap on last exit
+    public boolean isInHeap() {
+        return inHeap;
+    } // isInHeap
+
+
+
     /*********************
     *   SETTER METHODS   *
     *********************/
@@ -109,6 +118,19 @@ class Idea {
     public void setRating(int ratingIn) {
         rating = ratingIn;
     } // setRating
+
+
+    // Will switch whether an idea will be read into the heap again on the next load of the saved state
+    public boolean flip() {
+        if (inHeap == false) {
+            inHeap = true;
+        } // else
+        else {
+            inHeap = false;
+        } // else
+        return inHeap;
+    } // flip
+
 
 
 } // Idea

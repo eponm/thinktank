@@ -1,11 +1,11 @@
 
-/*BST.java
+/*BinaryTree.java
     head - Node type pointer that will point to head
 
     Methods:
         isEmptyTree()
         search()
-            searchTwo()<----private helper function 
+            searchTwo()<----private helper function
         insert()
             insertTwo()<----^^
         traverse()
@@ -17,12 +17,12 @@
             printTree2()<---^^
 */
 
-public class BST{
+public class BinaryTree {
     private Student head;
 
     //Constructor
     //sets head to null
-    public BST(){
+    public BinaryTree() {
         head = null;
     }//Constructor
 
@@ -35,32 +35,42 @@ public class BST{
     //search
     //returns Student
     //Params: target Student SSN
-    public Student search(int key){
-        if(head==null) return null;//if there is no head
-        else if(key<head.getKey()){//if key is smaller than head key
-            return searchTwo(head.getLeft(),key);
-        }
-        else if(key>head.getKey()){//if key is larger than head key
-            return searchTwo(head.getRight(),key);      
-        }
-        else{//if the key equals head key
+    public Student search(int key) {
+        if (head == null) return null; //if there is no head
+        else if (key < head.getKey()) { //if key is smaller than head key
+            return searchTwo(head.getLeft(), key);
+        } // if
+        else if (key > head.getKey()) { //if key is larger than head key
+            return searchTwo(head.getRight(), key);
+        } // else if
+        else if (key == head.getKey()) { //if the key equals head key
             return head;
+        } // else if
+        else {
+            System.out.println("There is no matching object in this tree.");
+            return null;
         }
-    }
+    } // search
+
 
     //Search method helper, used when searching for Student that isn't head
-    //Params: Student, target Student SSN   
+    //Params: Student, target Student SSN
     public Student searchTwo(Student branch, int key){
-        if(key<branch.getKey()){//if key is smaller than branch key
+        if (key<branch.getKey()){//if key is smaller than branch key
             return searchTwo(branch.getLeft(),key);
         }
-        else if(key>branch.getKey()){//if key is smaller than branch key
+        else if (key>branch.getKey()){//if key is smaller than branch key
             return searchTwo(branch.getRight(),key);
         }
-        else{//if key equals branch key
+        else if (branch.getKey() == key) { //if key equals branch key
             return branch;
         }
+        else {
+            System.out.println("There is no matching object in this tree.");
+            return;
+        }
     }//search
+
 
     //insert
     //inserts Student into BST
@@ -73,6 +83,7 @@ public class BST{
             insertTwo(head,newStudent);
         }
     }
+
 
     //insert helper
     //Params: Student in tree, Student to be inserted
@@ -95,6 +106,7 @@ public class BST{
         }
     }//insert
 
+
     //traverse
     //prints tree to consol from left to right
     public void traverse(){
@@ -114,6 +126,7 @@ public class BST{
         }
     }//traverse
 
+
     //delete
     //deletes a target node in a BST
     //Params: Student in BST
@@ -122,7 +135,7 @@ public class BST{
         make note that tree prioritizes elements of higher value
         i.e. : when replacing elements, the tree will go LEFT, then the right-most
         leaf, rather than going RIGHT and getting the leftmost leaf because the ladder is
-        of higher value. 
+        of higher value.
         */
         if(head==null) return;
         int key=target.getKey();
@@ -132,7 +145,7 @@ public class BST{
         }
         else if(key>head.getKey()){//if Student key is smaller than head
             int side=1;
-            deleteTwo(head.getRight(),key,head,side);       
+            deleteTwo(head.getRight(),key,head,side);
         }
         else{//if Student key equals head
             /*
@@ -162,6 +175,7 @@ public class BST{
         }
     }
 
+
     //delete helper
     //cycles the target down the tree by comparing the target to the SSN of Student that
     //is to be deleted.
@@ -185,7 +199,7 @@ public class BST{
                     parent.setRight(null);
                 }
             }
-            else if(target.getLeft()==null||target.getRight()==null){//if the target has either a right or left child   
+            else if(target.getLeft()==null||target.getRight()==null){//if the target has either a right or left child
                 if(side==0){//if target is on the left side of parent
                     if(target.getLeft()==null){//if the target has a right child
                         Student successor=popMax(target.getRight(),parent,0);
@@ -228,8 +242,9 @@ public class BST{
         }
     }
 
+
     //popMax
-    /* helper function for getting the maximum depth leaf in a certain direction, 
+    /* helper function for getting the maximum depth leaf in a certain direction,
     (used in delete). Takes a Student and an int of either 0 or 1, 0==GO LEFT, 1==GO RIGHT.
     While loops down the line until null until next==null. Then returns the current
     Student the pointer is on.
@@ -254,6 +269,7 @@ public class BST{
         }
     }//delete
 
+
     //printTree()
     //prints Students in BST with their left and right Children
     public void printTree() {
@@ -262,19 +278,20 @@ public class BST{
     System.out.println();
     }
 
+
     //helper function
-    //Params: Student           
+    //Params: Student
     private void printTree2(Student tree) {
         if (tree != null) {
-            System.out.print(tree.getKey() + " ");
+            System.out.println("node = " + tree.getKey());
                 if (tree.getLeft() != null)
-                System.out.print("Left: " + tree.getLeft().getKey() + " ");
+                System.out.println("left = " + tree.getLeft().getKey());
                 else
-                    System.out.print("Left: null ");
+                    System.out.print("left = null");
                 if (tree.getRight() != null)
-                System.out.println("Right: " + tree.getRight().getKey() + " ");
+                System.out.println("right = " + tree.getRight().getKey());
                 else
-                    System.out.println("Right: null ");
+                    System.out.println("right = null");
             printTree2(tree.getLeft());
             printTree2(tree.getRight());
         }
