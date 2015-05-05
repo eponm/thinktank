@@ -67,14 +67,26 @@ public class Heap {
 //helper function for rearranging after nodes are deleted
     public void swap2(int m) {
         int j=0;
-         while (heap[m*2].getKey() > (heap[m*2+1].getKey() || heap[m*2+2].getKey()){
-            Node b=heap[m*2+1];
-            Node a=heap[m*2];
-            heap[m*2+1]=null;
-            heap[m*2]=null;
-            heap[m*2+1]=a;
-            heap[m*2]=b;
-            swap(m*2+1); 
+         while (heap[m*2].getKey() > ((heap[m*2+1].getKey() || heap[m*2+2].getKey())){
+            if (heap[m*2].getKey() > heap[m*2+1].getKey()){
+                Node b=heap[m*2+1];
+                Node a=heap[m*2];
+                heap[m*2+1]=null;
+                heap[m*2]=null;
+                heap[m*2+1]=a;
+                heap[m*2]=b;
+                swap(m*2+1); 
+            }
+            else {
+                Node b=heap[m*2+2];
+                Node a=heap[m*2];
+                heap[m*2+2]=null;
+                heap[m*2]=null;
+                heap[m*2+2]=a;
+                heap[m*2]=b;
+                swap(m*2+2); 
+            }
+            
              //for the other child EDIT
          }
      }

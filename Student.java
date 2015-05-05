@@ -1,3 +1,4 @@
+
 /* Student.java
 
     Each student includes:
@@ -20,13 +21,12 @@ class Student {
     String username;
     int socSecNum; // Must be 0001–9999
     int studentID; // Must be 0001–9999
-    //Queue ideaQueue; // This may need to be its own object.
+    Queue ideaQueue; // This may need to be its own object.
     float avgIdeaRating;
 
     Student leftChild;
     Student rightChild;
     Student parentNode;
-
     // Constructor
     // Params: Last name, short username, 4-digit SSN, 4-digit student number.
     public Student(String nameIn, String usernameIn, int socSecNumIn, int studentIDIn) {
@@ -36,24 +36,30 @@ class Student {
         username = usernameIn; // Checks for 4-digit-ness should be done beforehand
         socSecNum = socSecNumIn;
         studentID = studentIDIn;
+        Queue ideaQueue = new Queue(10);
 
     } // Constructor
 
 
     //displayStudent()
-        // to display student information as described in specifications
+    // to display student information as described in specifications
 
 
     //displayIdeas()
-        // to display 10 recent ideas
+    // to display 10 recent ideas
 
 
-    //deleteStudent()
-        // to delete record (unsure if should delete ideas as well)
-
+    //addToQueue(Idea newIdea)
+    // to add an idea into the student's queue
+    // also recalculates average rating of student's 10 ideas
 
     //editNames()
-        // to change last name and username
+    // to change last name and username
+    public Student editNames(String lastName, String newUsername){
+        name=lastName;
+        username=newUsername;
+        return this;
+    }
 
 
     // Set the left child of a Student in a BST to nextStudent.
