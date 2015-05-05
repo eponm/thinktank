@@ -2,11 +2,11 @@
 Menu structure
 
 |——v Top idea
-|  +——> Sell idea
+|  |——> Sell idea
 |——> Add idea
 |——v Student lookup
-|  +——> Print ideas
-|  +——> Print record
+|  |——> Print ideas
+|  L——> Print record
 L——> Print all students
 
 */
@@ -37,7 +37,7 @@ public class TextParser {
 
     // Main method to verify that the module is functional
     // REQUIRES A TEST FILE NAMED TEST.TXT WITH KEY VALUE PAIRS AS KEY=VALUE
-    public static void main(String... aArgs) throws IOException {
+    public static void main(String[] args) throws IOException {
         try {
             System.out.println("::: Testing TextParser :::");
             // Safe to assume that test.txt will be in same directory? Sure, why not
