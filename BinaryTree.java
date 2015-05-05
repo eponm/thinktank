@@ -283,15 +283,15 @@ public class BinaryTree {
     //Params: Student
     private void printTree2(Student tree) {
         if (tree != null) {
-            System.out.print(tree.getKey() + " ");
+            System.out.println("node = " + tree.getKey());
                 if (tree.getLeft() != null)
-                System.out.print("Left: " + tree.getLeft().getKey() + " ");
+                System.out.println("left = " + tree.getLeft().getKey());
                 else
-                    System.out.print("Left: null ");
+                    System.out.print("left = null");
                 if (tree.getRight() != null)
-                System.out.println("Right: " + tree.getRight().getKey() + " ");
+                System.out.println("right = " + tree.getRight().getKey());
                 else
-                    System.out.println("Right: null ");
+                    System.out.println("right = null");
             printTree2(tree.getLeft());
             printTree2(tree.getRight());
         }
