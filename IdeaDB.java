@@ -17,6 +17,10 @@ class IdeaDB {
 
     // Insert - adds a new idea
     public void insert(Idea newIdea) {
+        // Get the submittor's key
+        int key = newIdea.getKey();
+
+        // Put the idea in the things:
         // Set seqNum in newIdea
         newIdea.setSeqNum(seqNum);
         seqNum++;
@@ -27,9 +31,9 @@ class IdeaDB {
         // Flip idea's inHeap value
         newIdea.inHeap(true);
 
-        // Access student from BST
-        // Add idea to student's queue
-
+        // Add the idea to the student's queue
+        Student student = studentTree.search(key);
+        student.addToQueue(newIdea);
     } // insert
 
 
