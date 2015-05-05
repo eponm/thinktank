@@ -23,15 +23,17 @@ class ThinkTank {
         // Init an IdeaDB
         // Implicitly initializes the heap and list for ideas
         IdeaDB ideas = new IdeaDB();
-            // Load in all of the ideas
-            // Read in each idea
-            // Add it to the core list
-            // And if it was in the heap, add it to the heap
 
-        // Init the student tree
-            // Add students in print order
+        // While segment = STUDENT
+
+        // Add the student to the BST
+
+        // Connect its parent, left, right
 
 
+        // While segment = IDEA
+
+        // Insert each idea
 
     } // MAIN
 
