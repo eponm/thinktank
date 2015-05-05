@@ -74,5 +74,11 @@ public class Queue {
         return temp;
     } // dequeue
 
-
+    //getAll()
+    //returns all items in queue in an array
+    public Idea[] getAll(){
+        Idea[] all = new Idea[size];
+        System.arraycopy(queue, 0, all, 0, size);
+        return all;
+    }
 } // class
