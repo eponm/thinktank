@@ -1,12 +1,13 @@
 /*
 Menu structure
 
-|  > Top idea
-|  > Add idea
-|  v Student lookup
-|  |  > Print ideas
-|  L  > Print record
-L  > Print all students
+|——v Top idea
+|  +——> Sell idea
+|——> Add idea
+|——v Student lookup
+|  +——> Print ideas
+|  +——> Print record
+L——> Print all students
 
 */
 
