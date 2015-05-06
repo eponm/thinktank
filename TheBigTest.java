@@ -17,8 +17,8 @@ class TheBigTest {
         //5 students, each with at least 2 ideas
         //student number 1: has 10 ideas
         Student testStudent = new Student("testName", "tname", 0123, 6789);
-        Idea testIdea = new Idea(9999, 0123, "Description goes here.", 100);
-        Idea anotherIdea = new Idea(8888, 3210, "Another description.", 50);
+        Idea testIdea = new Idea(9999, "Description goes here.", 100);
+        Idea anotherIdea = new Idea(8888, "Another description.", 50);
         //student number 2
         Student testStudent2= new Student("testName2", "tname2" , 0125, 6790);
         Idea testIdea3 = new Idea(7777,"Oh look how smart I am", 75);
@@ -35,7 +35,7 @@ class TheBigTest {
         // Add some code to test the heap here, please
         
 
-
+//TESTING THE LIST
         List testList = new List();
         testList.insert(testIdea);
         testList.insert(anotherIdea);
@@ -43,8 +43,8 @@ class TheBigTest {
         System.out.println(testList.searchReturn(0123).getSeqNum());
         // Outputs "9999"
 
-        TextParser reader = new TextParser("test.txt");
-        reader.readAll();
+  /*      TextParser reader = new TextParser("test.txt");
+        reader.readAll(); */
 
     } // main
 
