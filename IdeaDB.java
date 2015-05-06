@@ -20,7 +20,7 @@ class IdeaDB {
         // Get the submittor's key
         int key = newIdea.getKey();
 
-        // Put the idea in the things:
+        // Put the idea coreList, ideaHeap and studentTree:
         // Set seqNum in newIdea
         newIdea.setSeqNum(seqNum);
         seqNum++;
@@ -29,7 +29,7 @@ class IdeaDB {
         // Add idea to heap
         ideaHeap.insert(newIdea);
         // Flip idea's inHeap value
-        newIdea.flip()
+        newIdea.flip();
 
         // Add the idea to the student's queue
         Student student = studentTree.search(key);
