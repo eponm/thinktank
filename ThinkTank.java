@@ -95,20 +95,35 @@ class ThinkTank {
                             //(N)o
                                 //goes back to student lookup menu 
         //***********************A****************************************************
-
-        //********************sub-While Loop b*************************************
                     //else if (B)
+        //********************sub-While Loop b*************************************
                         //student.displayIdeas()
                         //"Please enter Q to quit"
-
         //***********************B*************************************************
+                    //if c        
+        //********************sub-While Loop c*************************************
+                        //idea.
+
+
+
             //if student==null:
                 //"That student was not found in out databse."
                 //"Would you like to add them?"
                     //(Y)es
                         //addStudent()
                     //(N)o
-                        //main menu
+                        //main 
+        //*************************************************************************
+
+
+        //addStudent()
+            //name = "Please enter student name"
+            //SSN = "Please enter 4 digit student SSN"
+            //studentNumber= "Please enter 4 digit student number"
+            //username= "Please enter student email address"
+            //Student newStudent = new Student(name, username, SSN, studentNumber)
+            //ideas.addStudent(newStudent)
+            //"The student has been added to the database"
 
 
         //studentLookup()
@@ -120,6 +135,7 @@ class ThinkTank {
                 //if found
                     //return Student
                 //if not 
+
                     //return null 
     
 
