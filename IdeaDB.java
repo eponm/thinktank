@@ -3,6 +3,7 @@ class IdeaDB {
     private List coreList;
     private Heap ideaHeap;
     private BinaryTree studentKeyTree;
+    private BinaryTree studentNumTree;
 
     private int seqNum;
 
@@ -13,14 +14,9 @@ class IdeaDB {
         ideaHeap = new Heap();
         studentKeyTree = new BinaryTree();
         studentNumTree = new BinaryTree(true);
-        //this.rebuild
+
     } // constructor
 
-
-    // Rebuild database from text file?
-    public void rebuild(){
-        //uses text parser to parse text document
-    }
 
 
     // insertIdea - adds a new idea
