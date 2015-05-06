@@ -1,13 +1,13 @@
 //heap -- min number is next number helped
 public class Heap {
     int n; //counter for 
-    Node[] heap;//array of nodes
+    Idea[] heap;//array of Ideas
     
     //constructor
-    //params: n, node[]
+    //params: n, Idea[]
     public Heap() {
         n=0;
-        heap=new Node[256];
+        heap=new Idea[256];
     }//constructor
     
     //isEmptyHeap() checks if heap is empty    
@@ -27,7 +27,7 @@ public class Heap {
     }//findMin
     
     //find min-- unformatted
-    public Node findMin() {
+    public Idea findMin() {
         return heap[0];
     }//find Min
     
@@ -50,7 +50,7 @@ public class Heap {
     //helper function for printHeapFormat()
     private void printHeap2(int index) {
         if (heap[index] !=null) {
-            System.out.println("node = " + heap[index].getKey());
+            System.out.println("Idea = " + heap[index].getKey());
         }
             //left child
             if (heap[index*2+1] !=null){
@@ -69,8 +69,8 @@ public class Heap {
             printHeap2(index*2+2);
         }
     
-    //insert(Node x); inserts node into heap reorders heap   
-    public void insert(Node x) {
+    //insert(Idea x); inserts Idea into heap reorders heap   
+    public void insert(Idea x) {
         heap[n]=x;
         if (n!=0) {
             swap(n-1);
@@ -79,15 +79,15 @@ public class Heap {
     }//insert
     
     
-    //helper function for inserted nodes
+    //helper function for inserted Ideas
      public void swap(int index) {
          int parentIndex=index/2;
          //for when there are 2 or 3 items in the array
          if (index==1) {
              //if there are only two items
              if (heap[0].getKey()> heap[1].getKey()) {
-                  Node a=heap[0];
-                  Node b=heap[1];
+                  Idea a=heap[0];
+                  Idea b=heap[1];
                   heap[1]=a;
                   heap[0]=b;
                   return;
@@ -95,8 +95,8 @@ public class Heap {
              //if there are 3 items
              else if(heap[2]!=null) {
                  if (heap[0].getKey()> heap[2].getKey()) {
-                     Node a= heap[0];
-                     Node b=heap[2];
+                     Idea a= heap[0];
+                     Idea b=heap[2];
                      heap[2]=a;
                      heap[0]=b;
                  }//if
@@ -110,8 +110,8 @@ public class Heap {
         //if there are 3 things in the array
         else if (index==2) {
             if (heap[0].getKey()> heap[2].getKey()) {
-                      Node a=heap[0];
-                      Node b=heap[2];
+                      Idea a=heap[0];
+                      Idea b=heap[2];
                       heap[2]=a;
                       heap[0]=b;
                       return;
@@ -120,7 +120,7 @@ public class Heap {
          
         //for all other swaps at all other lengths, finds parent with direct index
         while (heap[parentIndex].getKey() > heap[index+1].getKey()){
-                Node b=heap[index+1];
+                Idea b=heap[index+1];
                 heap[index+1]=heap[parentIndex];
                 heap[parentIndex]=b;
                 swap(parentIndex);  
@@ -128,7 +128,7 @@ public class Heap {
         }//swap
     
     
-    //helper function for rearranging after nodes are deleted
+    //helper function for rearranging after Ideas are deleted
     public void swap2(int m) {
         int j=0;
         //if the tree has no child i.e. has nothing to swap with
@@ -147,8 +147,8 @@ public class Heap {
         else {
             while ((heap[m*2].getKey() > heap[m*2+1].getKey()) || (heap[m*2].getKey()> heap[m*2+2].getKey())){
                 if (heap[m*2].getKey() > heap[m*2+1].getKey()){
-                    Node b=heap[m*2+1];
-                    Node a=heap[m*2];
+                    Idea b=heap[m*2+1];
+                    Idea a=heap[m*2];
                     heap[m*2+1]=null;
                     heap[m*2]=null;
                     heap[m*2+1]=a;
@@ -156,8 +156,8 @@ public class Heap {
                     swap(m*2+1); 
                 }//if parent>right child
                 else {
-                    Node b=heap[m*2+2];
-                    Node a=heap[m*2];
+                    Idea b=heap[m*2+2];
+                    Idea a=heap[m*2];
                     heap[m*2+2]=null;
                     heap[m*2]=null;
                     heap[m*2+2]=a;
@@ -170,11 +170,11 @@ public class Heap {
    
     
     //deleteMin(); deletes the min, reassigns the min, reorders tree
-    public Node deleteMin() {
+    public Idea deleteMin() {
         if (n==0) {
             return null;
         }//if   
-        Node newMin=heap[n-1];
+        Idea newMin=heap[n-1];
         heap[0]=newMin;
         heap[n-1]=null;
         n--;
