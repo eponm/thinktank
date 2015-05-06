@@ -2,7 +2,7 @@ class IdeaDB {
 
     private List coreList;
     private Heap ideaHeap;
-    private BinaryTree studentTree;
+    private BinaryTree studentKeyTree;
 
     private int seqNum;
 
@@ -11,12 +11,13 @@ class IdeaDB {
         seqNum = 1;
         coreList = new List();
         ideaHeap = new Heap();
-        studentTree = new BinaryTree();
+        studentKeyTree = new BinaryTree();
+        studentNumTree = new BinaryTree(true);
         //this.rebuild
     } // constructor
 
-    //rebuild
-    //rebuilds dataStructure from save file if there is one
+
+    // Rebuild database from text file?
     public void rebuild(){
         //uses text parser to parse text document
     }
@@ -27,7 +28,7 @@ class IdeaDB {
         // Get the submittor's key
         int key = newIdea.getKey();
 
-        // Put the idea coreList, ideaHeap and studentTree:
+        // Put the idea coreList, ideaHeap and studentKeyTree:
         // Set seqNum in newIdea
         newIdea.setSeqNum(seqNum);
         seqNum++;
@@ -39,14 +40,16 @@ class IdeaDB {
         newIdea.flip();
 
         // Add the idea to the student's queue
-        Student student = studentTree.search(key);
+        Student student = studentKeyTree.search(key);
         student.addToQueue(newIdea);
     } // insert
 
     //addStudent
     //adds a student to IdeaDB
-    public void addStudent(Student newStudent){
-        studentTree.insert(newStudent);
+    public void addStudent(Student newStudent) {
+        // Doesn't double stored data because of how Java handles objects
+        studentKeyTree.insert(newStudent);
+        studentNumTree.insert(newStudent);
     }//addStudent
 
 
@@ -54,6 +57,7 @@ class IdeaDB {
     public Idea sell() {
         // Store the min in a temporary slot and get rid of it from the heap
         Idea temp = ideaHeap.deleteMin();
+        return temp;
     } // sell
 
 
