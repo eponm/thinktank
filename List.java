@@ -50,14 +50,14 @@ public class List {
 
 
     // Returns the Idea with a given key (last four digits of SSN)
-    public Idea searchReturn(int keyToFind) {
+    public Idea searchReturn(int ssn) {
         int count = 0;
         Idea temp = head;
 
         // Loop until the end of the list
         while (count < length) {
             // Check to see if there is a match
-            if (temp.getKey() == keyToFind) {
+            if (temp.getKey() == ssn) {
                 // If so, return the Idea
                 return temp;
             } //if
