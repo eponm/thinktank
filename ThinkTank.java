@@ -1,3 +1,4 @@
+
 import java.util.Scanner; // For scanning, obviously.
 
 // FOLLOWING IMPORT REQUIRED IN ALL UPSTREAM MODULES
