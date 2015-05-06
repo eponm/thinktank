@@ -129,12 +129,6 @@ class Student {
     } // setRightChild
 
 
-    // Set the parent of a Student in a BST to nextStudent.
-    // NOTE: this returns the Student with the modified pointers.
-    public Student setParent(Student nextStudent) {
-        parentNode = nextStudent;
-        return this;
-    } // setParent
 
 
 

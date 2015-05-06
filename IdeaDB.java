@@ -48,10 +48,9 @@ class IdeaDB {
 
     //deleteStudent
     //deletes student from both trees
-    public void deleteStuent(Student targetStudent){
-        int ssn = targetStudent.getKey();
-        int studentID = targetStudent.getStudentID();
-        studentSSNTree.delete
+    public void deleteStudent(Student targetStudent){
+        studentSSNTree.delete(targetStudent);
+        studentIDTree.delete(targetStudent);
     }
     // "Sell" - deletes top-rated idea and returns it
     public Idea sell() {
