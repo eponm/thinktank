@@ -24,6 +24,9 @@ class TheBigTest {
         Idea testIdea3 = new Idea(7777,"Oh look how smart I am", 75);
         Idea testIdea4 = new Idea(6666, "Wow it's amazing", 25);
         //student number 3
+        Student testStudent3 = new Student ("testNmae3", "tnsd3" , 0124,6780);
+        Idea testIdea5= new Idea(5555,"I'M A GENIUS GOD DAMMIT!!",10);
+        Idea testIdea6= new Idea(4444, "wwwwwwwwooooooofff",11);
         //student number 4
         //student number 5
 
