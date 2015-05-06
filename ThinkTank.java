@@ -158,6 +158,8 @@ class ThinkTank {
             cont[0] = key;
             cont[1] = val;
         } // while
+
+        return cont;
     }
 
 } // Thinktank
