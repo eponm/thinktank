@@ -2,14 +2,8 @@ class IdeaDB {
 
     private List coreList;
     private Heap ideaHeap;
-<<<<<<< HEAD
     private BinaryTree studentSSNTree;
     private BinaryTree studentIDTree;
-=======
-    private BinaryTree studentKeyTree;
-    private BinaryTree studentNumTree;
->>>>>>> 9367bcd64b455cc4cab8ca9101b96f59ca47b391
-
     private int seqNum;
 
     // Constructor
@@ -17,16 +11,8 @@ class IdeaDB {
         seqNum = 1;
         coreList = new List();
         ideaHeap = new Heap();
-<<<<<<< HEAD
         studentSSNTree = new BinaryTree();
         studentIDTree = new BinaryTree(true);
-        //this.rebuild
-    } // constructor
-=======
-        studentKeyTree = new BinaryTree();
-        studentNumTree = new BinaryTree(true);
->>>>>>> 9367bcd64b455cc4cab8ca9101b96f59ca47b391
-
     } // constructor
 
 
