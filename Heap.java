@@ -18,11 +18,11 @@ public class Heap {
     //findMin();finds and returns the only accessible value in the heap
     public void findMinFormat() {
         if (isEmptyHeap()==true) {
-            return heap[0];
+            
             System.out.println("There are no ideas here");//debug
         }//if
         else {
-            System.out.println("The best idea is Idea #" + heap[0].getSeqNum() + "/nrated at" + heap[0].getRating() + "here is the description: /n" + heap.getDesc());//debug
+            System.out.println("The best idea is Idea #" + heap[0].getSeqNum() + "/nrated at" + heap[0].getRating() + "here is the description: /n" + heap[0].getDesc());//debug
         }//else
     }//findMin
     
