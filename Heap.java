@@ -10,13 +10,13 @@ public class Heap {
         heap=new Node[256];
     }//constructor
     
-//isEmptyHeap() checks if heap is empty    
+    //isEmptyHeap() checks if heap is empty    
     public boolean isEmptyHeap() {
         return n==0;
     }//isEmptyHeap
     
-//findMin();finds and returns the only accessible value in the heap
-    public Node findMin() {
+    //findMin();finds and returns the only accessible value in the heap
+    public void findMinFormat() {
         if (isEmptyHeap()==true) {
             return heap[0];
             System.out.println("There are no ideas here");//debug
@@ -26,15 +26,50 @@ public class Heap {
         }//else
     }//findMin
     
- //printHeap() prints all the values in the heap in order  
- // debug
+    //find min-- unformatted
+    public Node findMin() {
+        return heap[0];
+    }//find Min
+    
+    //printHeap() prints all the values in the heap in order  
+    // debug
     public void printHeap() {
         for (int i=0;i<(n);i++) {
             System.out.println(heap[i].getKey());
         }//for
     }//printHeap
     
- //insert(Node x); inserts node into heap reorders heap   
+    
+    //print with formatting
+    public void printHeapFormat() {
+        System.out.println();
+        printHeap2(0);
+        System.out.println();
+    }//printTree()
+    
+    //helper function for printHeapFormat()
+    private void printHeap2(int index) {
+        if (heap[index] !=null) {
+            System.out.println("node = " + heap[index].getKey());
+        }
+            //left child
+            if (heap[index*2+1] !=null){
+                System.out.println("left = " + heap[index*2+1].getKey());
+            }
+            else {
+                System.out.print("left = null");
+            }
+            if (heap[index*2+2]!=null) {
+                System.out.println("right = " + heap[index*2+2].getKey());
+            }
+            else{
+                System.out.println("right = null");
+            }
+            printHeap2(index*2+1);
+            printHeap2(index*2+2);
+        }
+    
+    //insert(Node x); inserts node into heap reorders heap   
     public void insert(Node x) {
         heap[n]=x;
         if (n!=0) {
@@ -43,7 +78,8 @@ public class Heap {
         n+=1;
     }//insert
     
-//helper function for inserted nodes
+    
+    //helper function for inserted nodes
      public void swap(int index) {
          int parentIndex=index/2;
          //for when there are 2 or 3 items in the array
@@ -91,7 +127,8 @@ public class Heap {
          }//while
         }//swap
     
-//helper function for rearranging after nodes are deleted
+    
+    //helper function for rearranging after nodes are deleted
     public void swap2(int m) {
         int j=0;
         //if the tree has no child i.e. has nothing to swap with
@@ -131,7 +168,8 @@ public class Heap {
         }//else
     }
    
-//deleteMin(); deletes the min, reassigns the min, reorders tree
+    
+    //deleteMin(); deletes the min, reassigns the min, reorders tree
     public Node deleteMin() {
         if (n==0) {
             return null;
