@@ -43,9 +43,14 @@ public class List {
 
     // Inserts a Idea at the head of the list
     public void insert(Idea x) {
-        x.setNext(head);
-        head = x;
-        length++;
+        if (head==null) {
+            head=x;
+        }
+        else {
+            x.setNext(head);
+            head = x;
+            length++;
+        }
     } //insert
 
 
