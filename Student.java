@@ -92,14 +92,17 @@ class Student {
         return rightChild;
     }//gets rightChild
 
-    //setLeft()
-    //NOTE: returns Student with modified pointers
-
     //getKey()
     //returns the last 4 digits of the SSN
     public int getKey(){
-        return socSecNum%10000;
-    }
+        return socSecNum;   
+    }//getKey()
+
+    //getStudentID
+    //returns Student ID
+    public int getStudentID(){
+        return studentID;
+    }//getSudentID
 
     //editNames()
     // to change last name and username

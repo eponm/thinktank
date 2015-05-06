@@ -26,8 +26,8 @@ class Idea {
 
     // Constructor
     // Params: idea number, submittor SSN, a string description, and a rating.
-    public Idea(int submittorKeyIn, String descriptionIn, int ratingIn) {
-        submittorKey = submittorKeyIn;
+    public Idea(int ssn, String descriptionIn, int ratingIn) {
+        submittorKey = ssn;
         description = descriptionIn;
         rating = ratingIn;
     } // Constructor
