@@ -52,10 +52,12 @@ class ThinkTank {
         //menu options
         //A)Help Documentation for user
             //prints documentation for user
-        //B)Print Top Idea 
+        //B)Top Idea 
             //Would you like to sell the idea?
-                //(Y)es, prints to a file
-                //(N)o, gos back to main menu
+                //(Y)es
+                    //prints idea to file
+                    //"Your idea has been saved as 'bestIdea!.txt' ""
+                //(N)o, main menu()
         //C)Add Idea
             //SSN = "What is SSN of the submittor?"
                 //search BST with SSN
