@@ -13,6 +13,7 @@ import java.nio.file.Paths; // For dealing with a file's full path and name, jus
 
 class ThinkTank {
 
+    private final static Charset ENCODING = StandardCharsets.UTF_8; // Change encoding type here
     private Path saveFile;
 
     public void main(String[] args) {
@@ -26,16 +27,14 @@ class ThinkTank {
         IdeaDB ideas = new IdeaDB();
 
         // While segment = STUDENT
-
         // Add the student to the BST
-
         // Connect its parent, left, right
-
-
         // While segment = IDEA
-
         // Insert each idea
 
+
+        // Load a scanner
+        Scanner sc =  new Scanner(saveFile, ENCODING.name())
 
         /*
         Menu structure
@@ -53,7 +52,7 @@ class ThinkTank {
         //menu options
         //A)Help Documentation for user
             //prints documentation for user
-        //B)Top Idea 
+        //B)Top Idea
             //Would you like to sell the idea?
                 //(Y)es
                     //prints idea to file
@@ -93,14 +92,14 @@ class ThinkTank {
                                 //"The record has been changed! Have a nice day! :)"
                                 //goes back to student lookup menu
                             //(N)o
-                                //goes back to student lookup menu 
+                                //goes back to student lookup menu
         //***********************A****************************************************
                     //else if (B)
         //********************sub-While Loop b*************************************
                         //student.displayIdeas()
                         //"Please enter Q to quit"
         //***********************B*************************************************
-                    //if c        
+                    //if c
         //********************sub-While Loop c*************************************
                         //idea.
 
@@ -112,7 +111,7 @@ class ThinkTank {
                     //(Y)es
                         //addStudent()
                     //(N)o
-                        //main 
+                        //main
         //*************************************************************************
 
 
@@ -134,11 +133,31 @@ class ThinkTank {
                 //search the appropriate BST
                 //if found
                     //return Student
-                //if not 
+                //if not
 
-                    //return null 
-    
+                    //return null
+
 
     } // MAIN
+
+
+    private String[] readLine(Scanner sc) {
+        String key;
+        String val;
+        while (sc.hasNextLine()){
+            sc.useDelimiter("="); // Tell the scanner to delimit on each equals sign
+            if (sc.hasNext()) { // Get the next line if there is one
+                key = sc.next().trim();
+                val = sc.next().trim();
+            } // if
+            else { // If there is no line
+                key = "Invalid key or line";
+                val = "Invalid value or line";
+            } // else
+            String[] cont = new String[2];
+            cont[0] = key;
+            cont[1] = val;
+        } // while
+    }
 
 } // Thinktank
