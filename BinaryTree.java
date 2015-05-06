@@ -19,12 +19,20 @@
 
 public class BinaryTree {
     private Student head;
+    private boolean flipKeyToNum;
 
     //Constructor
     //sets head to null
     public BinaryTree() {
         head = null;
+        flipKeyToNum = false;
     }//Constructor
+
+    public BinaryTree(boolean keyFlip) {
+        head = null;
+        flipKeyToNum = keyFlip;
+    } // Overriding constructor
+
 
     //isEmptyTree
     //Returns boolean value True if head points to null, else returns False
@@ -32,29 +40,53 @@ public class BinaryTree {
         return head==null;
     }//isEmptyTree
 
+
     //search
     //returns Student
     //Params: target Student SSN
     public Student search(int key) {
-        if (head == null) return null; //if there is no head
-        else if (key < head.getKey()) { //if key is smaller than head key
-            return searchTwo(head.getLeft(), key);
-        } // if
-        else if (key > head.getKey()) { //if key is larger than head key
-            return searchTwo(head.getRight(), key);
-        } // else if
-        else if (key == head.getKey()) { //if the key equals head key
-            return head;
-        } // else if
+
+        // CASE FOR SEARCH ON STUDENT ID NUMBER
+        if (flipKeyToNum = true) {
+            if (head == null) return null; //if there is no head
+            else if (key < head.getStudentID()) { //if key is smaller than head key
+                return searchTwo(head.getLeft(), key);
+            } // if
+            else if (key > head.getKey()) { //if key is larger than head key
+                return searchTwo(head.getRight(), key);
+            } // else if
+            else if (key == head.getStudentID()) { //if the key equals head key
+                return head;
+            } // else if
+            else {
+                System.out.println("There is no matching object in this tree.");
+                return null;
+            } // else
+        } // if no flip
+
+        // CASE FOR SEARCH ON KEY (DEFAULT)
         else {
-            System.out.println("There is no matching object in this tree.");
-            return null;
-        }
+            if (head == null) return null; //if there is no head
+            else if (key < head.getKey()) { //if key is smaller than head key
+                return searchTwo(head.getLeft(), key);
+            } // if
+            else if (key > head.getKey()) { //if key is larger than head key
+                return searchTwo(head.getRight(), key);
+            } // else if
+            else if (key == head.getKey()) { //if the key equals head key
+                return head;
+            } // else if
+            else {
+                System.out.println("There is no matching object in this tree.");
+                return null;
+            } // else
+        } // else (if no flip)
+
     } // search
 
 
-    //Search method helper, used when searching for Student that isn't head
-    //Params: Student, target Student SSN
+    // Search method helper, used when searching for Student that isn't head
+    // Params: Student, target Student SSN
     public Student searchTwo(Student branch, int key){
         if (key<branch.getKey()){//if key is smaller than branch key
             return searchTwo(branch.getLeft(),key);
@@ -69,17 +101,17 @@ public class BinaryTree {
             System.out.println("There is no matching object in this tree.");
             return null;
         }
-    }//search
+    } // search
 
 
-    //insert
-    //inserts Student into BST
-    //Params: Student to be inserted
+    // insert
+    // inserts Student into BST
+    // Params: Student to be inserted
     public void insert(Student newStudent){
-        if(head==null){//if there is no head
+        if (head==null) { // if there is no head
             head=newStudent;
         }
-        else{//if there is a head
+        else { // if there is a head
             insertTwo(head,newStudent);
         }
     }
