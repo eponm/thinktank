@@ -16,30 +16,15 @@ import java.nio.file.Paths; // For dealing with a file's full path and name, jus
 
 public class TextParser {
 
+    // These get overwritten a lot, so don't code up access or setter methods, please.
+    private String[] container = new String[2];
+    private String one;
+    private String two;
+
     // Some reusable things that ought not to get changed while operating
     // If they do change, bad magic happens, probably
-
     private final Path filePath; // Stores the path of the file being read in
     private final static Charset ENCODING = StandardCharsets.UTF_8; // Change encoding type here
-
-
-    // Main method to verify that the module is functional
-    // REQUIRES A TEST FILE NAMED TEST.TXT WITH KEY VALUE PAIRS AS KEY=VALUE
-    public static void main(String[] args) throws IOException {
-        try {
-            System.out.println("::: Testing TextParser :::");
-            // Safe to assume that test.txt will be in same directory? Sure, why not
-            TextParser parser = new TextParser("test.txt");
-            // Call over to the method to read in lines
-            parser.readAll();
-            System.out.println("Test complete. Great work, team.");
-            // That was easy
-        } // try
-        catch (IOException x) {
-            System.out.println("Bad magic happened!");
-            System.exit(1);
-        } // catch
-    } // main
 
 
     // Constructor
@@ -48,6 +33,34 @@ public class TextParser {
         // This makes working with the file a little bit safer, hopefully.
         filePath = Paths.get(fileName);
     } // constructor
+
+
+    public String[] read() {
+        // Load a scanner
+        try (Scanner scanner =  new Scanner(saveFile, ENCODING.name())) {
+            while (scanner.hasNextLine()){
+                scanner.useDelimiter("="); // Tell the scanner to delimit on each equals sign
+                if (scanner.hasNext()) { // Get the next line if there is one
+                    one = scanner.next().trim();
+                    two = scanner.next().trim();
+                } // if
+                else { // If there is no line
+                    one = "Invalid key or line";
+                    two = "Invalid value or line";
+                } // else
+                container[0] = one;
+                container[1] = two;
+
+                //some debug
+                System.out.println("Container contains the following:");//debug
+                for (int i=0; i<2; i++) System.out.println(container[i]);//debug
+
+            } // while
+        } // try
+        catch (IOException x) {
+            System.out.println("Bad magic happened!");
+        } // catch
+    }
 
 
     // Calls the line processing method and will throw an exception if something goes wrong
@@ -63,22 +76,30 @@ public class TextParser {
     } // readAll
 
 
-    private void readLineIn(String line){
-        // Instantiate a scanner to parse each line
+    public String[] readLineIn(String line){
+        // Instantiation
+        String[] container = new String[2];
+        String one;
+        String two;
         Scanner scanner = new Scanner(line);
+
         // Tell the scanner to delimit on each equals sign
         scanner.useDelimiter("=");
         // Get the next line, if there is one
         if (scanner.hasNext()) {
             // Lines will be pairs of data as "key = value", hopefully...
-            String name = scanner.next();
-            String value = scanner.next();
-            // Print values out without surrounding whitespace)
-            System.out.println("Key   " + name.trim() + "   with value   " + value.trim());
+            one = scanner.next().trim();
+            two = scanner.next().trim();
         } // if
         else {
-            System.out.println("[This line is either missing or not valid]");//debug
+            one = "Invalid key or line";
+            two = "Invalid value or line";
         } // else
+        container[0] = one;
+        container[1] = two;
+
+        // Then return the array
+        return container;
     } // readLineIn
 
 
