@@ -67,7 +67,7 @@ public class BinaryTree {
         }
         else {
             System.out.println("There is no matching object in this tree.");
-            return;
+            return null;
         }
     }//search
 

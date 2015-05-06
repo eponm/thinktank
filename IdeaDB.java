@@ -15,8 +15,8 @@ class IdeaDB {
     } // constructor
 
 
-    // Insert - adds a new idea
-    public void insert(Idea newIdea) {
+    // insertIdea - adds a new idea
+    public void insertIdea(Idea newIdea) {
         // Get the submittor's key
         int key = newIdea.getKey();
 
@@ -29,18 +29,24 @@ class IdeaDB {
         // Add idea to heap
         ideaHeap.insert(newIdea);
         // Flip idea's inHeap value
-        newIdea.inHeap(true);
+        newIdea.flip()
 
         // Add the idea to the student's queue
         Student student = studentTree.search(key);
         student.addToQueue(newIdea);
     } // insert
 
+    //addStudent
+    //adds a student to IdeaDB
+    public void addStudent(Student newStudent){
+        studentTree.insert(newStudent);
+    }//addStudent
+
 
     // "Sell" - deletes top-rated idea and returns it
     public Idea sell() {
         // Store the min in a temporary slot and get rid of it from the heap
-        temp = ideaHeap.deleteMin();
+        Idea temp = ideaHeap.deleteMin();
     } // sell
 
 

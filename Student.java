@@ -92,7 +92,14 @@ class Student {
         return rightChild;
     }//gets rightChild
 
+    //setLeft()
+    //NOTE: returns Student with modified pointers
 
+    //getKey()
+    //returns the last 4 digits of the SSN
+    public int getKey(){
+        return socSecNum%10000;
+    }
 
     //editNames()
     // to change last name and username
@@ -105,7 +112,7 @@ class Student {
 
     // Set the left child of a Student in a BST to nextStudent.
     // NOTE: this returns the Student with the modified pointers.
-    public Student setLeftChild(Student nextStudent) {
+    public Student setLeft(Student nextStudent) {
         leftChild = nextStudent;
         return this;
     } // setLeftChild
@@ -113,7 +120,7 @@ class Student {
 
     // Set the right child of a Student in a BST to nextStudent.
     // NOTE: this returns the Student with the modified pointers.
-    public Student setRightChild(Student nextStudent) {
+    public Student setRight(Student nextStudent) {
         rightChild = nextStudent;
         return this;
     } // setRightChild
