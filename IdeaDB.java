@@ -12,7 +12,14 @@ class IdeaDB {
         coreList = new List();
         ideaHeap = new Heap();
         studentTree = new BinaryTree();
+        //this.rebuild
     } // constructor
+
+    //rebuild
+    //rebuilds dataStructure from save file if there is one
+    public void rebuild(){
+        //uses text parser to parse text document
+    }
 
 
     // insertIdea - adds a new idea

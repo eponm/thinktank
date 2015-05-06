@@ -1,15 +1,3 @@
-/*
-Menu structure
-
-|——v Top idea
-|  |——> Sell idea
-|——> Add idea
-|——v Student lookup
-|  |——> Print ideas
-|  L——> Print record
-L——> Print all students
-
-*/
 
 
 import java.util.Scanner; // For scanning, obviously.

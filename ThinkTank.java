@@ -35,6 +35,46 @@ class ThinkTank {
 
         // Insert each idea
 
+
+        /*
+        Menu structure
+
+        |——v Top idea
+        |  |——> Sell idea
+        |——> Add idea
+        |——v Student lookup
+        |  |——> Print ideas
+        |  L——> Print record
+        L——> Print all students
+
+        */
+        System.out.println("Welcome, we are hiveMind and we are here to help you!")
+        //menu options
+        //A)Help Documentation for user
+            //prints documentation for user
+        //B)Print Top Idea 
+            //Would you like to sell the idea?
+                //(Y)es, prints to a file
+                //(N)o, gos back to main menu
+        //C)Add Idea
+            //SSN = "What is SSN of the submittor?"
+                //search BST with SSN
+                //if found
+                    //ideaText="Please imput idea"
+                    //rating="Please enter a rating for the idea (0 to 100)"
+                        //if over 100 rating==100
+                    //newIdea = new Idea(seqNum, SSN, ideaText, rating)
+                    //ideas.insertIdea(newIdea)
+                //if not found
+                    //"That student was not found in our database.
+                    // Would you like to add them?"
+                        //(Y)es
+                            //string name="Please enter the last name of the student"
+                            //string username="Please enter the email of the student"
+                            //int studentID="Please enter their student ID"
+                        //(N)o
+    
+
     } // MAIN
 
 } // Thinktank
