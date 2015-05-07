@@ -91,13 +91,85 @@ class ThinkTank {
                     }
                 }
             }
+          
             else if (answer.equals("B")||answer.equals("b")){
-
+                
+                //C)Add Idea
+                System.out.println("Please enter the one word username of the student who owns the idea.  If you wish to create a student, just press enter: ");
+                String ans=hiveMind.nextLine();
+            //student = studentLookup()
+                //System.out.println("debugging--studentlookup!!");
+                //Student student=studentLookup(answer); //!!!!!!!!!!!!!!!
+                //if student!=null
+                if (!ans.equals("")) {
+                    System.out.println("making student for debug");
+                    Student student=new Student("jess", "jspencer", 3434 , 1313);
+                    //ideaText="Please imput idea"
+                    System.out.println("Please imput idea description on the following line: ");
+                    String ideaText=hiveMind.nextLine();
+                    //rating="Please enter a rating for the idea (0 to 100)"
+                    
+                    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+                    
+                    System.out.println("Please enter a rating for the idea. Only enter numbers 0-100. If you don't enter a number, hiveMind will die: ");
+                    String ratingString=hiveMind.nextLine();
+                     //if over 100 rating==100
+                    int rating=Integer.parseInt(ratingString);
+                    if (rating>100) {
+                        rating=100;
+                    }
+                    //newIdea = new Idea(SSN, ideaText, rating)
+                    System.out.println("error here-- answer is not a student, cannot getKey()");
+                    Idea newIdea=new Idea(student.getKey(),ideaText,rating);
+                    //ideas.insertIdea(newIdea)
+                    ideas.insertIdea(newIdea);
+                }
+                else {
+                    System.out.println("That student was not found in our database. Would you like to add them? (on the following line, enter Y for yes or N for no)");
+                    answer=hiveMind.nextLine();
+                        //(Y)es
+                    if (answer.equals("Y")|| answer.equals("y") ){
+                            System.out.println("Please enter the student's name");
+                            String name=hiveMind.nextLine();
+                            //SSN = "Please enter 4 digit student SSN"
+                            System.out.println("Please enter the last 4 digits of the student's Social Security Number");
+                            String ssnStr=hiveMind.nextLine();
+                            int ssn=Integer.parseInt(ssnStr);
+                            while (ssn>9999) {
+                                System.out.println("That was larger than 4 digits. Please enter only a 4 digit SSN number");
+                                ssnStr=hiveMind.nextLine();
+                                ssn=Integer.parseInt(ssnStr);
+                            }
+                            //studentNumber= "Please enter 4 digit student number"
+                            System.out.println("Please enter the 4 digit student ID number");
+                            String idStr=hiveMind.nextLine();
+                            int idNum=Integer.parseInt(idStr);
+                            while (idNum>9999) {
+                                System.out.println("That was larger than 4 digits. Please enter only a 4 digit ID number");
+                                idStr=hiveMind.nextLine();
+                                idNum=Integer.parseInt(idStr);
+                            }
+                            //username= "Please enter student email address"
+                            System.out.println("Now please enter the student email user name");
+                            String userNum= hiveMind.nextLine();
+                            Student newStudent = new Student(name, userNum, ssn, idNum);
+                            ideas.addStudent(newStudent);
+                            System.out.println("The student has been added to the database");
+                    }
+                    else if (answer.equals("N")||answer.equals("n")){
+                        //(N)o
+                        System.out.println("Okay. Please select from the main menu or press quit");
+                        System.out.println("Welcome, we are hiveMind and we are here to help you!\nPlease pick a function from one of the following. (Enter Q to quit)");
+                        System.out.println("A)Help Documentation\nB)Top Idea\nC)Add Idea\nD)Student Lookup");
+                        
+                            //main menu
+                    }
+                
+                }
 
             }
-            else if (answer.equals("C")||answer.equals("c")){
                 //student=studentLookup();
-                if(student==null){
+           /*     if(student==null){
                     System.out.println("There is student in our records with that number. Returning to main menu");
                     quit=false;
                 }
@@ -109,7 +181,7 @@ class ThinkTank {
                     while(finished=false){
 
                     }
-                }
+                } */
             }
             else if (answer.equals("Q")){
                 quit=true;
