@@ -1,13 +1,13 @@
 import java.util.Scanner;
-class ParseFile(String file) {
+class ParseFile {
     //instance variables??
     String file;
     //constructor??
     public ParseFile () {
         file=file;
-    
+    }
     //methods!
-    public static void main(String[] args) {
+    public void parse(String file) {
         //whole bunch of conditionals that sort what type of function 
         //will be called
         
@@ -24,20 +24,20 @@ class ParseFile(String file) {
                 //when it splits it is ['student','karos,jason,2323,4343']
                 
                 //for STUDENTS
-                if (classString[0]=='student') {
+                if (classString[0]=="student") {
                     String[] params=classString[1].split(",");
                     //now it looks like ['karos','jason','2323','4343']
                     //read in here
-                    Student student=new Student(params[0], params[1], Int.parseInt(params[2]), Int.parseInt(params[3]));
+                    Student student=new Student(params[0], params[1], Integer.parseInt(params[2]), Integer.parseInt(params[3]));
                     
                 }//student if
                 
                 //for IDEAS
-                else if (classString[0]=='idea') {
+                else if (classString[0]=="idea") {
                     String[] params=classString[1].split(",");
                     //now looks like ['ssn','description','rating
                     //read in here
-                    Idea idea=new Idea(Int.parseInt(params[0]),params[1],Int.parseInt(params[2]));
+                    Idea idea=new Idea(Integer.parseInt(params[0]),params[1],Integer.parseInt(params[2]));
                 }//idea if
             
         }
@@ -50,3 +50,5 @@ class ParseFile(String file) {
         //create a series of conditionals that account for each of these
         //funtions, place parameters in the function
     }
+    }
+}

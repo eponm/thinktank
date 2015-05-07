@@ -45,6 +45,7 @@ public class List {
     public void insert(Idea x) {
         if (head==null) {
             head=x;
+            length++;
         }
         else {
             x.setNext(head);
@@ -58,7 +59,6 @@ public class List {
     public Idea searchReturn(int ssn) {
         int count = 0;
         Idea temp = head;
-
         // Loop until the end of the list
         while (count < length) {
             // Check to see if there is a match
