@@ -14,9 +14,9 @@ public class Queue {
         front = 0;
         end = 0;
         n = 0;
-        for(int i=0;i<128;i++){
-            queue[i]=null;
-        }
+        // for(int i=0;i<128;i++){
+        //     queue[i]=null;
+        // }
     } // default constructor
 
 
@@ -26,9 +26,9 @@ public class Queue {
         front = 0;
         end = 0;
         n = 0;
-        for(int i=0;i<128;i++){
-            queue[i]=null;
-        }
+        // for(int i=0;i<128;i++){
+        //     queue[i]=null;
+        // }
     } // size-specific constructor
 
 

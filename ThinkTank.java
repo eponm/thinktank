@@ -327,7 +327,6 @@ class ThinkTank {
                             System.out.println();
                             while(completed==false){
                                 System.out.print("------> ");
-                                System.out.println();
                                 answer = hiveMind.nextLine();
                                 if(answer.equals("A")||answer.equals("a")){
 

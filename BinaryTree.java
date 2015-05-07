@@ -122,7 +122,7 @@ public class BinaryTree {
             head=newStudent;
         }
         else { // if there is a head
-            insert2(head,newStudent);
+            insertTwo(head,newStudent);
         }
     }
 
