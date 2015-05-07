@@ -27,48 +27,91 @@ class ThinkTank {
         // Implicitly initializes the heap and list for ideas
         IdeaDB ideas = new IdeaDB();
 
-        // Load a scanner and do all of the loading of the save file
+        // We're about to try loading a save file.
+        // Buckle up, kids.
         try {
-
             Scanner sc = new Scanner(saveFile, ENCODING.name());
             sc.useDelimiter("="); // Set the delimiter
 
             String key = sc.next(); // think
             String val = sc.next(); // tank
 
-            // If the header is correct
+            // If the header is correct, go ahead and load the save file
             if (key == "think" && val == "tank") {
-                System.out.println("Loading save file...");
+                System.out.println("Loading saved state...");
+
+                key = sc.next(); val = sc.next(); // Move the holders to date=01 Jan
+                System.out.println("> The last saved state is from " + val + ".");
+
+                System.out.println("> Loading students into database...");
+                key = sc.next(); val = sc.next(); // Move the holders forward to segment=student
+
+                // Start looping through the save file
+                boolean looping = true; // Loops as long as looping is true
+                while (looping) {
+
+                    // Loop through the things
+                    if (key == "segment" && val == "student") {
+
+                        // As long as the key is "student"...
+                        while (key == "student") {
+                            // Add each student to the tree
+                            // Get rid of quotes and separate values
+                            String paramSt = val.substring(1, val.length() - 1);
+                            // Split the four params apart
+                            String[] paramAr = paramSt.split("\",\"");
+
+                            // Make the student
+                            // Params: name, username, SSN, studentID
+                            Student newStudent = new Student(paramAr[0], paramAr[1], Integer.parseInt(paramAr[2]), Integer.parseInt(paramAr[3]));
+
+                            // Move the holders forward
+                            key = sc.next(); val = sc.next();
+                        } // while key is student
+                    } // if key is segment
+
+                    // Loop through the things
+                    if (key == "segment" && val == "idea") {
+                        System.out.println("> Loading ideas into database...");
+                        key = sc.next(); val = sc.next(); // Move the holders forward
+
+                        // As long as the key is "idea"...
+                        while (key == "idea") {
+                            // Add each idea to the list
+                            // Get rid of quotes and separate values
+                            String paramSt = val.substring(1, val.length() - 1);
+                            // Split the three params apart
+                            String[] paramAr = paramSt.split("\",\"");
+
+                            // Make the idea
+                            // Params: submittor SSN, description, rating, seqnum
+                            Idea newIdea = new Idea(Integer.parseInt(paramAr[0]), paramAr[1], Integer.parseInt(paramAr[2]));
+                            // Add the idea to the database
+                            ideas.insertIdea(newIdea);
+
+                            // Move the holders forward
+                            key = sc.next(); val = sc.next();
+                        } // while key is idea
+                    } // if key is segment
+
+                    // else if key is end
+                    else if (key == "END" && val == "END") {
+                        looping = false;
+                    } // else if
+
+                    System.out.println("> Loaded!");
+
+                } // while
+
             } // if key and val are think tank
 
+            else { // Case for broken databases and nonexistent saves
+                System.out.println("! Saved state does not exist or is damaged.") ;
+                System.out.println("> Starting a new database...");
+            }
 
-            // Get the first two segments
-            System.out.print(key.trim());//debug
-            System.out.print(val.trim());//debug
-
-
-            // Start looping through the save file
-            boolean looping = true; // Loops as long as looping is true
-            while (looping) {
-
-                // Loop through the things
-                if (key == "segment") {
-                    if (val == "student") {
-                        return; // Fix me!
-                    } // if val is student
-                    else if (val == "idea") {
-                        return; // Fix me!
-                    } // if val is idea
-                } // if key is segment
-
-                // else if key is end
-                else if (key == "END" && val == "END") {
-                    looping = false;
-                } // else if
-                // else stop and quit
-
-            } // while
-        sc.close();
+            // If we've made it this far, it must be time to close the scanner, so...
+            sc.close();
         } // try
 
         catch (IOException x) {
