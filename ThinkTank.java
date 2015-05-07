@@ -36,29 +36,30 @@ class ThinkTank {
         // Buckle up, kids.
         try {
             Scanner sc = new Scanner(saveFile, ENCODING.name());
-            sc.useDelimiter("="); // Set the delimiter
-
+            sc.useDelimiter("=|\n"); // Set the delimiter
             System.out.println();
 
-            String key = sc.next(); // think
-            String val = sc.next(); // tank
+            String key = sc.next().trim(); // think
+            String val = sc.next().trim(); // tank
 
             // If the header is correct, go ahead and load the save file
-            if (key.equals("think") && val.equals("tank")) {
+            if (key.trim().equals("think") && val.trim().equals("tank")) {
+
                 System.out.println("Loading saved state...");
 
                 key = sc.next(); val = sc.next(); // Move the holders to date=01 Jan
+
                 System.out.println("The last saved state is from " + val + ".");
 
                 System.out.println("Loading students into database...");
-                key = sc.next(); val = sc.next(); // Move the holders forward to segment=student
+                key = sc.next().trim(); val = sc.next().trim(); // Move the holders forward to segment=student
 
                 // Start looping through the save file
                 boolean looping = true; // Loops as long as looping is true
                 while (looping) {
 
                     // Loop through the things
-                    if (key == "segment" && val == "student") {
+                    if (key.trim().equals("segment") && val.trim().equals("student")) {
 
                         // As long as the key is "student"...
                         while (key == "student") {
@@ -72,15 +73,13 @@ class ThinkTank {
                             // Params: name, username, SSN, studentID
                             Student newStudent = new Student(paramAr[0], paramAr[1], Integer.parseInt(paramAr[2]), Integer.parseInt(paramAr[3]));
 
-                            // Move the holders forward
-                            key = sc.next(); val = sc.next();
                         } // while key is student
                     } // if key is segment
 
                     // Loop through the things
                     if (key.equals("segment") && val.equals("idea")) {
                         System.out.println("Loading ideas into database...");
-                        key = sc.next(); val = sc.next(); // Move the holders forward
+                        key = sc.next().trim(); val = sc.next().trim(); // Move the holders forward
 
                         // As long as the key is "idea"...
                         while (key == "idea") {
@@ -96,19 +95,21 @@ class ThinkTank {
                             // Add the idea to the database
                             ideas.insertIdea(newIdea);
 
-                            // Move the holders forward
-                            key = sc.next(); val = sc.next();
                         } // while key is idea
                     } // if key is segment
 
                     // else if key is end
-                    else if (key.equals("END") && val.equals("END")) {
+                    else if (key.trim().equals("END") && val.trim().equals("END")) {
                         looping = false;
                     } // else if
 
-                    System.out.println("> Loaded!");
+                    if (sc.hasNext()) {
+                        key = sc.next().trim(); val = sc.next().trim(); // Move the holders forward to segment=student
+                    }
 
                 } // while
+
+                System.out.println("> Loaded!");
 
             } // if key and val are think tank
 
@@ -220,10 +221,8 @@ class ThinkTank {
                 while(done==false){
                 System.out.println();
                 System.out.println("=== Student Records ===\n  A) Add Student\n  B) Student Lookup\n  C) Main Menu");
-                System.out.println();
                 System.out.print(": ");
                 answer = hiveMind.nextLine();
-                System.out.println();
                     if (answer.equals("A")|| answer.equals("a")){
                         System.out.println();
                         System.out.println("> Please enter the student's name");
@@ -262,33 +261,29 @@ class ThinkTank {
                         done=true;
                     }
                     else if(answer.equals("B")||answer.equals("b")){
+                        System.out.println();
                         System.out.println("=== Student Search ===");
                         System.out.println("> Would you like to search or by SSN or studentID?\n  A) SSN\n  B) StudentID");
                         boolean finished=false;
                         Student foundStudent=null;
                         while(finished==false){
 
-                            System.out.println();
                             System.out.print(": ");
                             answer = hiveMind.nextLine();
 
                             if(answer.equals("A")||answer.equals("a")){
                                 System.out.println();
                                 System.out.println("> Please enter the last 4 digits of the student's SSN");
-                                System.out.println();
                                 System.out.print(": ");
                                 String ssnStr = hiveMind.nextLine();
                                 int ssn = Integer.parseInt(ssnStr);
 
                                 while(ssn>9999){
-                                    System.out.println();
                                     System.out.println("! The SSN must be 4 digits");
-                                    System.out.println();
                                     System.out.print(": ");
                                     ssnStr = hiveMind.nextLine();
                                     ssn = Integer.parseInt(ssnStr);
                                 }
-                                System.out.println(ssn);
                                 foundStudent=ideas.getStudent(ssn);
                                 finished=true;
                             }
