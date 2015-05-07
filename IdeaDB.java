@@ -26,7 +26,7 @@ class IdeaDB {
     public boolean printIdeas(PrintWriter out) {
         for (int i=0; i<coreList.length(); i++) {
             // Params: submittor SSN, description, rating, seqnum
-            out.write("idea = \""+coreList.access(i).getKey()+"\",\"" +coreList.access(i).getDesc()+"\",\"'"+coreList.access(i).getSeqNum()+"\",\""+coreList.access(i).getRating()+"\"\n");
+            out.write("idea = \""+coreList.access(i).getKey()+"\",\"" +coreList.access(i).getDesc()+"\",\"'"+coreList.access(i).getSeqNum()+"\",\""+coreList.access(i).getRating()+"\""+coreList.access(i).isInHeap()+"\n");
         }
         return true;
     }
@@ -43,9 +43,9 @@ class IdeaDB {
         seqNum++;
         // Add idea to list
         coreList.insert(newIdea);
-        // Add idea to heap
+        // Add idea to heap if necessary
         ideaHeap.insert(newIdea);
-        // Flip idea's inHeap value
+
         newIdea.flip();
 
         // Add the idea to the student's queue
@@ -55,6 +55,31 @@ class IdeaDB {
   //      student = studentIDTree.search(id);
    //     student.addToQueue(newIdea);
     } // insert
+
+
+    public void reInsertIdea(Idea newIdea) {
+        // Get the submittor's key
+        int key = newIdea.getKey();
+
+        // Put the idea coreList, ideaHeap and studentSSNTree:
+        // Set seqNum in newIdea
+        newIdea.setSeqNum(seqNum);
+        seqNum++;
+        // Add idea to list
+        coreList.insert(newIdea);
+        // Add idea to heap if necessary
+        if (newIdea.isInHeap()) {
+            ideaHeap.insert(newIdea);
+        }
+
+        // Add the idea to the student's queue
+        Student student = studentSSNTree.search(key);
+        student.addToQueue(newIdea);
+        int id = student.getStudentID();
+  //      student = studentIDTree.search(id);
+   //     student.addToQueue(newIdea);
+    } // insert
+
 
 
     //addStudent

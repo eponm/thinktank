@@ -27,6 +27,8 @@ class Student {
     private Student leftChild;
     private Student rightChild;
     private Student parentNode;
+
+
     // Constructor
     // Params: Last name, short username, 4-digit SSN, 4-digit student number.
     public Student(String nameIn, String usernameIn, int socSecNumIn, int studentIDIn) {

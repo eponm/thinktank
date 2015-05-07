@@ -91,9 +91,9 @@ class ThinkTank {
 
                             // Make the idea
                             // Params: submittor SSN, description, rating, seqnum
-                            Idea newIdea = new Idea(Integer.parseInt(paramAr[0]), paramAr[1], Integer.parseInt(paramAr[2]));
+                            Idea newIdea = new Idea(Integer.parseInt(paramAr[0]), paramAr[1], Integer.parseInt(paramAr[2]),Boolean.valueOf(paramAr[3]));
                             // Add the idea to the database
-                            ideas.insertIdea(newIdea);
+                            ideas.reInsertIdea(newIdea);
 
                         } // while key is idea
                     } // if key is segment
@@ -170,12 +170,12 @@ class ThinkTank {
             //submit idea
             else if (answer.equals("B")||answer.equals("b")){
                 System.out.println("=== Submit Idea ===");
-                System.out.println("> Please enter the last 4 digits of the submittor's SSN. (Blank spces will count as 0s)");
+                System.out.println("> Please enter the last 4 digits of the submittor's SSN.");
                 System.out.print(": ");
                 String ans = hiveMind.nextLine();
                 int ssn=Integer.parseInt(ans);
                 while(ssn>10000){
-                    System.out.println("! The submittor's SSN must be 4 digits. (Blank spaces will count as 0s)");
+                    System.out.println("! The submittor's SSN must be 4 digits.");
                     System.out.print(": ");
                     ans=hiveMind.nextLine();
                     ssn = Integer.parseInt(ans);
@@ -212,6 +212,7 @@ class ThinkTank {
                 }
                 else{
                     System.out.println("! That student was not found in our database, returning to main menu.");
+                    System.out.println();
                     quit = false;
                 }
 
