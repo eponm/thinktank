@@ -58,6 +58,9 @@ class IdeaDB {
         Idea temp = ideaHeap.deleteMin();
         return temp;
     } // sell
+    public void getBestIdea(){
+        ideaHeap.findMinFormat();
+    }
 
 
 } // class

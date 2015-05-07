@@ -40,6 +40,7 @@ class ThinkTank {
         catch (IOException x) {
             System.out.println("Got an IOException: " + x.getMessage());
         }
+        Scanner hiveMind = new Scanner(System.in);
 
         /*
         Menu structure
@@ -53,13 +54,41 @@ class ThinkTank {
         L——> Print all students
 
         */
-        System.out.println("Welcome, we are hiveMind and we are here to help you!\nPlease pick a function from one of the following.");
+        System.out.println("Welcome, we are hiveMind and we are here to help you!\nPlease pick a function from one of the following. (Enter Q to quit)");
         System.out.println("A)Help Documentation\nB)Top Idea\nC)Add Idea\nD)Student Lookup");
         boolean quit = false;
+        String answer;
         while(quit==false){
-        System.out.println();
-        System.out.print("--------> ");
-        String answer = sc.next();
+            System.out.println();
+            System.out.print("--------> ");
+            answer = hiveMind.next();
+            //System.out.println("+"+answer+"+");  <---debug
+            if(answer=="A"||answer=="a"){
+                System.out.println();
+                helpDoc();
+            }
+            else if (answer.equals("B")||answer.equals("b")){
+                ideas.getBestIdea
+                System.out.println("Would you like to sell this idea?\n(Y)es\n(N)o")
+                System.out.print("--------> ")
+                answer = hiveMind.next();
+                if (answer.equals("Y")||answer.equals("y"))
+
+            }
+            else if (answer.equals("C")||answer.equals("c")){
+
+
+            }
+            else if (answer.equals("D")||answer.equals("d")){
+
+            }
+            else if (answer.equals("Q")){
+                quit=true;
+            }
+            else{
+                System.out.println("Not a menu selection. Please try again");
+            }
+        //dataBase.save()
         }
 
         //menu options
