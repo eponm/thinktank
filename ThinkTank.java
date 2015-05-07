@@ -264,7 +264,7 @@ class ThinkTank {
                     else if(answer.equals("B")||answer.equals("b")){
                         System.out.println("> Would you like to search or by SSN or studentID?\n  A) SSN\n  B) StudentID");
                         boolean finished=false;
-                        Student foundStudent=null;
+                        Student foundStudent = null;
                         while(finished==false){
 
                             System.out.print(": ");

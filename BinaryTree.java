@@ -130,7 +130,7 @@ public class BinaryTree {
     // inserts Student into BST
     // Params: Student to be inserted
     public void insert(Student newStudent){
-        if (head==null) { // if there is no head
+        if (isEmptyTree)) { // if there is no head
             head=newStudent;
         }
         else { // if there is a head
@@ -141,42 +141,46 @@ public class BinaryTree {
 
     //insert helper
     //Params: Student in tree, Student to be inserted
-    private void insertTwo(Student branch,Student newStudent){
+    private void insertTwo(Student parent, Student newStudent){
         if (flipKeyToNum == true){
-            if(newStudent.getStudentID()<branch.getStudentID()){//if Student is smaller branch
-                if(branch.getLeft()==null){//if the branch left child is null
-                    branch.setLeft(newStudent);
-                }
-                else{//recursive call for next left branch down
-                    insertTwo(branch.getLeft(),newStudent);
-                }
-            }
-            else{//if newStudent is larger than branch
-                if(branch.getRight()==null){//if the branch right child is null
-                    branch.setRight(newStudent);
-                }
-                else{//recursive call or next right branch down
-                    insertTwo(branch.getRight(),newStudent);
-                }
-            }
+            if (nodeIn.getStudentID() > parent.getKey()) {
+            if (parent.getRight() != null) {
+                insert2 (parent.getRight(), nodeIn);
+            } // if
+            else {
+                parent.setRight(nodeIn);
+                nodeIn.setParent(parent);
+            } // else
+        } // if
+        else {
+            if (parent.getLeft() != null) {
+                insert2(parent.getLeft(), nodeIn);
+            } // if
+            else {
+                parent.setLeft(nodeIn);
+                nodeIn.setParent(parent);
+            } // else
+        } // else
         }
         else{
-            if(newStudent.getKey()<branch.getKey()){//if Student is smaller branch
-                if(branch.getLeft()==null){//if the branch left child is null
-                    branch.setLeft(newStudent);
-                }
-                else{//recursive call for next left branch down
-                    insertTwo(branch.getLeft(),newStudent);
-                }
-            }
-            else{//if newStudent is larger than branch
-                if(branch.getRight()==null){//if the branch right child is null
-                    branch.setRight(newStudent);
-                }
-                else{//recursive call or next right branch down
-                    insertTwo(branch.getRight(),newStudent);
-                }
-            }
+            if (nodeIn.getKey() > parent.getKey()) {
+                if (parent.getRight() != null) {
+                    insert2 (parent.getRight(), nodeIn);
+                } // if
+                else {
+                    parent.setRight(nodeIn);
+                    nodeIn.setParent(parent);
+                } // else
+            } // if
+            else {
+                if (parent.getLeft() != null) {
+                    insert2(parent.getLeft(), nodeIn);
+                } // if
+                else {
+                    parent.setLeft(nodeIn);
+                    nodeIn.setParent(parent);
+                } // else
+            } // else
         }
     }//insert
 
