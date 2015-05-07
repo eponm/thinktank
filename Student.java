@@ -24,9 +24,13 @@ class Student {
     private Queue ideaQueue; // This may need to be its own object.
     private float avgIdeaRating;
 
-    private Student leftChild;
-    private Student rightChild;
-    private Student parentNode;
+    private Student sleftChild;
+    private Student srightChild;
+    private Student sparentNode;
+
+    private Student nleftChild;
+    private Student nrightChild;
+    private Student nparentNode;
 
 
     // Constructor
@@ -84,17 +88,43 @@ class Student {
         avgIdeaRating=avgIdeaRating/i;
     }//adds Idea to Queue and re-averages avgIdeaRating
 
+    // Following are for SSN trees
+
     //getLeft()
     //gets leftChild
-    public Student getLeft(){
-        return leftChild;
+    public Student getLeftS(){
+        return sleftChild;
     }//gets leftChild
 
     //getRight()
     //gets rightChild
-    public Student getRight(){
-        return rightChild;
+    public Student getRightS(){
+        return srightChild;
     }//gets rightChild
+
+    public Student getParentS(){
+        return sparentNode;
+    }//gets rightChild
+
+
+    // Following are for Student Number trees
+
+    //getLeft()
+    //gets leftChild
+    public Student getLeftN(){
+        return nleftChild;
+    }//gets leftChild
+
+    //getRight()
+    //gets rightChild
+    public Student getRightN(){
+        return nrightChild;
+    }//gets rightChild
+
+    public Student getParentN(){
+        return nparentNode;
+    }//gets rightChild
+
 
     //getKey()
     //returns the last 4 digits of the SSN
@@ -131,25 +161,44 @@ class Student {
 
     // Set the left child of a Student in a BST to nextStudent.
     // NOTE: this returns the Student with the modified pointers.
-    public Student setLeft(Student nextStudent) {
-        leftChild = nextStudent;
+    public Student setLeftS(Student nextStudent) {
+        sleftChild = nextStudent;
         return this;
     } // setLeftChild
 
 
     // Set the right child of a Student in a BST to nextStudent.
     // NOTE: this returns the Student with the modified pointers.
-    public Student setRight(Student nextStudent) {
-        rightChild = nextStudent;
+    public Student setRightS(Student nextStudent) {
+        srightChild = nextStudent;
         return this;
     } // setRightChild
 
-    public Student setParent(Student nextParent) {
-        parentNode = nextParent;
+    public Student setParentS(Student nextParent) {
+        sparentNode = nextParent;
         return this;
     }
 
 
+    // Set the left child of a Student in a BST to nextStudent.
+    // NOTE: this returns the Student with the modified pointers.
+    public Student setLeftN(Student nextStudent) {
+        nleftChild = nextStudent;
+        return this;
+    } // setLeftChild
+
+
+    // Set the right child of a Student in a BST to nextStudent.
+    // NOTE: this returns the Student with the modified pointers.
+    public Student setRightN(Student nextStudent) {
+        nrightChild = nextStudent;
+        return this;
+    } // setRightChild
+
+    public Student setParentN(Student nextParent) {
+        nparentNode = nextParent;
+        return this;
+    }
 
 
 
