@@ -43,8 +43,15 @@ class Student {
         socSecNum = socSecNumIn;
         studentID = studentIDIn;
         Queue ideaQueue = new Queue(10);
-        leftChild=null;
-        rightChild=null;
+
+        sleftChild = null;
+        srightChild = null;
+        sparentNode = null;
+
+
+        nleftChild = null;
+        nrightChild = null;
+        nparentNode = null;
 
     } // Constructor
 
