@@ -182,7 +182,7 @@ class ThinkTank {
 
                     }
                 } */
-            }
+          
             else if (answer.equals("Q")){
                 quit=true;
             }
@@ -190,6 +190,7 @@ class ThinkTank {
                 System.out.println("Not a menu selection. Please try again");
             }
         }
+    
         //dataBase.save()
 
         //menu options
