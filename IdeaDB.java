@@ -1,3 +1,5 @@
+import java.io.PrintWriter; // For writing, obviously, I mean like...DUH!
+
 class IdeaDB {
 
     private List coreList;
@@ -15,6 +17,19 @@ class IdeaDB {
         studentIDTree = new BinaryTree(true);
     } // constructor
 
+
+    public boolean printStudents(PrintWriter out) {
+        studentSSNTree.printTree(out);
+        return true;
+    }
+
+    public boolean printIdeas(PrintWriter out) {
+        for (int i=0; i<coreList.length(); i++) {
+            // Params: submittor SSN, description, rating, seqnum
+            out.write("idea = \""+coreList.access(i).getKey()+"\",\"" +coreList.access(i).getDesc()+"\",\"'"+coreList.access(i).getSeqNum()+"\",\""+coreList.access(i).getRating()+"\"\n");
+        }
+        return true;
+    }
 
 
     // insertIdea - adds a new idea
@@ -38,6 +53,7 @@ class IdeaDB {
         student.addToQueue(newIdea);
     } // insert
 
+
     //addStudent
     //adds a student to IdeaDB
     public void addStudent(Student newStudent) {
@@ -45,6 +61,7 @@ class IdeaDB {
         studentSSNTree.insert(newStudent);
         studentIDTree.insert(newStudent);
     }//addStudent
+
 
     //deleteStudent
     //deletes student from both trees
@@ -66,14 +83,14 @@ class IdeaDB {
         }
         return bestIdea;
     }
-    public Idea getStudent(int key, boolean usingSSN){
-        if(usingSSN==True){
+
+    public Student getStudent(int key, boolean usingSSN){
+        if(usingSSN==true){
             return studentSSNTree.search(key);
         }
         else{
             return studentIDTree.search(key);
         }
     }
-
 
 } // class
