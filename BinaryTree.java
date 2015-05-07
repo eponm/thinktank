@@ -50,14 +50,18 @@ public class BinaryTree {
         // CASE FOR SEARCH ON STUDENT ID NUMBER
         if (flipKeyToNum = true) {
             if (head == null) return null; //if there is no head
-            else if (key < head.getStudentID()) { //if key is smaller than head key
-                return searchTwo(head.getLeft(), key);
-            } // if
-            else if (key > head.getKey()) { //if key is larger than head key
-                return searchTwo(head.getRight(), key);
-            } // else if
             else if (key == head.getStudentID()) { //if the key equals head key
                 return head;
+            } // else if
+            else if (key < head.getStudentID()) { //if key is smaller than head key
+                if (head.getLeft() != null) {
+                    return searchTwo(head.getLeft(), key);
+                } // if
+            } // if
+            else if (key > head.getKey()) { //if key is larger than head key
+                if (head.getRight() != null) {
+                    return searchTwo(head.getRight(), key);
+                } // if
             } // else if
             else {
                 return null;
@@ -89,10 +93,14 @@ public class BinaryTree {
     public Student searchTwo(Student branch, int key){
         if (flipKeyToNum = true){
             if (key<branch.getStudentID()){//if key is smaller than branch key
-                return searchTwo(branch.getLeft(),key);
+                if (branch.getLeft() != null) {
+                    return searchTwo(branch.getLeft(),key);
+                }
             }
             else if (key>branch.getStudentID()){//if key is smaller than branch key
-                return searchTwo(branch.getRight(),key);
+                if (branch.getRight() != null) {
+                    return searchTwo(branch.getRight(),key);
+                }
             }
             else if (branch.getStudentID() == key) { //if key equals branch key
                 return branch;
@@ -449,7 +457,7 @@ public class BinaryTree {
     private void printTree2(Student tree, PrintWriter out) {
         if (tree != null) {
             // Params: name, username, SSN, studentID
-            System.out.println("Student = "+"\""+tree.getName()+"\",\"" +tree.getUsername()+"\",\"'"+tree.getKey()+"\",\""+tree.getStudentID()+"\"");
+            System.out.println("Student = "+"\""+tree.getName()+"\",\"" +tree.getUsername()+"\",\"'"+tree.getKey()+"\",\""+tree.getStudentID()+"\"\n");
             printTree2(tree.getLeft(), out);
             printTree2(tree.getRight(), out);
         } // if

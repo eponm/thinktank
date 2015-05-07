@@ -26,7 +26,7 @@ class IdeaDB {
     public boolean printIdeas(PrintWriter out) {
         for (int i=0; i<coreList.length(); i++) {
             // Params: submittor SSN, description, rating, seqnum
-            out.write("idea = \""+coreList.access(i).getKey()+"\",\"" +coreList.access(i).getDesc()+"\",\"'"+coreList.access(i).getSeqNum()+"\",\""+coreList.access(i).getRating()+"\"");
+            out.write("idea = \""+coreList.access(i).getKey()+"\",\"" +coreList.access(i).getDesc()+"\",\"'"+coreList.access(i).getSeqNum()+"\",\""+coreList.access(i).getRating()+"\"\n");
         }
         return true;
     }
