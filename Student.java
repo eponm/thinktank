@@ -57,7 +57,7 @@ class Student {
         System.out.println("    Average Idea Rating: "+avgIdeaRating);
         System.out.println("    Student ID: "+studentID);
         System.out.println("    Social Security Number: "+socSecNum);
-    }
+    } // displayStudent
 
     //displayIdeas()
     // to display 10 recent ideas
@@ -67,11 +67,11 @@ class Student {
             Idea x = ideas[i];
             if(x==null){
                 System.out.println((i+1)+".");
-            }
+            } // if
             else{
                 System.out.println((i+1)+". "+"Rating: "+x.getRating()+" Description: "+x.getDesc());
-            }
-        }
+            } // else
+        } // for
     }//display Ideas in queue
 
     //addToQueue()
@@ -84,7 +84,7 @@ class Student {
         while(ideas[i]!=null){
             avgIdeaRating=avgIdeaRating+ideas[i].getRating();
             i++;
-        }
+        } // while
         avgIdeaRating=avgIdeaRating/i;
     }//adds Idea to Queue and re-averages avgIdeaRating
 
@@ -156,7 +156,7 @@ class Student {
         name=lastName;
         username=newUsername;
         return this;
-    }
+    } // editNames
 
 
     // Set the left child of a Student in a BST to nextStudent.
@@ -177,7 +177,7 @@ class Student {
     public Student setParentS(Student nextParent) {
         sparentNode = nextParent;
         return this;
-    }
+    } // setParentS
 
 
     // Set the left child of a Student in a BST to nextStudent.
@@ -198,7 +198,7 @@ class Student {
     public Student setParentN(Student nextParent) {
         nparentNode = nextParent;
         return this;
-    }
+    } // setParentN
 
 
 
