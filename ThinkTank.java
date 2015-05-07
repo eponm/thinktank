@@ -29,17 +29,52 @@ class ThinkTank {
 
         // Load a scanner
         try {
+
             Scanner sc = new Scanner(saveFile, ENCODING.name());
+            sc.useDelimiter("="); // Set the delimiter
 
             String key;
             String val;
 
-            System.out.println(sc.nextLine());//debug
-        }
+            key = sc.next(); // == think
+            val = sc.next(); // == tank
+
+            // Get the first two segments
+            System.out.print(key.trim());//debug
+            System.out.print(val.trim());//debug
+
+
+            // Start looping through the save file
+            boolean looping = true; // Loops as long as looping is true
+            while (looping) {
+
+                // Enter the switch
+                switch(key) {
+                    case "segment":
+                        break;
+                    case "a":
+                        System.out.println("Good Job!") ;
+                        break;
+                    case "b":
+                        System.out.println("Good Job!") ;
+                        break ;
+                    case "c":
+                        System.out.println("Pragram Terminated") ;
+                        break ;
+                    default:
+                        return;
+                } // switch
+                if(key == "END") {
+                    looping = false;
+                } // if
+
+            } // while
+        sc.close();
+        } // try
 
         catch (IOException x) {
             System.out.println("Got an IOException: " + x.getMessage());
-        }
+        } // catch
 
 
         /*
