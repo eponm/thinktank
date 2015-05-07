@@ -443,9 +443,9 @@ public class BinaryTree {
     //printTree()
     //prints Students in BST with their left and right Children
     public void printTree() {
-    System.out.println();
-    printTree2(head);
-    System.out.println();
+        System.out.println();
+        printTree2(head);
+        System.out.println();
     }
 
 
@@ -464,6 +464,6 @@ public class BinaryTree {
                     System.out.println("right = null");
             printTree2(tree.getLeft());
             printTree2(tree.getRight());
-        }
-    }
-}
+        } // if
+    } // printTree2
+} // BinaryTree

@@ -13,10 +13,11 @@ import java.nio.file.Paths; // For dealing with a file's full path and name, jus
 
 class ThinkTank {
 
-    private final static Charset ENCODING = StandardCharsets.UTF_8; // Change encoding type here
-    private Path saveFile;
+    public static void main(String[] args) {
 
-    public void main(String[] args) {
+        final Charset ENCODING = StandardCharsets.UTF_8;
+        final Path saveFile;
+
 
         // Look for the save file and read it in through the text parser
         saveFile = Paths.get("savedstate.txt"); // CHANGE SAVE FILE NAME HERE !
@@ -26,15 +27,23 @@ class ThinkTank {
         // Implicitly initializes the heap and list for ideas
         IdeaDB ideas = new IdeaDB();
 
-        // While segment = STUDENT
-        // Add the student to the BST
-        // Connect its parent, left, right
-        // While segment = IDEA
-        // Insert each idea
+        // Load a scanner
+        try {
+            Scanner sc = new Scanner(saveFile, ENCODING.name());
 
+            String key;
+            String val;
+
+            System.out.println(sc.nextLine());//debug
+        }
+
+        catch (IOException x) {
+            System.out.println("Got an IOException: " + x.getMessage());
+        }
 
         // Load a scanner
         Scanner sc =  new Scanner(saveFile, ENCODING.name());
+
 
         /*
         Menu structure
@@ -50,8 +59,6 @@ class ThinkTank {
         */
         System.out.println("Welcome, we are hiveMind and we are here to help you!\nPlease pick a function from one of the following.");
         System.out.println("A)Help Documentation\nB)Top Idea\nC)Add Idea\nD)Student Lookup");
-
-
 
         //menu options
         //A)Help Documentation for user
@@ -139,30 +146,9 @@ class ThinkTank {
                 //if not
 
                     //return null
-
+*/
 
     } // MAIN
 
-
-    private String[] readLine(Scanner sc) {
-        String key;
-        String val;
-        while (sc.hasNextLine()){
-            sc.useDelimiter("="); // Tell the scanner to delimit on each equals sign
-            if (sc.hasNext()) { // Get the next line if there is one
-                key = sc.next().trim();
-                val = sc.next().trim();
-            } // if
-            else { // If there is no line
-                key = "Invalid key or line";
-                val = "Invalid value or line";
-            } // else
-            String[] cont = new String[2];
-            cont[0] = key;
-            cont[1] = val;
-        } // while
-
-        return cont;
-    }
 
 } // Thinktank
