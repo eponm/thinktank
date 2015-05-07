@@ -66,6 +66,8 @@ class IdeaDB {
         }
         return bestIdea;
     }
+
+
     public Idea getStudent(int key, boolean usingSSN){
         if(usingSSN==True){
             return studentSSNTree.search(key);
