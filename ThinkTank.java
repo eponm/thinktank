@@ -46,9 +46,9 @@ class ThinkTank {
                 System.out.println("Loading saved state...");
 
                 key = sc.next(); val = sc.next(); // Move the holders to date=01 Jan
-                System.out.println("> The last saved state is from " + val + ".");
+                System.out.println("The last saved state is from " + val + ".");
 
-                System.out.println("> Loading students into database...");
+                System.out.println("Loading students into database...");
                 key = sc.next(); val = sc.next(); // Move the holders forward to segment=student
 
                 // Start looping through the save file
@@ -77,7 +77,7 @@ class ThinkTank {
 
                     // Loop through the things
                     if (key == "segment" && val == "idea") {
-                        System.out.println("> Loading ideas into database...");
+                        System.out.println("Loading ideas into database...");
                         key = sc.next(); val = sc.next(); // Move the holders forward
 
                         // As long as the key is "idea"...
@@ -120,7 +120,7 @@ class ThinkTank {
         } // try
 
         catch (IOException x) {
-            System.out.println("Got an IOException: " + x.getMessage());
+            System.out.println("! Got an IOException: " + x.getMessage());
         } // catch
 
         Scanner hiveMind = new Scanner(System.in);
@@ -132,11 +132,11 @@ class ThinkTank {
 
         while(quit==false){
             System.out.println();
-            System.out.println("Welcome, we are hiveMind and we are here to help you!\nPlease pick a function from one of the following. (Enter Q to save and quit)");
+            System.out.println("> Welcome, we are hiveMind and we are here to help you!\nPlease pick a function from one of the following. (Enter Q to save and quit)");
             System.out.println();
-            System.out.println("A)Top Idea\nB)Add Idea\nC)Student Records");
+            System.out.println("  A) Top Idea\n  B) Add Idea\n  C) Student Records");
             System.out.println();
-            System.out.print("--------> ");
+            System.out.print(": ");
             answer = hiveMind.nextLine();
             //System.out.println("+"+answer+"+");  <---debug
             if (answer.equals("A")||answer.equals("a")){
@@ -146,8 +146,8 @@ class ThinkTank {
                     quit=false;
                 }
                 else{
-                    System.out.println("Would you like to sell this idea?\n(Y)es\n(N)o");
-                    System.out.print("--------> ");
+                    System.out.println("> Would you like to sell this idea?\n(Y)es\n(N)o");
+                    System.out.print(": ");
                     answer = hiveMind.next();
                     if (answer.equals("Y")||answer.equals("y")){
                         bestIdea = ideas.sell();
@@ -159,30 +159,30 @@ class ThinkTank {
                             System.out.println(bestIdeaPath);
                         }
                         catch(IOException e){
-                            System.out.println("Output error: "+e);
+                            System.out.println("! Output error: "+e);
                         }
                     }
                 }
             }
             //submit idea
             else if (answer.equals("B")||answer.equals("b")){
-                System.out.println("Please enter the last 4 digits of the submittor's SSN. (Blank spces will count as 0s)");
-                System.out.print("-------> ");
+                System.out.println("> Please enter the last 4 digits of the submittor's SSN. (Blank spces will count as 0s)");
+                System.out.print(": ");
                 String ans = hiveMind.nextLine();
                 int ssn=Integer.parseInt(ans);
                 while(ssn>10000){
-                    System.out.println("The submittor's SSN must be 4 digits. (Blank spaces will count as 0s)");
-                    System.out.print("------->");
+                    System.out.println("! The submittor's SSN must be 4 digits. (Blank spaces will count as 0s)");
+                    System.out.print(": ");
                     ans=hiveMind.nextLine();
                     ssn = Integer.parseInt(ans);
                 }
                 Student student = ideas.getStudent(ssn);
                 if(student!=null){
-                    System.out.println("Please imput idea description on the following line: ");
+                    System.out.println("> Please imput idea description on the following line: ");
                     String ideaText=hiveMind.nextLine();
-                    System.out.println("Please enter a rating for the idea.") ;
-                    System.out.println("Enter a number in range 0-100.");
-                    System.out.print("------> ");
+                    System.out.println("> Please enter a rating for the idea.") ;
+                    System.out.println("> Enter a number in range 0-100.");
+                    System.out.print(": ");
                     String ratingString=hiveMind.nextLine();
                     boolean done=false;
                     int rating;
@@ -193,9 +193,9 @@ class ThinkTank {
                             done=true;
                         }
                         catch(NumberFormatException ex){
-                            System.out.println("Please enter an INTEGER between 0-100");
+                            System.out.println("! Please enter an INTEGER between 0-100");
                         }
-                        System.out.print("------> ");
+                        System.out.print(": ");
                         ratingString=hiveMind.nextLine();
                     }
                     rating = Integer.parseInt(ratingString);
@@ -206,119 +206,119 @@ class ThinkTank {
                     Idea newIdea=new Idea(ssn,ideaText,rating);
 
                     ideas.insertIdea(newIdea);
-                    
+
                 }
                 else{
-                    System.out.println("That student was not found in our database, returning to main menu.");
+                    System.out.println("! That student was not found in our database, returning to main menu.");
                     quit = false;
                 }
-                
+
             }//submit idea
             else if (answer.equals("C")||answer.equals("c")){
                 boolean done = false;
                 while(done==false){
                 System.out.println();
-                System.out.println("Student Records\nA)Add Student\nB)Student Lookup\nC)Main Menu");
+                System.out.println("Student Records\n  A) Add Student\n  B) Student Lookup\n  C) Main Menu");
                 System.out.println();
-                System.out.print("-------> ");
+                System.out.print(": ");
                 answer = hiveMind.nextLine();
                 System.out.println();
                     if (answer.equals("A")|| answer.equals("a")){
                         System.out.println();
-                        System.out.println("Please enter the student's name");
+                        System.out.println("> Please enter the student's name");
                         String name=hiveMind.nextLine();
                         System.out.println();
                         //SSN = "Please enter 4 digit student SSN"
-                        System.out.println("Please enter the last 4 digits of the student's Social Security Number");
+                        System.out.println("> Please enter the last 4 digits of the student's Social Security Number");
                         String ssnStr=hiveMind.nextLine();
                         int ssn=Integer.parseInt(ssnStr);
                         while (ssn>9999) {
                             System.out.println();
-                            System.out.println("That was larger than 4 digits. Please enter only a 4 digit SSN number");
+                            System.out.println("> That was larger than 4 digits. Please enter only a 4 digit SSN number");
                             ssnStr=hiveMind.nextLine();
                             ssn=Integer.parseInt(ssnStr);
                         }
                         //studentNumber= "Please enter 4 digit student number"
                         System.out.println();
-                        System.out.println("Please enter the 4 digit student ID number");
+                        System.out.println("> Please enter the 4 digit student ID number");
                         String idStr=hiveMind.nextLine();
                         int idNum=Integer.parseInt(idStr);
                         while (idNum>9999) {
                             System.out.println();
-                            System.out.println("That was larger than 4 digits. Please enter only a 4 digit ID number");
+                            System.out.println("! That was larger than 4 digits. Please enter only a 4 digit ID number");
                             idStr=hiveMind.nextLine();
                             idNum=Integer.parseInt(idStr);
                         }
                         //username= "Please enter student email address"
                         System.out.println();
-                        System.out.println("Now please enter the student email user name");
+                        System.out.println("> Now please enter the student email user name");
                         String userNum= hiveMind.nextLine();
                         Student newStudent = new Student(name, userNum, ssn, idNum);
                         ideas.addStudent(newStudent);
                         System.out.println();
-                        System.out.println("The student has been added to the database");
+                        System.out.println("> The student has been added to the database");
                         System.out.println();
                         done=true;
                     }
                     else if(answer.equals("B")||answer.equals("b")){
                         System.out.println();
-                        System.out.println("Would you like to search or by SSN or studentID?\nA)SSN\nB)StudentID");
+                        System.out.println("> Would you like to search or by SSN or studentID?\n  A) SSN\n  B) StudentID");
                         boolean finished=false;
                         Student foundStudent=null;
                         while(finished==false){
 
                             System.out.println();
-                            System.out.print("---------> ");
+                            System.out.print(": ");
                             answer = hiveMind.nextLine();
 
                             if(answer.equals("A")||answer.equals("a")){
                                 System.out.println();
-                                System.out.println("Please enter the last 4 digits of the student's SSN");
+                                System.out.println("> Please enter the last 4 digits of the student's SSN");
                                 System.out.println();
-                                System.out.print("------->");
+                                System.out.print(": ");
                                 String ssnStr = hiveMind.nextLine();
-                                int ssn = Integer.parseInt(ssnStr); 
+                                int ssn = Integer.parseInt(ssnStr);
 
                                 while(ssn>9999){
                                     System.out.println();
-                                    System.out.println("The SSN must be 4 digits");
+                                    System.out.println("! The SSN must be 4 digits");
                                     System.out.println();
-                                    System.out.print("------->");
+                                    System.out.print(": ");
                                     ssnStr = hiveMind.nextLine();
-                                    ssn = Integer.parseInt(ssnStr); 
+                                    ssn = Integer.parseInt(ssnStr);
                                 }
                                 System.out.println(ssn);
-                                foundStudent=ideas.getStudent(ssn); 
+                                foundStudent=ideas.getStudent(ssn);
                                 finished=true;
                             }
 
                             else if(answer.equals("B")||answer.equals("b")){
                                 System.out.println();
-                                System.out.println("Please enter the last 4 digits of the student's ID");
-                                System.out.print("------->");
+                                System.out.println("> Please enter the last 4 digits of the student's ID");
+                                System.out.print(": ");
                                 String idStr = hiveMind.nextLine();
-                                int id = Integer.parseInt(idStr); 
+                                int id = Integer.parseInt(idStr);
 
                                 while(id>9999){
                                     System.out.println();
-                                    System.out.println("The ID must be 4 digits");
+                                    System.out.println("! The ID must be 4 digits");
                                     System.out.println();
-                                    System.out.print("------->");
+                                    System.out.print(": ");
                                     idStr = hiveMind.nextLine();
-                                    id = Integer.parseInt(idStr);  
+                                    id = Integer.parseInt(idStr);
                                 }
 
                                 foundStudent=ideas.getStudent(id);
-                                finished=true; 
+                                finished=true;
 
                             }
                             else{
-                                System.out.println("Not a menu option.");
+                                System.out.println("! Not a menu option.");
                             }
                         }//while loop (239)
 
                         if(foundStudent==null){
-                            System.out.println("There is no student in our records with that number. Returning to main menu");
+                            System.out.println("! There is no student in our records with that number. Returning to main menu");
                             System.out.println();
                             finished=true;
                         }
@@ -326,22 +326,22 @@ class ThinkTank {
                             foundStudent.displayStudent();
                             boolean completed=false;
                             System.out.println();
-                            System.out.println("A)Edit Information\nB)See Ideas\nC)Delete Record\nD)Return to Main Menu");
+                            System.out.println("  A) Edit Information\n  B) See Ideas\n  C) Delete Record\nD)Return to Main Menu");
                             System.out.println();
                             while(completed==false){
-                                System.out.print("------> ");
+                                System.out.print(": ");
                                 answer = hiveMind.nextLine();
                                 if(answer.equals("A")||answer.equals("a")){
 
-                                    System.out.println("Please enter the new last name for the selected student.");
-                                    System.out.print("------> ");
+                                    System.out.println("> Please enter the new last name for the selected student.");
+                                    System.out.print(": ");
                                     String newName = hiveMind.nextLine();
                                     System.out.println();
-                                    System.out.println("Please enter the new email for the student.");
-                                    System.out.print("------> ");
+                                    System.out.println("> Please enter the new email for the student.");
+                                    System.out.print(": ");
                                     String newUsername = hiveMind.nextLine();
                                     foundStudent.editNames(newName,newUsername);
-                                    System.out.println("The student has been updated!");
+                                    System.out.println("> The student has been updated!");
                                     completed=true;
                                 }
                                 else if(answer.equals("B")||answer.equals("b")){
@@ -366,10 +366,10 @@ class ThinkTank {
                     }
                     else{
                         System.out.println();
-                        System.out.println("Not a valid menu choice. Please chose again.");
+                        System.out.println("! Not a valid menu choice. Please chose again.");
                         System.out.println();
                     }
-                    
+
                 }
            /*     if(student==null){
                     System.out.println("There is student in our records with that number. Returning to main menu");
@@ -389,10 +389,10 @@ class ThinkTank {
                 quit=true;
             }
             else{
-                System.out.println("Not a menu selection. Please try again");
+                System.out.println("! Not a menu selection. Please try again");
             }
         }
-    
+
                             //main menu
         //D)Student lookup
             //student = studentLookup()
@@ -460,7 +460,7 @@ class ThinkTank {
         out.close();
     }
     catch (IOException x) {
-        System.out.println("Bad magic happened!!!");
+        System.out.println("! Bad magic happened!!!");
     }
 
     System.out.println("Closing. Have a nice day!");
