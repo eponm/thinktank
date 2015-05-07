@@ -56,8 +56,24 @@ class IdeaDB {
     public Idea sell() {
         // Store the min in a temporary slot and get rid of it from the heap
         Idea temp = ideaHeap.deleteMin();
+        temp.flip();
         return temp;
     } // sell
+    public Idea getBestIdea(){
+        Idea bestIdea=ideaHeap.findMin();
+        if (bestIdea!=null){
+            System.out.println("The best idea is Idea #" + bestIdea.getSeqNum() + "\nrated at" + bestIdea.getRating() + "here is the description: \n" + bestIdea.getDesc());//debug
+        }
+        return bestIdea;
+    }
+    public Idea getStudent(int key, boolean usingSSN){
+        if(usingSSN==True){
+            return studentSSNTree.search(key);
+        }
+        else{
+            return studentIDTree.search(key);
+        }
+    }
 
 
 } // class

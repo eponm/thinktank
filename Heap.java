@@ -16,20 +16,17 @@ public class Heap {
     }//isEmptyHeap
     
     //findMin();finds and returns the only accessible value in the heap
-    public void findMinFormat() {
+    public Idea findMin() {
         if (isEmptyHeap()==true) {
-            
-            System.out.println("There are no ideas here");//debug
+          System.out.println("There are no ideas here");//debug
+          return null;
         }//if
         else {
-            System.out.println("The best idea is Idea #" + heap[0].getSeqNum() + "/nrated at" + heap[0].getRating() + "here is the description: /n" + heap[0].getDesc());//debug
+          return heap[0];
         }//else
     }//findMin
     
-    //find min-- unformatted
-    public Idea findMin() {
-        return heap[0];
-    }//find Min
+
     
     //printHeap() prints all the values in the heap in order  
     // debug
@@ -40,7 +37,7 @@ public class Heap {
     }//printHeap
     
     
-    //print with formatting
+/*    //print with formatting
     public void printHeapFormat() {
         System.out.println();
         printHeap2(0);
@@ -68,7 +65,7 @@ public class Heap {
             printHeap2(index*2+1);
             printHeap2(index*2+2);
         }
-    
+    */
     //insert(Idea x); inserts Idea into heap reorders heap   
     public void insert(Idea x) {
         heap[n]=x;

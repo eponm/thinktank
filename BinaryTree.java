@@ -59,7 +59,6 @@ public class BinaryTree {
                 return head;
             } // else if
             else {
-                System.out.println("There is no matching object in this tree.");
                 return null;
             } // else
         } // if no flip
@@ -77,7 +76,6 @@ public class BinaryTree {
                 return head;
             } // else if
             else {
-                System.out.println("There is no matching object in this tree.");
                 return null;
             } // else
         } // else (if no flip)
@@ -99,7 +97,6 @@ public class BinaryTree {
                 return branch;
             }
             else {
-                System.out.println("There is no matching object in this tree.");
                 return null;
             }
         }
@@ -114,7 +111,6 @@ public class BinaryTree {
                 return branch;
             }
             else {
-                System.out.println("There is no matching object in this tree.");
                 return null;
             }
         }
