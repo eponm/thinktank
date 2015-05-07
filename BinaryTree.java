@@ -24,17 +24,17 @@ public class BinaryTree {
 
     //Constructor
     //sets head to null
-    public BinaryTree() {
-        head = null;
-        flipKeyToNum = false;
-        n = 0;
-    }//Constructor
-
     public BinaryTree(boolean keyFlip) {
         head = null;
         flipKeyToNum = keyFlip;
         n = 0;
-    } // Overriding constructor
+    }//Constructor
+
+    // public BinaryTree(boolean keyFlip) {
+    //     head = null;
+    //     flipKeyToNum = keyFlip;
+    //     n = 0;
+    // } // Overriding constructor
 
 
     //isEmptyTree
@@ -48,14 +48,13 @@ public class BinaryTree {
     //returns Student
     //Params: target Student SSN
     public Student search(int key) {
-
         // CASE FOR SEARCH ON STUDENT ID NUMBER
-        if (flipKeyToNum = true) {
+        if (flipKeyToNum==true) {
             if (head == null) return null; //if there is no head
             else if (key < head.getStudentID()) { //if key is smaller than head key
                 return searchTwo(head.getLeft(), key);
             } // if
-            else if (key > head.getKey()) { //if key is larger than head key
+            else if (key > head.getStudentID()) { //if key is larger than head key
                 return searchTwo(head.getRight(), key);
             } // else if
             else if (key == head.getStudentID()) { //if the key equals head key

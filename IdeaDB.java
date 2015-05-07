@@ -11,7 +11,7 @@ class IdeaDB {
         seqNum = 1;
         coreList = new List();
         ideaHeap = new Heap();
-        studentSSNTree = new BinaryTree();
+        studentSSNTree = new BinaryTree(false);
         studentIDTree = new BinaryTree(true);
     } // constructor
 
@@ -35,6 +35,9 @@ class IdeaDB {
 
         // Add the idea to the student's queue
         Student student = studentSSNTree.search(key);
+        student.addToQueue(newIdea);
+        int id = student.getStudentID();
+        student = studentIDTree.search(id);
         student.addToQueue(newIdea);
     } // insert
 
@@ -68,10 +71,6 @@ class IdeaDB {
     }
     public Student getStudent(int key, boolean usingSSN){
         if(usingSSN==true){
-
-
-    public Idea getStudent(int key, boolean usingSSN){
-        if(usingSSN==True){
             return studentSSNTree.search(key);
         }
         else{

@@ -161,46 +161,65 @@ class ThinkTank {
             }
             //submit idea
             else if (answer.equals("B")||answer.equals("b")){
-                System.out.println("Please enter the last 4 digits of the submittor's SSN.");
-                String ans=hiveMind.nextLine();
-                int ssn = Integer.parseInt(ans);
-                if (!ans.equals("")) {
-                    System.out.println("making student for debug");
-                    Student student=new Student("jess", "jspencer", 3434 , 1313);
-                    //ideaText="Please imput idea"
+                System.out.println("Please enter the last 4 digits of the submittor's SSN. (Blank spces will count as 0s)");
+                System.out.print("-------> ");
+                String ans = hiveMind.nextLine();
+                int ssn=Integer.parseInt(ans);
+                while(ssn>10000){
+                    System.out.println("The submittor's SSN must be 4 digits. (Blank spaces will count as 0s)");
+                    System.out.print("------->");
+                    ans=hiveMind.nextLine();
+                    ssn = Integer.parseInt(ans);
+                }
+                Student student = ideas.getStudent(ssn, true);
+                if(student!=null){
                     System.out.println("Please imput idea description on the following line: ");
                     String ideaText=hiveMind.nextLine();
-                    //rating="Please enter a rating for the idea (0 to 100)"
-                    
-                    // !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-                    
-                    System.out.println("Please enter a rating for the idea. Only enter numbers 0-100.");
-                    System.out.println(" If you don't enter a number, hiveMind will be sad: ");
+                    System.out.println("Please enter a rating for the idea.") ;
+                    System.out.println("Enter a number in range 0-100.");
+                    System.out.print("------> ");
                     String ratingString=hiveMind.nextLine();
-                     //if over 100 rating==100
-                    int rating=Integer.parseInt(ratingString);
-                    if (rating>100) {
+                    boolean done=false;
+                    int rating;
+                    while(done!=false){
+                        try{
+                            rating = Integer.parseInt(ratingString);
+
+                            done=true;
+                        }
+                        catch(NumberFormatException ex){
+                            System.out.println("Please enter an INTEGER between 0-100");
+                        }
+                        System.out.print("------> ");
+                        ratingString=hiveMind.nextLine();
+                    }
+                    rating = Integer.parseInt(ratingString);
+                    if (rating>100){
                         rating=100;
                     }
-                    //newIdea = new Idea(SSN, ideaText, rating)
-                    System.out.println("error here-- answer is not a student, cannot getKey()");
-                    Idea newIdea=new Idea(student.getKey(),ideaText,rating);
-                    //ideas.insertIdea(newIdea)
+                    System.out.println();
+                    System.out.println("Please enter the idea.");
+                    System.out.print("-----> ");
+
+                    ideaText = hiveMind.nextLine();
+                    Idea newIdea=new Idea(ssn,ideaText,rating);
+
                     ideas.insertIdea(newIdea);
+                    
                 }
-                else {
+                else{
                     System.out.println("That student was not found in our database, returning to main menu.");
-                        //main menu
-                    }
+                    quit = false;
+                }
                 
-                }//submit idea
+            }//submit idea
             else if (answer.equals("C")||answer.equals("c")){
                 boolean done = false;
                 while(done==false){
                 System.out.println("Student Records\nA)Add Student\nB)Student Lookup");
                 System.out.print("-----> ");
                 answer = hiveMind.nextLine();
-                    if (answer.equals("A")|| answer.equals("A") ){
+                    if (answer.equals("A")|| answer.equals("A")){
                         System.out.println("Please enter the student's name");
                         String name=hiveMind.nextLine();
                         //SSN = "Please enter 4 digit student SSN"
@@ -251,14 +270,14 @@ class ThinkTank {
                                     ssnStr = hiveMind.nextLine();
                                     ssn = Integer.parseInt(ssnStr); 
                                 }
-
+                                System.out.println(ssn);
                                 foundStudent=ideas.getStudent(ssn, true); 
                                 finished=true;
                             }
 
                             else if(answer.equals("B")||answer.equals("b")){
                                 System.out.println();
-                                System.out.println("Please enter the last 4 digits of the student's SSN");
+                                System.out.println("Please enter the last 4 digits of the student's ID");
                                 System.out.print("------->");
                                 String idStr = hiveMind.nextLine();
                                 int id = Integer.parseInt(idStr); 
@@ -285,22 +304,34 @@ class ThinkTank {
                         }
                         else{
                             foundStudent.displayStudent();
-                            finished=false;
+                            boolean completed=false;
                             System.out.println();
-                            System.out.println("A)Edit Information\nB)See Ideas\nC)Delete Record\nReturn to Main Menu");
-                            while(finished=false){
+                            System.out.println("A)Edit Information\nB)See Ideas\nC)Delete Record\nD)Return to Main Menu");
+                            while(completed==false){
                                 System.out.print("------> ");
                                 answer = hiveMind.nextLine();
                                 if(answer.equals("A")||answer.equals("a")){
+
                                     System.out.println("Please enter the new last name for the selected student.");
                                     System.out.print("------> ");
                                     String newName = hiveMind.nextLine();
                                     System.out.println();
                                     System.out.println("Please enter the new email for the student.");
-                                    System.out.print("------>");
+                                    System.out.print("------> ");
                                     String newUsername = hiveMind.nextLine();
                                     foundStudent.editNames(newName,newUsername);
                                 }
+                                else if(answer.equals("B")||answer.equals("b")){
+                                    foundStudent.displayIdeas();
+                                }
+                                else if(answer.equals("C")||answer.equals("c")){
+                                    ideas.deleteStudent(foundStudent);
+                                    completed=true;
+                                }
+                                else if(answer.equals("D")||answer.equals("d")){
+                                    completed=true;
+                                }
+                            done=true;
                             }
                         }
                     }
