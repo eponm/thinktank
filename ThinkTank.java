@@ -34,7 +34,7 @@ class ThinkTank {
 
 
         // Load a scanner
-        Scanner sc =  new Scanner(saveFile, ENCODING.name())
+        Scanner sc =  new Scanner(saveFile, ENCODING.name());
 
         /*
         Menu structure
@@ -48,7 +48,11 @@ class ThinkTank {
         L——> Print all students
 
         */
-        System.out.println("Welcome, we are hiveMind and we are here to help you!")
+        System.out.println("Welcome, we are hiveMind and we are here to help you!\nPlease pick a function from one of the following.");
+        System.out.println("A)Help Documentation\nB)Top Idea\nC)Add Idea\nD)Student Lookup");
+
+
+
         //menu options
         //A)Help Documentation for user
             //prints documentation for user
@@ -100,11 +104,10 @@ class ThinkTank {
                         //"Please enter Q to quit"
         //***********************B*************************************************
                     //if c
-        //********************sub-While Loop c*************************************
-                        //idea.
-
-
-
+                        //ideaDB.deleteStudent(student)
+                        //return to main menu
+                    //if d
+                        //return to main menu
             //if student==null:
                 //"That student was not found in out databse."
                 //"Would you like to add them?"
@@ -112,7 +115,7 @@ class ThinkTank {
                         //addStudent()
                     //(N)o
                         //main
-        //*************************************************************************
+//*********************************end while loop**************************************
 
 
         //addStudent()
