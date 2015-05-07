@@ -26,6 +26,7 @@ class Student {
 
     private Student leftChild;
     private Student rightChild;
+    private Student parentNode;
     // Constructor
     // Params: Last name, short username, 4-digit SSN, 4-digit student number.
     public Student(String nameIn, String usernameIn, int socSecNumIn, int studentIDIn) {
@@ -96,7 +97,7 @@ class Student {
     //getKey()
     //returns the last 4 digits of the SSN
     public int getKey(){
-        return socSecNum;   
+        return socSecNum;
     }//getKey()
 
     //getName
@@ -140,6 +141,11 @@ class Student {
         rightChild = nextStudent;
         return this;
     } // setRightChild
+
+    public Student setParent(Student nextParent) {
+        parentNode = nextParent;
+        return this;
+    }
 
 
 

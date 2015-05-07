@@ -1,4 +1,5 @@
 think = tank
-date = 6 May
+verify = 7 4
 segment = student
-student = karos jkar 1234 7890
+segment = idea
+END = END

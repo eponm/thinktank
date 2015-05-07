@@ -2,7 +2,6 @@ import java.io.PrintWriter; // For writing, obviously, I mean like...DUH!
 
 /*BinaryTree.java
     head - Node type pointer that will point to head
-
     Methods:
         isEmptyTree()
         search()
@@ -63,8 +62,34 @@ public class BinaryTree {
         //     } // else
         // } // if no flip
 
+<<<<<<< HEAD
         // // CASE FOR SEARCH ON KEY (DEFAULT)
         // else {
+=======
+        // CASE FOR SEARCH ON STUDENT ID NUMBER
+        if (flipKeyToNum = true) {
+            if (head == null) return null; //if there is no head
+            else if (key == head.getStudentID()) { //if the key equals head key
+                return head;
+            } // else if
+            else if (key < head.getStudentID()) { //if key is smaller than head key
+                if (head.getLeft() != null) {
+                    return searchTwo(head.getLeft(), key);
+                } // if
+            } // if
+            else if (key > head.getKey()) { //if key is larger than head key
+                if (head.getRight() != null) {
+                    return searchTwo(head.getRight(), key);
+                } // if
+            } // else if
+            else {
+                return null;
+            } // else
+        } // if no flip
+
+        // CASE FOR SEARCH ON KEY (DEFAULT)
+        else {
+>>>>>>> 6dc9cb547b7dd467f925575c01dd427f96377bb0
             if (head == null) return null; //if there is no head
             else if (key < head.getKey()) { //if key is smaller than head key
                 return searchTwo(head.getLeft(), key);
@@ -79,12 +104,19 @@ public class BinaryTree {
                 return null;
             } // else
         } // else (if no flip)
+<<<<<<< HEAD
     //} // search
+=======
+        //!!!!!!!!!!!!!!!!!!!!!!! weird added in to make compile??
+        return null;
+    } // search
+>>>>>>> 6dc9cb547b7dd467f925575c01dd427f96377bb0
 
 
     // Search method helper, used when searching for Student that isn't head
     // Params: Student, target Student SSN
     public Student searchTwo(Student branch, int key){
+<<<<<<< HEAD
         // if (flipKeyToNum == true){
         //     if (key<branch.getStudentID()){//if key is smaller than branch key
         //         return searchTwo(branch.getLeft(),key);
@@ -100,6 +132,27 @@ public class BinaryTree {
         //     }
         // }
         // else{
+=======
+        if (flipKeyToNum = true){
+            if (key<branch.getStudentID()){//if key is smaller than branch key
+                if (branch.getLeft() != null) {
+                    return searchTwo(branch.getLeft(),key);
+                }
+            }
+            else if (key>branch.getStudentID()){//if key is smaller than branch key
+                if (branch.getRight() != null) {
+                    return searchTwo(branch.getRight(),key);
+                }
+            }
+            else if (branch.getStudentID() == key) { //if key equals branch key
+                return branch;
+            }
+            else {
+                return null;
+            }
+        }
+        else{
+>>>>>>> 6dc9cb547b7dd467f925575c01dd427f96377bb0
             if (key<branch.getKey()){//if key is smaller than branch key
                 return searchTwo(branch.getLeft(),key);
             }
@@ -112,25 +165,32 @@ public class BinaryTree {
             else {
                 return null;
             }
+<<<<<<< HEAD
         //}
+=======
+        }
+        //!!!!!!!!!!!!!!!!!! weird added in to make compile??
+        return null;
+>>>>>>> 6dc9cb547b7dd467f925575c01dd427f96377bb0
     } // search
 
 
     // insert
     // inserts Student into BST
     // Params: Student to be inserted
-    public void insert(Student newStudent){
-        if (head==null) { // if there is no head
+    public void insert(Student newStudent) {
+        if (isEmptyTree()) { // if there is no head
             head=newStudent;
         }
         else { // if there is a head
-            insertTwo(head,newStudent);
+            insert2(head,newStudent);
         }
     }
 
 
     //insert helper
     //Params: Student in tree, Student to be inserted
+<<<<<<< HEAD
     private void insertTwo(Student branch,Student newStudent){
         // if (flipKeyToNum == true){
         //     if(newStudent.getStudentID()<branch.getStudentID()){//if Student is smaller branch
@@ -184,6 +244,51 @@ public class BinaryTree {
                 }
             }
         //}
+=======
+    private void insert2(Student parent, Student nodeIn){
+        if (flipKeyToNum == true){
+            if (nodeIn.getStudentID() > parent.getKey()) {
+            if (parent.getRight() != null) {
+                insert2 (parent.getRight(), nodeIn);
+            } // if
+            else {
+                parent.setRight(nodeIn);
+                //nodeIn.setParent(parent);
+            } // else
+        } // if
+        else {
+            if (parent.getLeft() != null) {
+                insert2(parent.getLeft(), nodeIn);
+            } // if
+            else {
+                parent.setLeft(nodeIn);
+               // nodeIn.setParent(parent);
+            } // else
+        } // else
+        }
+        
+        //if flipKeyToNum == false
+        else{
+            if (nodeIn.getKey() > parent.getKey()) {
+                if (parent.getRight() != null) {
+                    insert2 (parent.getRight(), nodeIn);
+                } // if
+                else {
+                    parent.setRight(nodeIn);
+                 //   nodeIn.setParent(parent);
+                } // else
+            } // if
+            else {
+                if (parent.getLeft() != null) {
+                    insert2(parent.getLeft(), nodeIn);
+                } // if
+                else {
+                    parent.setLeft(nodeIn);
+                  //  nodeIn.setParent(parent);
+                } // else
+            } // else
+        }
+>>>>>>> 6dc9cb547b7dd467f925575c01dd427f96377bb0
     }//insert
 
 
@@ -465,7 +570,7 @@ public class BinaryTree {
     private void printTree2(Student tree, PrintWriter out) {
         if (tree != null) {
             // Params: name, username, SSN, studentID
-            System.out.println("Student = "+"\""+tree.getName()+"\",\"" +tree.getUsername()+"\",\"'"+tree.getKey()+"\",\""+tree.getStudentID()+"\"");
+            System.out.println("Student = "+"\""+tree.getName()+"\",\"" +tree.getUsername()+"\",\"'"+tree.getKey()+"\",\""+tree.getStudentID()+"\"\n");
             printTree2(tree.getLeft(), out);
             printTree2(tree.getRight(), out);
         } // if
