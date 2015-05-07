@@ -38,11 +38,13 @@ class ThinkTank {
             Scanner sc = new Scanner(saveFile, ENCODING.name());
             sc.useDelimiter("="); // Set the delimiter
 
+            System.out.println();
+
             String key = sc.next(); // think
             String val = sc.next(); // tank
 
             // If the header is correct, go ahead and load the save file
-            if (key == "think" && val == "tank") {
+            if (key.equals("think") && val.equals("tank")) {
                 System.out.println("Loading saved state...");
 
                 key = sc.next(); val = sc.next(); // Move the holders to date=01 Jan
@@ -76,7 +78,7 @@ class ThinkTank {
                     } // if key is segment
 
                     // Loop through the things
-                    if (key == "segment" && val == "idea") {
+                    if (key.equals("segment") && val.equals("idea")) {
                         System.out.println("Loading ideas into database...");
                         key = sc.next(); val = sc.next(); // Move the holders forward
 
@@ -100,7 +102,7 @@ class ThinkTank {
                     } // if key is segment
 
                     // else if key is end
-                    else if (key == "END" && val == "END") {
+                    else if (key.equals("END") && val.equals("END")) {
                         looping = false;
                     } // else if
 
@@ -130,12 +132,12 @@ class ThinkTank {
         Idea bestIdea;
 
 
+        System.out.println("> Welcome, we are hiveMind and we are here to help you!\n");
+
         while(quit==false){
-            System.out.println();
-            System.out.println("> Welcome, we are hiveMind and we are here to help you!\nPlease pick a function from one of the following. (Enter Q to save and quit)");
-            System.out.println();
+            System.out.println("=== Main Menu ===");
+            System.out.println("> Please pick a function from one of the following. (Enter Q to save and quit)");
             System.out.println("  A) Top Idea\n  B) Add Idea\n  C) Student Records");
-            System.out.println();
             System.out.print(": ");
             answer = hiveMind.nextLine();
             //System.out.println("+"+answer+"+");  <---debug
@@ -146,7 +148,7 @@ class ThinkTank {
                     quit=false;
                 }
                 else{
-                    System.out.println("> Would you like to sell this idea?\n(Y)es\n(N)o");
+                    System.out.println("> Would you like to sell this idea?\n  (Y)es\n  (N)o");
                     System.out.print(": ");
                     answer = hiveMind.next();
                     if (answer.equals("Y")||answer.equals("y")){
@@ -166,6 +168,7 @@ class ThinkTank {
             }
             //submit idea
             else if (answer.equals("B")||answer.equals("b")){
+                System.out.println("=== Submit Idea ===");
                 System.out.println("> Please enter the last 4 digits of the submittor's SSN. (Blank spces will count as 0s)");
                 System.out.print(": ");
                 String ans = hiveMind.nextLine();
@@ -202,9 +205,7 @@ class ThinkTank {
                     if (rating>100){
                         rating=100;
                     }
-                    System.out.println();
                     Idea newIdea=new Idea(ssn,ideaText,rating);
-
                     ideas.insertIdea(newIdea);
 
                 }
@@ -218,7 +219,7 @@ class ThinkTank {
                 boolean done = false;
                 while(done==false){
                 System.out.println();
-                System.out.println("Student Records\n  A) Add Student\n  B) Student Lookup\n  C) Main Menu");
+                System.out.println("=== Student Records ===\n  A) Add Student\n  B) Student Lookup\n  C) Main Menu");
                 System.out.println();
                 System.out.print(": ");
                 answer = hiveMind.nextLine();
@@ -261,7 +262,7 @@ class ThinkTank {
                         done=true;
                     }
                     else if(answer.equals("B")||answer.equals("b")){
-                        System.out.println();
+                        System.out.println("=== Student Search ===");
                         System.out.println("> Would you like to search or by SSN or studentID?\n  A) SSN\n  B) StudentID");
                         boolean finished=false;
                         Student foundStudent=null;
@@ -325,8 +326,8 @@ class ThinkTank {
                         else{
                             foundStudent.displayStudent();
                             boolean completed=false;
-                            System.out.println();
-                            System.out.println("  A) Edit Information\n  B) See Ideas\n  C) Delete Record\nD)Return to Main Menu");
+                            System.out.println("=== Student Options ===");
+                            System.out.println("  A) Edit Information\n  B) See Ideas\n  C) Delete Record\n  D) Return to Main Menu");
                             System.out.println();
                             while(completed==false){
                                 System.out.print(": ");
@@ -392,47 +393,6 @@ class ThinkTank {
                 System.out.println("! Not a menu selection. Please try again");
             }
         }
-
-                            //main menu
-        //D)Student lookup
-            //student = studentLookup()
-            //if student != null
-//*****************************While Loop***************************************
-                //student.displayStudent()
-                //println()
-                //"A)Edit information"
-                //"B)See Ideas"
-                //"C)Delete record"
-                //"D)Return to main menu"
-                    //if A
-        //*********************sub-While Loop A****************************************
-                        //"Would you like to change the email and name for this student?"
-                            //(Y)es
-                                //answer1="Please enter a new name for the student"
-                                //answer2="Please enter a new username for the student"
-                                //"The record has been changed! Have a nice day! :)"
-                                //goes back to student lookup menu
-                            //(N)o
-                                //goes back to student lookup menu
-        //***********************A****************************************************
-                    //else if (B)
-        //********************sub-While Loop b*************************************
-                        //student.displayIdeas()
-                        //"Please enter Q to quit"
-        //***********************B*************************************************
-                    //if c
-                        //ideaDB.deleteStudent(student)
-                        //return to main menu
-                    //if d
-                        //return to main menu
-            //if student==null:
-                //"That student was not found in out databse."
-                //"Would you like to add them?"
-                    //(Y)es
-                        //addStudent()
-                    //(N)o
-                        //main
-//*********************************end while loop**************************************
 
     System.out.println("> Getting ready to exit...");
     System.out.println("> Writing database to disk...");
