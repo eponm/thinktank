@@ -20,17 +20,20 @@
 public class BinaryTree {
     private Student head;
     private boolean flipKeyToNum;
+    private int n;
 
     //Constructor
     //sets head to null
     public BinaryTree() {
         head = null;
         flipKeyToNum = false;
+        n = 0;
     }//Constructor
 
     public BinaryTree(boolean keyFlip) {
         head = null;
         flipKeyToNum = keyFlip;
+        n = 0;
     } // Overriding constructor
 
 
@@ -127,6 +130,7 @@ public class BinaryTree {
         else { // if there is a head
             insertTwo(head,newStudent);
         }
+        n++;
     }
 
 
@@ -277,6 +281,7 @@ public class BinaryTree {
                 }
             }
         }
+        n--;
     }
 
 
