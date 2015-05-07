@@ -182,7 +182,7 @@ class ThinkTank {
                 }
                 Student student = ideas.getStudent(ssn);
                 if(student!=null){
-                    System.out.println("> Please imput idea description on the following line: ");
+                    System.out.println("> Please input idea description on the following line: ");
                     String ideaText=hiveMind.nextLine();
                     System.out.println("> Please enter a rating for the idea.") ;
                     System.out.println("> Enter a number in range 0-100.");
