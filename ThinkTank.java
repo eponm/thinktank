@@ -148,7 +148,7 @@ class ThinkTank {
                 if(bestIdea==null){
                     quit=false;
                 }
-                else{
+                else {
                     System.out.println("> Would you like to sell this idea?\n(Y)es\n(N)o");
                     System.out.print(": ");
                     answer = hiveMind.next();
