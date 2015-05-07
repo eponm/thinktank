@@ -1,7 +1,10 @@
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Scanner; // For scanning, obviously.
 
 import java.io.PrintWriter; // For writing, obviously, I mean like...DUH!
+import java.io.FileWriter; //for WRiting, obcviously
 
 // FOLLOWING IMPORT REQUIRED IN ALL UPSTREAM MODULES
 import java.io.IOException; // For helpfully throwing exceptions if necessary
@@ -431,7 +434,36 @@ class ThinkTank {
                         //main
 //*********************************end while loop**************************************
 
+    System.out.println("> Getting ready to exit...");
+    System.out.println("> Writing database to disk...");
 
+
+    // Write save file out
+    try {
+        PrintWriter out = new PrintWriter(new FileWriter("savedstate.txt"));
+        Calendar calendar = new GregorianCalendar();
+        out.write("think = tank\n");
+        out.write("verify = " + calendar.get(Calendar.DAY_OF_MONTH) + " " + calendar.get(Calendar.MONTH)+"\n");
+
+        // Write out students
+        System.out.println("> Writing student data...");
+        out.write("segment = student\n");
+        ideas.printStudents(out);
+        System.out.println("> Student data done.");
+
+        // Write out ideas
+        System.out.println("> Writing idea database...");
+        out.write("segment = idea\n");
+        ideas.printIdeas(out);
+        System.out.println("> Idea database done.");
+        out.write("END = END");
+        out.close();
+    }
+    catch (IOException x) {
+        System.out.println("Bad magic happened!!!");
+    }
+
+    System.out.println("Closing. Have a nice day!");
 
     } // MAIN
 
