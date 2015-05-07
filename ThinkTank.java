@@ -49,7 +49,7 @@ class ThinkTank {
 
                 key = sc.next(); val = sc.next(); // Move the holders to date=01 Jan
 
-                System.out.println("The last saved state is from " + val + ".");
+                System.out.println("Save state validation no.: " + val + ".");
 
                 System.out.println("Loading students into database...");
                 key = sc.next().trim(); val = sc.next().trim(); // Move the holders forward to segment=student
@@ -91,7 +91,7 @@ class ThinkTank {
 
                             // Make the idea
                             // Params: submittor SSN, description, rating, seqnum
-                            Idea newIdea = new Idea(Integer.parseInt(paramAr[0]), paramAr[1], Integer.parseInt(paramAr[2]),Boolean.valueOf(paramAr[3]));
+                            Idea newIdea = new Idea(Integer.parseInt(paramAr[0]), paramAr[1], Integer.parseInt(paramAr[2]));
                             // Add the idea to the database
                             ideas.reInsertIdea(newIdea);
 
@@ -136,6 +136,7 @@ class ThinkTank {
         System.out.println("> Welcome, we are hiveMind and we are here to help you!\n");
 
         while(quit==false){
+            System.out.println();
             System.out.println("=== Main Menu ===");
             System.out.println("> Please pick a function from one of the following. (Enter Q to save and quit)");
             System.out.println("  A) Top Idea\n  B) Add Idea\n  C) Student Records");
@@ -169,6 +170,7 @@ class ThinkTank {
             }
             //submit idea
             else if (answer.equals("B")||answer.equals("b")){
+                System.out.println();
                 System.out.println("=== Submit Idea ===");
                 System.out.println("> Please enter the last 4 digits of the submittor's SSN.");
                 System.out.print(": ");
@@ -391,7 +393,7 @@ class ThinkTank {
         }
 
     System.out.println("> Getting ready to exit...");
-    System.out.println("> Writing database to disk...");
+    System.out.println("Writing database to disk...");
 
 
     // Write save file out
@@ -402,16 +404,16 @@ class ThinkTank {
         out.write("verify = " + calendar.get(Calendar.DAY_OF_MONTH) + " " + calendar.get(Calendar.MONTH)+"\n");
 
         // Write out students
-        System.out.println("> Writing student data...");
+        System.out.println("Writing student data...");
         out.write("segment = student\n");
         ideas.printStudents(out);
-        System.out.println("> Student data done.");
+        System.out.println("Student data done.");
 
         // Write out ideas
-        System.out.println("> Writing idea database...");
+        System.out.println("Writing idea database...");
         out.write("segment = idea\n");
         ideas.printIdeas(out);
-        System.out.println("> Idea database done.");
+        System.out.println("Idea database done.");
         out.write("END = END");
         out.close();
     }
