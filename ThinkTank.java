@@ -27,17 +27,20 @@ class ThinkTank {
         // Implicitly initializes the heap and list for ideas
         IdeaDB ideas = new IdeaDB();
 
-        // Load a scanner
+        // Load a scanner and do all of the loading of the save file
         try {
 
             Scanner sc = new Scanner(saveFile, ENCODING.name());
             sc.useDelimiter("="); // Set the delimiter
 
-            String key;
-            String val;
+            String key = sc.next(); // think
+            String val = sc.next(); // tank
 
-            key = sc.next(); // == think
-            val = sc.next(); // == tank
+            // If the header is correct
+            if (key == "think" && val == "tank") {
+                System.out.println("Loading save file...");
+            } // if key and val are think tank
+
 
             // Get the first two segments
             System.out.print(key.trim());//debug
@@ -48,25 +51,21 @@ class ThinkTank {
             boolean looping = true; // Loops as long as looping is true
             while (looping) {
 
-                // Enter the switch
-                switch(key) {
-                    case "segment":
-                        break;
-                    case "a":
-                        System.out.println("Good Job!") ;
-                        break;
-                    case "b":
-                        System.out.println("Good Job!") ;
-                        break ;
-                    case "c":
-                        System.out.println("Pragram Terminated") ;
-                        break ;
-                    default:
-                        return;
-                } // switch
-                if(key == "END") {
+                // Loop through the things
+                if (key == "segment") {
+                    if (val == "student") {
+                        return; // Fix me!
+                    } // if val is student
+                    else if (val == "idea") {
+                        return; // Fix me!
+                    } // if val is idea
+                } // if key is segment
+
+                // else if key is end
+                else if (key == "END" && val == "END") {
                     looping = false;
-                } // if
+                } // else if
+                // else stop and quit
 
             } // while
         sc.close();
