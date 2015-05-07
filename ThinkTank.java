@@ -1,6 +1,8 @@
 
 import java.util.Scanner; // For scanning, obviously.
 
+import java.io.PrintWriter; // For writing, obviously, I mean like...DUH!
+
 // FOLLOWING IMPORT REQUIRED IN ALL UPSTREAM MODULES
 import java.io.IOException; // For helpfully throwing exceptions if necessary
 
@@ -54,33 +56,60 @@ class ThinkTank {
         L——> Print all students
 
         */
-        System.out.println("Welcome, we are hiveMind and we are here to help you!\nPlease pick a function from one of the following. (Enter Q to quit)");
-        System.out.println("A)Help Documentation\nB)Top Idea\nC)Add Idea\nD)Student Lookup");
+        System.out.println("Welcome, we are hiveMind and we are here to help you!\nPlease pick a function from one of the following. (Enter Q to save and quit)");
+        System.out.println("A)Top Idea\nB)Add Idea\nC)Student Lookup");
         boolean quit = false;
         String answer;
+        Idea bestIdea;
         while(quit==false){
             System.out.println();
             System.out.print("--------> ");
-            answer = hiveMind.next();
+            answer = hiveMind.nextLine();
             //System.out.println("+"+answer+"+");  <---debug
-            if(answer=="A"||answer=="a"){
+            if (answer.equals("A")||answer.equals("a")){
                 System.out.println();
-                helpDoc();
+                bestIdea=ideas.getBestIdea();
+                if(bestIdea==null){
+                    quit=false;
+                }
+                else{
+                    System.out.println("Would you like to sell this idea?\n(Y)es\n(N)o");
+                    System.out.print("--------> ");
+                    answer = hiveMind.next();
+                    if (answer.equals("Y")||answer.equals("y")){
+                        bestIdea = ideas.sell();
+                        try {
+                            PrintWriter scribe = new PrintWriter("BestIdea.txt");
+                            scribe.println(bestIdea.getDesc());
+                            scribe.close();
+                            Path bestIdeaPath = Paths.get("BestIdea.txt");
+                            System.out.println(bestIdeaPath);
+                        }
+                        catch(IOException e){
+                            System.out.println("Output error: "+e);
+                        }
+                    }
+                }
             }
             else if (answer.equals("B")||answer.equals("b")){
-                ideas.getBestIdea
-                System.out.println("Would you like to sell this idea?\n(Y)es\n(N)o")
-                System.out.print("--------> ")
-                answer = hiveMind.next();
-                if (answer.equals("Y")||answer.equals("y"))
+
 
             }
             else if (answer.equals("C")||answer.equals("c")){
+                //student=studentLookup();
+                if(student==null){
+                    System.out.println("There is student in our records with that number. Returning to main menu");
+                    quit=false;
+                }
+                else{
+                    student.displayStudent();
+                    boolean finished=false;
+                    System.out.println();
+                    System.out.println("A)Edit Information\nB)See Ideas\nC)Delete Record\nReturn to Main Menu");
+                    while(finished=false){
 
-
-            }
-            else if (answer.equals("D")||answer.equals("d")){
-
+                    }
+                }
             }
             else if (answer.equals("Q")){
                 quit=true;
@@ -88,8 +117,8 @@ class ThinkTank {
             else{
                 System.out.println("Not a menu selection. Please try again");
             }
-        //dataBase.save()
         }
+        //dataBase.save()
 
         //menu options
         //A)Help Documentation for user
@@ -179,6 +208,48 @@ class ThinkTank {
                     //return null
 
     } // MAIN
+    public Student studentLookup(IdeaDB dataBase){
+        Scanner drone = new Scanner(System.in);
+        System.out.println("Would you like to search by SSN or studentID?\nA)SSN\nB)StudentID");
+        boolean quit==false
+        String answer;
+        while(quit==false){
+            System.out.println();
+            System.out.print("---------> ");
+            answer = drone.next();
+            if(answer.equals("A")||answer.equals("a")){
+                System.out.println();
+                System.out.println("Please enter the last 4 digits of the student's SSN");
+                System.out.print("------->");
+                int ssn = drone.nextInt();
+                while(ssn>9999){
+                    System.out.println("The SSN must be 4 digits");
+                    System.out.print("------->");
+                    int ssn = drone.nextInt();
+                }
+                Student foundStudent=dataBase.getStudent(ssn, true); 
+                quit=true
+            }
+            else if(answer.equals("B")||answer.equals("b")){
+                System.out.println();
+                System.out.println("Please enter the last 4 digits of the student's SSN");
+                System.out.print("------->");
+                int id = drone.nextInt();
+                while(id>9999){
+                    System.out.println("The ID must be 4 digits");
+                    System.out.print("------->");
+                    int id = drone.nextInt();
+                }
+                Student foundStudent=dataBase.getStudent(id, false);
+                quit=true 
+
+            }
+            else{
+                System.out.println("Not a menu option.");
+            }
+        }
+        return foundStudent;
+    }
 
 
 } // Thinktank
