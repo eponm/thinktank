@@ -161,14 +161,26 @@ class ThinkTank {
                         System.out.println("Okay. Please select from the main menu or press quit");
                         System.out.println("Welcome, we are hiveMind and we are here to help you!\nPlease pick a function from one of the following. (Enter Q to quit)");
                         System.out.println("A)Help Documentation\nB)Top Idea\nC)Add Idea\nD)Student Lookup");
-                        
-                            //main menu
+                        //main menu
                     }
                 
                 }
-
             }
+            else if (answer.equals("C")||answer.equals("c")){
                 //student=studentLookup();
+                if(student==null){
+                    System.out.println("There is student in our records with that number. Returning to main menu");
+                    quit=false;
+                }
+                else{
+                    student.displayStudent();
+                    boolean finished=false;
+                    System.out.println();
+                    System.out.println("A)Edit Information\nB)See Ideas\nC)Delete Record\nReturn to Main Menu");
+                    while(finished=false){
+                        
+                }
+            }
            /*     if(student==null){
                     System.out.println("There is student in our records with that number. Returning to main menu");
                     quit=false;
@@ -284,7 +296,7 @@ class ThinkTank {
     public Student studentLookup(IdeaDB dataBase){
         Scanner drone = new Scanner(System.in);
         System.out.println("Would you like to search by SSN or studentID?\nA)SSN\nB)StudentID");
-        boolean quit==false
+        boolean quit==false;
         String answer;
         while(quit==false){
             System.out.println();
@@ -301,7 +313,7 @@ class ThinkTank {
                     int ssn = drone.nextInt();
                 }
                 Student foundStudent=dataBase.getStudent(ssn, true); 
-                quit=true
+                quit=true;
             }
             else if(answer.equals("B")||answer.equals("b")){
                 System.out.println();
@@ -314,7 +326,7 @@ class ThinkTank {
                     int id = drone.nextInt();
                 }
                 Student foundStudent=dataBase.getStudent(id, false);
-                quit=true 
+                quit=true; 
 
             }
             else{
