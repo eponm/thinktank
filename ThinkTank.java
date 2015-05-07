@@ -46,15 +46,19 @@ class ThinkTank {
                 System.out.println("Save file verification no.: " + val);
 
                 System.out.println("Loading students into database...");
-                key = sc.next().trim(); val = sc.next().trim(); // Move the holders forward to segment=student
                 //key = sc.next().trim(); val = sc.next().trim(); // Move the holders forward to segment=student
 
                 // Start looping through the save file
                 boolean looping = true; // Loops as long as looping is true
-                while (looping) {
+                while (sc.hasNext()) {
+
+                    key = sc.next().trim(); val = sc.next().trim(); // Move the holders forward to segment=student
+
+                    //System.out.println(key);//debug
+                    //System.out.println(val);//debug
 
                     // Loop through the things
-                    if (key == "segment" && val == "student") {
+                    if (key.equals("segment") && val.equals("student")) {
 
                         // As long as the key is "student"...
                         while (key == "student") {
@@ -68,8 +72,6 @@ class ThinkTank {
                             // Params: name, username, SSN, studentID
                             Student newStudent = new Student(paramAr[0], paramAr[1], Integer.parseInt(paramAr[2]), Integer.parseInt(paramAr[3]));
 
-                            // Move the holders forward
-                            key = sc.next(); val = sc.next();
                         } // while key is student
                     } // if key is segment
 
@@ -92,9 +94,6 @@ class ThinkTank {
                             Idea newIdea = new Idea(Integer.parseInt(paramAr[0]), paramAr[1], Integer.parseInt(paramAr[2]));
                             // Add the idea to the database
                             ideas.insertIdea(newIdea);
-
-                            // Move the holders forward
-                            key = sc.next(); val = sc.next();
                         } // while key is idea
                     } // if key is segment
 
@@ -102,11 +101,11 @@ class ThinkTank {
                     else {
                         looping = false;
                     } // else if
-
-                    System.out.println("Loaded.");
-                    System.out.println("Welcome to ThinkTank!");
-                    System.out.println();
                 } // while
+
+                System.out.println("Loaded.");
+                System.out.println("Welcome to ThinkTank!");
+                System.out.println();
             } // if key and val are think tank
 
             else { // Case for broken databases and nonexistent saves
