@@ -41,10 +41,6 @@ class ThinkTank {
             System.out.println("Got an IOException: " + x.getMessage());
         }
 
-        // Load a scanner
-        Scanner sc =  new Scanner(saveFile, ENCODING.name());
-
-
         /*
         Menu structure
 
@@ -59,6 +55,12 @@ class ThinkTank {
         */
         System.out.println("Welcome, we are hiveMind and we are here to help you!\nPlease pick a function from one of the following.");
         System.out.println("A)Help Documentation\nB)Top Idea\nC)Add Idea\nD)Student Lookup");
+        boolean quit = false;
+        while(quit==false){
+        System.out.println();
+        System.out.print("--------> ");
+        String answer = sc.next();
+        }
 
         //menu options
         //A)Help Documentation for user
@@ -146,7 +148,6 @@ class ThinkTank {
                 //if not
 
                     //return null
-*/
 
     } // MAIN
 
