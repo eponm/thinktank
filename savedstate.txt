@@ -1,3 +1,4 @@
 think = tank
 date = 6 May
 segment = student
+student = karos jkar 1234 7890
