@@ -50,7 +50,7 @@ class ThinkTank {
 
                 // Start looping through the save file
                 boolean looping = true; // Loops as long as looping is true
-                while (sc.hasNext()) {
+                while (sc.hasNext() && !(key =="END") && !(val == "END")) {
 
                     key = sc.next().trim(); val = sc.next().trim(); // Move the holders forward to segment=student
 
@@ -76,13 +76,12 @@ class ThinkTank {
                     } // if key is segment
 
                     // Loop through the things
-                    else if (key == "segment" && val == "idea") {
+                    else if (key.equals("segment") && val.equals("idea")) {
                         System.out.println("> Loading ideas into database...");
-                        key = sc.next().trim(); val = sc.next().trim();
                         key = sc.next().trim(); val = sc.next().trim();
 
                         // As long as the key is "idea"...
-                        while (key == "idea") {
+                        while (key.equals("idea")) {
                             // Add each idea to the list
                             // Get rid of quotes and separate values
                             String paramSt = val.substring(1, val.length() - 1);
