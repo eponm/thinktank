@@ -1,0 +1,3 @@
+think = tank
+date = 6 May
+segment = student
