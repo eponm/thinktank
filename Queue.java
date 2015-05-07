@@ -2,21 +2,33 @@ import java.util.Scanner;
 
 public class Queue {
 
-    int size; // Left TBD in the constructors
-    int front = 0;
-    int end = 0;
-    int n = 0;
-    Idea[] queue;
+    private int size; // Left TBD in the constructors
+    private int front;
+    private int end;
+    private int n;
+    private Idea[] queue;
 
     public Queue() {
         size = 128;
-        Idea[] queue = new Idea[size];
+        Idea[] queue = new Idea[128];
+        front = 0;
+        end = 0;
+        n = 0;
+        for(int i=0;i<128;i++){
+            queue[i]=null;
+        }
     } // default constructor
 
 
     public Queue(int sizeIn) {
         size = sizeIn;
         Idea[] queue = new Idea[size];
+        front = 0;
+        end = 0;
+        n = 0;
+        for(int i=0;i<128;i++){
+            queue[i]=null;
+        }
     } // size-specific constructor
 
 

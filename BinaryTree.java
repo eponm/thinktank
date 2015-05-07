@@ -1,3 +1,4 @@
+import java.io.PrintWriter; // For writing, obviously, I mean like...DUH!
 
 /*BinaryTree.java
     head - Node type pointer that will point to head
@@ -20,21 +21,18 @@
 public class BinaryTree {
     private Student head;
     private boolean flipKeyToNum;
-    private int n;
 
     //Constructor
     //sets head to null
-    public BinaryTree(boolean keyFlip) {
+    // public BinaryTree(boolean keyFlip) {
+    public BinaryTree(){
         head = null;
-        flipKeyToNum = keyFlip;
-        n = 0;
+        // flipKeyToNum = keyFlip;
+        int n = 0;
     }//Constructor
 
-    // public BinaryTree(boolean keyFlip) {
-    //     head = null;
-    //     flipKeyToNum = keyFlip;
-    //     n = 0;
-    // } // Overriding constructor
+
+
 
 
     //isEmptyTree
@@ -48,25 +46,25 @@ public class BinaryTree {
     //returns Student
     //Params: target Student SSN
     public Student search(int key) {
-        // CASE FOR SEARCH ON STUDENT ID NUMBER
-        if (flipKeyToNum==true) {
-            if (head == null) return null; //if there is no head
-            else if (key < head.getStudentID()) { //if key is smaller than head key
-                return searchTwo(head.getLeft(), key);
-            } // if
-            else if (key > head.getStudentID()) { //if key is larger than head key
-                return searchTwo(head.getRight(), key);
-            } // else if
-            else if (key == head.getStudentID()) { //if the key equals head key
-                return head;
-            } // else if
-            else {
-                return null;
-            } // else
-        } // if no flip
+        // // CASE FOR SEARCH ON STUDENT ID NUMBER
+        // if (flipKeyToNum==true) {
+        //     if (head == null) return null; //if there is no head
+        //     else if (key < head.getStudentID()) { //if key is smaller than head key
+        //         return searchTwo(head.getLeft(), key);
+        //     } // if
+        //     else if (key > head.getStudentID()) { //if key is larger than head key
+        //         return searchTwo(head.getRight(), key);
+        //     } // else if
+        //     else if (key == head.getStudentID()) { //if the key equals head key
+        //         return head;
+        //     } // else if
+        //     else {
+        //         return null;
+        //     } // else
+        // } // if no flip
 
-        // CASE FOR SEARCH ON KEY (DEFAULT)
-        else {
+        // // CASE FOR SEARCH ON KEY (DEFAULT)
+        // else {
             if (head == null) return null; //if there is no head
             else if (key < head.getKey()) { //if key is smaller than head key
                 return searchTwo(head.getLeft(), key);
@@ -81,28 +79,27 @@ public class BinaryTree {
                 return null;
             } // else
         } // else (if no flip)
-
-    } // search
+    //} // search
 
 
     // Search method helper, used when searching for Student that isn't head
     // Params: Student, target Student SSN
     public Student searchTwo(Student branch, int key){
-        if (flipKeyToNum = true){
-            if (key<branch.getStudentID()){//if key is smaller than branch key
-                return searchTwo(branch.getLeft(),key);
-            }
-            else if (key>branch.getStudentID()){//if key is smaller than branch key
-                return searchTwo(branch.getRight(),key);
-            }
-            else if (branch.getStudentID() == key) { //if key equals branch key
-                return branch;
-            }
-            else {
-                return null;
-            }
-        }
-        else{
+        // if (flipKeyToNum == true){
+        //     if (key<branch.getStudentID()){//if key is smaller than branch key
+        //         return searchTwo(branch.getLeft(),key);
+        //     }
+        //     else if (key>branch.getStudentID()){//if key is smaller than branch key
+        //         return searchTwo(branch.getRight(),key);
+        //     }
+        //     else if (branch.getStudentID() == key) { //if key equals branch key
+        //         return branch;
+        //     }
+        //     else {
+        //         return null;
+        //     }
+        // }
+        // else{
             if (key<branch.getKey()){//if key is smaller than branch key
                 return searchTwo(branch.getLeft(),key);
             }
@@ -115,7 +112,7 @@ public class BinaryTree {
             else {
                 return null;
             }
-        }
+        //}
     } // search
 
 
@@ -129,49 +126,64 @@ public class BinaryTree {
         else { // if there is a head
             insertTwo(head,newStudent);
         }
-        n++;
     }
 
 
     //insert helper
     //Params: Student in tree, Student to be inserted
     private void insertTwo(Student branch,Student newStudent){
-        if (flipKeyToNum == true){
-            if(newStudent.getStudentID()<branch.getStudentID()){//if Student is smaller branch
-                if(branch.getLeft()==null){//if the branch left child is null
-                    branch.setLeft(newStudent);
-                }
-                else{//recursive call for next left branch down
-                    insertTwo(branch.getLeft(),newStudent);
-                }
-            }
-            else{//if newStudent is larger than branch
-                if(branch.getRight()==null){//if the branch right child is null
-                    branch.setRight(newStudent);
-                }
-                else{//recursive call or next right branch down
-                    insertTwo(branch.getRight(),newStudent);
-                }
-            }
-        }
-        else{
+        // if (flipKeyToNum == true){
+        //     if(newStudent.getStudentID()<branch.getStudentID()){//if Student is smaller branch
+        //         if(branch.getLeft()==null){//if the branch left child is null
+        //             branch.setLeft(newStudent);
+        //             System.out.println("Left was null ID");
+        //             System.out.println();
+        //             this.traverse();
+        //         }
+        //         else{//recursive call for next left branch down
+        //             insertTwo(branch.getLeft(),newStudent);
+        //             System.out.println("Getting Left ID");
+        //         }
+        //     }
+        //     else{//if newStudent is larger than branch
+        //         if(branch.getRight()==null){//if the branch right child is null
+        //             branch.setRight(newStudent);
+        //             System.out.println("Right is null ID");
+        //             System.out.println();
+        //             this.traverse();
+        //         }
+        //         else{//recursive call or next right branch down
+        //             insertTwo(branch.getRight(),newStudent);
+        //             System.out.println("Getting right ID");
+        //         }
+        //     }
+        // }
+        //else{
             if(newStudent.getKey()<branch.getKey()){//if Student is smaller branch
                 if(branch.getLeft()==null){//if the branch left child is null
                     branch.setLeft(newStudent);
+                    System.out.println("Left was null SSN");
+                    System.out.println();
+                    this.traverse();
                 }
                 else{//recursive call for next left branch down
                     insertTwo(branch.getLeft(),newStudent);
+                    System.out.println("Getting Left SSN");
                 }
             }
             else{//if newStudent is larger than branch
                 if(branch.getRight()==null){//if the branch right child is null
                     branch.setRight(newStudent);
+                    System.out.println("Right was null SSN");
+                    System.out.println();
+                    this.traverse();
                 }
                 else{//recursive call or next right branch down
                     insertTwo(branch.getRight(),newStudent);
+                    System.out.println("Getting right SSN");
                 }
             }
-        }
+        //}
     }//insert
 
 
@@ -188,8 +200,10 @@ public class BinaryTree {
     //traverse helper
     private void traverseTwo(Student branch){
         if(branch!=null){
+            System.out.println("gettingLeft traverse");
             traverseTwo(branch.getLeft());
-            System.out.print(branch.getKey()+" ");
+            System.out.println(branch.getKey()+" ");
+            System.out.println("gettingRight traverse");
             traverseTwo(branch.getRight());
         }
     }//traverse
@@ -206,43 +220,43 @@ public class BinaryTree {
         of higher value.
         */
         if(head==null) return;
-        else if (flipKeyToNum==true){
-            int key = head.getStudentID();
-            if(key<head.getStudentID()){//if Student key is larger than head
-                int side=0;
-                deleteTwo(head.getLeft(),key,head,side);
-            }
-            else if(key>head.getStudentID()){//if Student key is smaller than head
-                int side=1;
-                deleteTwo(head.getRight(),key,head,side);
-            }
-            else{//if Student key equals head
-                /*
-                pricipal of prioritizing higher values illustrated in this case:
-                */
-                if(head.getLeft()==null&&head.getRight()==null){//if head has no children
-                    head=null;
-                }
-                else if(head.getLeft()==null){// if head has a right child
-                    Student temp=head;
-                    Student temp2=popMax(head.getRight(),head,0); //note how it only gets the maximum leftmost
-                    //leaf of the RIGHT side if and only if getLeft() of head=null.
-                    this.delete(temp2);
-                    head=temp2;
-                    head.setRight(temp.getLeft());
-                    temp.setRight(null);
-                }
-                else{// if head has two children
-                    Student temp=head;
-                    Student temp2=popMax(head.getLeft(),head,1);
-                    this.delete(temp2);
-                    head=temp2;
-                    head.setLeft(temp.getLeft());
-                    head.setRight(temp.getRight());
-                    temp.setLeft(temp.getLeft());
-                }
-            }
-        }
+        // else if (flipKeyToNum==true){
+        //     int key = head.getStudentID();
+        //     if(key<head.getStudentID()){//if Student key is larger than head
+        //         int side=0;
+        //         deleteTwo(head.getLeft(),key,head,side);
+        //     }
+        //     else if(key>head.getStudentID()){//if Student key is smaller than head
+        //         int side=1;
+        //         deleteTwo(head.getRight(),key,head,side);
+        //     }
+        //     else{//if Student key equals head
+        //         /*
+        //         pricipal of prioritizing higher values illustrated in this case:
+        //         */
+        //         if(head.getLeft()==null&&head.getRight()==null){//if head has no children
+        //             head=null;
+        //         }
+        //         else if(head.getLeft()==null){// if head has a right child
+        //             Student temp=head;
+        //             Student temp2=popMax(head.getRight(),head,0); //note how it only gets the maximum leftmost
+        //             //leaf of the RIGHT side if and only if getLeft() of head=null.
+        //             this.delete(temp2);
+        //             head=temp2;
+        //             head.setRight(temp.getLeft());
+        //             temp.setRight(null);
+        //         }
+        //         else{// if head has two children
+        //             Student temp=head;
+        //             Student temp2=popMax(head.getLeft(),head,1);
+        //             this.delete(temp2);
+        //             head=temp2;
+        //             head.setLeft(temp.getLeft());
+        //             head.setRight(temp.getRight());
+        //             temp.setLeft(temp.getLeft());
+        //         }
+        //     }
+        // }
         else{
             int key = head.getKey();
             if(key<head.getKey()){//if Student key is larger than head
@@ -280,7 +294,6 @@ public class BinaryTree {
                 }
             }
         }
-        n--;
     }
 
 
@@ -290,67 +303,67 @@ public class BinaryTree {
     //Params: target Student, SSN of Student to be deleted, Parent of target, interger
     //to represent what side of the parent the target is on (0[left] or 1[right])
     public void deleteTwo(Student target, int key, Student parent, int side){
-        if (flipKeyToNum==true){
-            if(key<target.getStudentID()){//if Student key is smaller than target key
-                side=0;
-                deleteTwo(target.getLeft(),key,target,side);
-            }
-            else if(key>target.getStudentID()){//if Student key is larger than target key
-                side=1;
-                deleteTwo(target.getRight(),key,target,side);
-            }
-            else{//if Student key equals target key
-                if(target.getLeft()==null&&target.getRight()==null){//if the target has no children
-                    if(side==0){//if the target is on the left side of parent
-                        parent.setLeft(null);
-                    }
-                    else{//if the target is on the right side of parent
-                        parent.setRight(null);
-                    }
-                }
-                else if(target.getLeft()==null||target.getRight()==null){//if the target has either a right or left child
-                    if(side==0){//if target is on the left side of parent
-                        if(target.getLeft()==null){//if the target has a right child
-                            Student successor=popMax(target.getRight(),parent,0);
-                            parent.setLeft(successor);
-                            successor.setRight(target.getRight());
-                        }
-                        else{//if target has a left child
-                            Student successor=popMax(target.getLeft(),parent,1);
-                            parent.setLeft(successor);
-                            successor.setLeft(target.getLeft());
-                        }
-                    }
-                    else{//if target is on the right side of the parent
-                        if(target.getLeft()==null){//if target has a left child
-                            Student successor=popMax(target.getRight(),parent,0);
-                            parent.setRight(successor);
-                            successor.setRight(target.getRight());
-                        }
-                        else{//if target has a right child
-                            Student successor=popMax(target.getLeft(),parent,1);
-                            parent.setRight(successor);
-                            successor.setLeft(target.getLeft());
-                        }
-                    }
-                }
-                else{//if the target has two children
-                    if(side==0){//if the target is on the left side of the parent
-                        Student successor=popMax(target.getLeft(),parent,1);
-                        parent.setLeft(successor);
-                        successor.setRight(target.getRight());
-                        successor.setLeft(target.getLeft());
-                    }
-                    else{//if the target is on the right side of the parent
-                        Student successor=popMax(target.getLeft(),parent,1);
-                        parent.setRight(successor);
-                        successor.setRight(target.getRight());
-                        successor.setLeft(target.getLeft());
-                    }
-                }
-            }
-        }
-        else{
+        // if (flipKeyToNum==true){
+        //     if(key<target.getStudentID()){//if Student key is smaller than target key
+        //         side=0;
+        //         deleteTwo(target.getLeft(),key,target,side);
+        //     }
+        //     else if(key>target.getStudentID()){//if Student key is larger than target key
+        //         side=1;
+        //         deleteTwo(target.getRight(),key,target,side);
+        //     }
+        //     else{//if Student key equals target key
+        //         if(target.getLeft()==null&&target.getRight()==null){//if the target has no children
+        //             if(side==0){//if the target is on the left side of parent
+        //                 parent.setLeft(null);
+        //             }
+        //             else{//if the target is on the right side of parent
+        //                 parent.setRight(null);
+        //             }
+        //         }
+        //         else if(target.getLeft()==null||target.getRight()==null){//if the target has either a right or left child
+        //             if(side==0){//if target is on the left side of parent
+        //                 if(target.getLeft()==null){//if the target has a right child
+        //                     Student successor=popMax(target.getRight(),parent,0);
+        //                     parent.setLeft(successor);
+        //                     successor.setRight(target.getRight());
+        //                 }
+        //                 else{//if target has a left child
+        //                     Student successor=popMax(target.getLeft(),parent,1);
+        //                     parent.setLeft(successor);
+        //                     successor.setLeft(target.getLeft());
+        //                 }
+        //             }
+        //             else{//if target is on the right side of the parent
+        //                 if(target.getLeft()==null){//if target has a left child
+        //                     Student successor=popMax(target.getRight(),parent,0);
+        //                     parent.setRight(successor);
+        //                     successor.setRight(target.getRight());
+        //                 }
+        //                 else{//if target has a right child
+        //                     Student successor=popMax(target.getLeft(),parent,1);
+        //                     parent.setRight(successor);
+        //                     successor.setLeft(target.getLeft());
+        //                 }
+        //             }
+        //         }
+        //         else{//if the target has two children
+        //             if(side==0){//if the target is on the left side of the parent
+        //                 Student successor=popMax(target.getLeft(),parent,1);
+        //                 parent.setLeft(successor);
+        //                 successor.setRight(target.getRight());
+        //                 successor.setLeft(target.getLeft());
+        //             }
+        //             else{//if the target is on the right side of the parent
+        //                 Student successor=popMax(target.getLeft(),parent,1);
+        //                 parent.setRight(successor);
+        //                 successor.setRight(target.getRight());
+        //                 successor.setLeft(target.getLeft());
+        //             }
+        //         }
+        //     }
+        // }
+        //else{
             if(key<target.getKey()){//if Student key is smaller than target key
                 side=0;
                 deleteTwo(target.getLeft(),key,target,side);
@@ -409,7 +422,7 @@ public class BinaryTree {
                     }
                 }
             }
-        }
+        //}
     }
 
 
@@ -442,28 +455,19 @@ public class BinaryTree {
 
     //printTree()
     //prints Students in BST with their left and right Children
-    public void printTree() {
-        System.out.println();
-        printTree2(head);
-        System.out.println();
+    public void printTree(PrintWriter out) {
+        printTree2(head, out);
     }
 
 
     //helper function
     //Params: Student
-    private void printTree2(Student tree) {
+    private void printTree2(Student tree, PrintWriter out) {
         if (tree != null) {
-            System.out.println("node = " + tree.getKey());
-                if (tree.getLeft() != null)
-                System.out.println("left = " + tree.getLeft().getKey());
-                else
-                    System.out.print("left = null");
-                if (tree.getRight() != null)
-                System.out.println("right = " + tree.getRight().getKey());
-                else
-                    System.out.println("right = null");
-            printTree2(tree.getLeft());
-            printTree2(tree.getRight());
+            // Params: name, username, SSN, studentID
+            System.out.println("Student = "+"\""+tree.getName()+"\",\"" +tree.getUsername()+"\",\"'"+tree.getKey()+"\",\""+tree.getStudentID()+"\"");
+            printTree2(tree.getLeft(), out);
+            printTree2(tree.getRight(), out);
         } // if
     } // printTree2
 } // BinaryTree

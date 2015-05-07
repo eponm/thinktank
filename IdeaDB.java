@@ -1,9 +1,11 @@
+import java.io.PrintWriter; // For writing, obviously, I mean like...DUH!
+
 class IdeaDB {
 
     private List coreList;
     private Heap ideaHeap;
     private BinaryTree studentSSNTree;
-    private BinaryTree studentIDTree;
+//    private BinaryTree studentIDTree;
     private int seqNum;
 
     // Constructor
@@ -11,10 +13,23 @@ class IdeaDB {
         seqNum = 1;
         coreList = new List();
         ideaHeap = new Heap();
-        studentSSNTree = new BinaryTree(false);
-        studentIDTree = new BinaryTree(true);
+        studentSSNTree = new BinaryTree();
+//        studentIDTree = new BinaryTree(true);
     } // constructor
 
+
+    public boolean printStudents(PrintWriter out) {
+        studentSSNTree.printTree(out);
+        return true;
+    }
+
+    public boolean printIdeas(PrintWriter out) {
+        for (int i=0; i<coreList.length(); i++) {
+            // Params: submittor SSN, description, rating, seqnum
+            out.write("idea = \""+coreList.access(i).getKey()+"\",\"" +coreList.access(i).getDesc()+"\",\"'"+coreList.access(i).getSeqNum()+"\",\""+coreList.access(i).getRating()+"\"");
+        }
+        return true;
+    }
 
 
     // insertIdea - adds a new idea
@@ -37,23 +52,25 @@ class IdeaDB {
         Student student = studentSSNTree.search(key);
         student.addToQueue(newIdea);
         int id = student.getStudentID();
-        student = studentIDTree.search(id);
-        student.addToQueue(newIdea);
+  //      student = studentIDTree.search(id);
+   //     student.addToQueue(newIdea);
     } // insert
+
 
     //addStudent
     //adds a student to IdeaDB
     public void addStudent(Student newStudent) {
         // Doesn't double stored data because of how Java handles objects
         studentSSNTree.insert(newStudent);
-        studentIDTree.insert(newStudent);
+        //studentIDTree.insert(newStudent);
     }//addStudent
+
 
     //deleteStudent
     //deletes student from both trees
     public void deleteStudent(Student targetStudent){
         studentSSNTree.delete(targetStudent);
-        studentIDTree.delete(targetStudent);
+//        studentIDTree.delete(targetStudent);
     }
     // "Sell" - deletes top-rated idea and returns it
     public Idea sell() {
@@ -69,14 +86,14 @@ class IdeaDB {
         }
         return bestIdea;
     }
-    public Student getStudent(int key, boolean usingSSN){
-        if(usingSSN==true){
-            return studentSSNTree.search(key);
-        }
-        else{
-            return studentIDTree.search(key);
-        }
-    }
 
+    public Student getStudent(int key){
+        //if(usingSSN==true){
+            return studentSSNTree.search(key);
+        //}
+        // else{
+        //     return studentIDTree.search(key);
+        // }
+    }
 
 } // class

@@ -36,6 +36,8 @@ class Student {
         socSecNum = socSecNumIn;
         studentID = studentIDIn;
         Queue ideaQueue = new Queue(10);
+        leftChild=null;
+        rightChild=null;
 
     } // Constructor
 
