@@ -25,7 +25,6 @@ class ThinkTank {
         // Look for the save file and read it in through the text parser
         saveFile = Paths.get("savedstate.txt"); // CHANGE SAVE FILE NAME HERE !
         TextParser saveReader = new TextParser(String.valueOf(saveFile));
-
         // Init an IdeaDB
         // Implicitly initializes the heap and list for ideas
         IdeaDB ideas = new IdeaDB();
@@ -34,20 +33,21 @@ class ThinkTank {
         // Buckle up, kids.
         try {
             Scanner sc = new Scanner(saveFile, ENCODING.name());
-            sc.useDelimiter("="); // Set the delimiter
+            sc.useDelimiter("=|\n"); // Set the delimiter
 
-            String key = sc.next(); // think
-            String val = sc.next(); // tank
-
+            String key = sc.next().trim(); // think
+            String val = sc.next().trim(); // tank
             // If the header is correct, go ahead and load the save file
-            if (key == "think" && val == "tank") {
-                System.out.println("Loading saved state...");
 
-                key = sc.next(); val = sc.next(); // Move the holders to date=01 Jan
+            System.out.println("Loading saved state...");
+
+            if (key.trim().equals("think") && val.trim().equals("tank")) {
+                key = sc.next().trim(); val = sc.next().trim(); // Move the holders to date=01 Jan
                 System.out.println("> The last saved state is from " + val + ".");
 
                 System.out.println("> Loading students into database...");
-                key = sc.next(); val = sc.next(); // Move the holders forward to segment=student
+                key = sc.next().trim(); val = sc.next().trim(); // Move the holders forward to segment=student
+                //key = sc.next().trim(); val = sc.next().trim(); // Move the holders forward to segment=student
 
                 // Start looping through the save file
                 boolean looping = true; // Loops as long as looping is true
@@ -74,9 +74,10 @@ class ThinkTank {
                     } // if key is segment
 
                     // Loop through the things
-                    if (key == "segment" && val == "idea") {
+                    else if (key == "segment" && val == "idea") {
                         System.out.println("> Loading ideas into database...");
-                        key = sc.next(); val = sc.next(); // Move the holders forward
+                        key = sc.next().trim(); val = sc.next().trim();
+                        key = sc.next().trim(); val = sc.next().trim();
 
                         // As long as the key is "idea"...
                         while (key == "idea") {
@@ -98,17 +99,16 @@ class ThinkTank {
                     } // if key is segment
 
                     // else if key is end
-                    else if (key == "END" && val == "END") {
+                    else {
                         looping = false;
                     } // else if
 
                     System.out.println("> Loaded!");
-
                 } // while
-
             } // if key and val are think tank
 
             else { // Case for broken databases and nonexistent saves
+
                 System.out.println("! Saved state does not exist or is damaged.") ;
                 System.out.println("> Starting a new database...");
             } // else
@@ -341,20 +341,21 @@ class ThinkTank {
         try {
             PrintWriter out = new PrintWriter(new FileWriter("savedstate.txt"));
             Calendar calendar = new GregorianCalendar();
-            out.write("think = tank");
-            out.write("date = " + calendar.get(Calendar.DAY_OF_MONTH) + " " + calendar.get(Calendar.MONTH));
+            out.write("think = tank\n");
+            out.write("date = " + calendar.get(Calendar.DAY_OF_MONTH) + " " + calendar.get(Calendar.MONTH)+"\n");
 
             // Write out students
             System.out.println("> Writing student data...");
-            out.write("segment = student");
+            out.write("segment = student\n");
             ideas.printStudents(out);
             System.out.println("> Student data done.");
 
             // Write out ideas
             System.out.println("> Writing idea database...");
-            out.write("segment = idea");
+            out.write("segment = idea\n");
             ideas.printIdeas(out);
             System.out.println("> Idea database done.");
+            out.write("END = END");
             out.close();
         }
         catch (IOException x) {
