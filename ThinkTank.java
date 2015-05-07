@@ -46,15 +46,19 @@ class ThinkTank {
                 System.out.println("Save file verification no.: " + val);
 
                 System.out.println("Loading students into database...");
-                key = sc.next().trim(); val = sc.next().trim(); // Move the holders forward to segment=student
                 //key = sc.next().trim(); val = sc.next().trim(); // Move the holders forward to segment=student
 
                 // Start looping through the save file
                 boolean looping = true; // Loops as long as looping is true
-                while (looping) {
+                while (sc.hasNext() && !(key =="END") && !(val == "END")) {
+
+                    key = sc.next().trim(); val = sc.next().trim(); // Move the holders forward to segment=student
+
+                    //System.out.println(key);//debug
+                    //System.out.println(val);//debug
 
                     // Loop through the things
-                    if (key == "segment" && val == "student") {
+                    if (key.equals("segment") && val.equals("student")) {
 
                         // As long as the key is "student"...
                         while (key == "student") {
@@ -68,19 +72,16 @@ class ThinkTank {
                             // Params: name, username, SSN, studentID
                             Student newStudent = new Student(paramAr[0], paramAr[1], Integer.parseInt(paramAr[2]), Integer.parseInt(paramAr[3]));
 
-                            // Move the holders forward
-                            key = sc.next(); val = sc.next();
                         } // while key is student
                     } // if key is segment
 
                     // Loop through the things
-                    else if (key == "segment" && val == "idea") {
+                    else if (key.equals("segment") && val.equals("idea")) {
                         System.out.println("> Loading ideas into database...");
-                        key = sc.next().trim(); val = sc.next().trim();
                         key = sc.next().trim(); val = sc.next().trim();
 
                         // As long as the key is "idea"...
-                        while (key == "idea") {
+                        while (key.equals("idea")) {
                             // Add each idea to the list
                             // Get rid of quotes and separate values
                             String paramSt = val.substring(1, val.length() - 1);
@@ -92,9 +93,6 @@ class ThinkTank {
                             Idea newIdea = new Idea(Integer.parseInt(paramAr[0]), paramAr[1], Integer.parseInt(paramAr[2]));
                             // Add the idea to the database
                             ideas.insertIdea(newIdea);
-
-                            // Move the holders forward
-                            key = sc.next(); val = sc.next();
                         } // while key is idea
                     } // if key is segment
 
@@ -102,11 +100,11 @@ class ThinkTank {
                     else {
                         looping = false;
                     } // else if
-
-                    System.out.println("Loaded.");
-                    System.out.println("Welcome to ThinkTank!");
-                    System.out.println();
                 } // while
+
+                System.out.println("Loaded.");
+                System.out.println("Welcome to ThinkTank!");
+                System.out.println();
             } // if key and val are think tank
 
             else { // Case for broken databases and nonexistent saves
