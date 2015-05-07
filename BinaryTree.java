@@ -1,3 +1,4 @@
+import java.io.PrintWriter; // For writing, obviously, I mean like...DUH!
 
 /*BinaryTree.java
     head - Node type pointer that will point to head
@@ -20,20 +21,17 @@
 public class BinaryTree {
     private Student head;
     private boolean flipKeyToNum;
-    private int n;
 
     //Constructor
     //sets head to null
     public BinaryTree() {
         head = null;
         flipKeyToNum = false;
-        n = 0;
     }//Constructor
 
     public BinaryTree(boolean keyFlip) {
         head = null;
         flipKeyToNum = keyFlip;
-        n = 0;
     } // Overriding constructor
 
 
@@ -130,7 +128,6 @@ public class BinaryTree {
         else { // if there is a head
             insertTwo(head,newStudent);
         }
-        n++;
     }
 
 
@@ -281,7 +278,6 @@ public class BinaryTree {
                 }
             }
         }
-        n--;
     }
 
 
@@ -443,28 +439,19 @@ public class BinaryTree {
 
     //printTree()
     //prints Students in BST with their left and right Children
-    public void printTree() {
-        System.out.println();
-        printTree2(head);
-        System.out.println();
+    public void printTree(PrintWriter out) {
+        printTree2(head, out);
     }
 
 
     //helper function
     //Params: Student
-    private void printTree2(Student tree) {
+    private void printTree2(Student tree, PrintWriter out) {
         if (tree != null) {
-            System.out.println("node = " + tree.getKey());
-                if (tree.getLeft() != null)
-                System.out.println("left = " + tree.getLeft().getKey());
-                else
-                    System.out.print("left = null");
-                if (tree.getRight() != null)
-                System.out.println("right = " + tree.getRight().getKey());
-                else
-                    System.out.println("right = null");
-            printTree2(tree.getLeft());
-            printTree2(tree.getRight());
+            // Params: name, username, SSN, studentID
+            System.out.println("Student = "+"\""+tree.getName()+"\",\"" +tree.getUsername()+"\",\"'"+tree.getKey()+"\",\""+tree.getStudentID()+"\"");
+            printTree2(tree.getLeft(), out);
+            printTree2(tree.getRight(), out);
         } // if
     } // printTree2
 } // BinaryTree
