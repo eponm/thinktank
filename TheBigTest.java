@@ -13,6 +13,7 @@ class TheBigTest {
         BinaryTree ssnBST = new BinaryTree();
         BinaryTree studentNumBST = new BinaryTree();
         Queue testQueue = new Queue();
+        Heap ideaHeap= new Heap();
         
         //5 students, each with at least 2 ideas
         //student number 1: has 10 ideas
@@ -30,9 +31,6 @@ class TheBigTest {
         //student number 4
         //student number 5
 
-
-        Heap testHeap = new Heap();
-        // Add some code to test the heap here, please
         
 
 //TESTING THE LIST
@@ -59,6 +57,17 @@ class TheBigTest {
         System.out.println("search remove 6666 then print ");
         testList.searchRemove(6666);
         testList.printList();
+        
+        //testing the Heap
+        System.out.println();
+        System.out.println("testing the HEAP!!");
+        ideaHeap.insert(testIdea);
+        ideaHeap.insert(anotherIdea);
+        ideaHeap.insert(testIdea3);
+        ideaHeap.insert(testIdea4);
+        ideaHeap.insert(testIdea5);
+        System.out.println("inserted ideas-- printing heap");
+        ideaHeap.printHeapFormat();
 
   /*      TextParser reader = new TextParser("test.txt");
         reader.readAll(); */

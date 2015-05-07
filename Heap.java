@@ -40,7 +40,7 @@ public class Heap {
     }//printHeap
     
     
-    //print with formatting
+/*    //print with formatting
     public void printHeapFormat() {
         System.out.println();
         printHeap2(0);
@@ -68,7 +68,7 @@ public class Heap {
             printHeap2(index*2+1);
             printHeap2(index*2+2);
         }
-    
+    */
     //insert(Idea x); inserts Idea into heap reorders heap   
     public void insert(Idea x) {
         heap[n]=x;
