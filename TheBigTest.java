@@ -36,12 +36,29 @@ class TheBigTest {
         
 
 //TESTING THE LIST
+        System.out.println("TESTING THE LIST***************");
         List testList = new List();
         testList.insert(testIdea);
         testList.insert(anotherIdea);
-        System.out.println("Searching List after an insert. Should return 9999");
-        System.out.println(testList.searchReturn(0123).getSeqNum());
-        // Outputs "9999"
+        System.out.println("Searching List after an insert. Should return 8888");
+        System.out.println(testList.searchReturn(8888).getKey());
+        // Outputs "888"
+        System.out.println("get prior should equal null");
+        System.out.println(testList.searchReturn(8888).getPrior());
+        System.out.println("get description of 8888-- should be 'desc. goes here' or somethin or other");
+        System.out.println(testList.searchReturn(8888).getDesc());
+        System.out.println("now inserting more ideas into Idea List");
+        testList.insert(testIdea3);
+        testList.insert(testIdea4);
+        testList.insert(testIdea5);
+        testList.insert(testIdea6);
+        System.out.println("printing List");
+        System.out.println(" ");
+        testList.printList();
+        System.out.println(" ");
+        System.out.println("search remove 6666 then print ");
+        testList.searchRemove(6666);
+        testList.printList();
 
   /*      TextParser reader = new TextParser("test.txt");
         reader.readAll(); */
