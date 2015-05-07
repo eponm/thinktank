@@ -97,6 +97,18 @@ class Student {
         return socSecNum;   
     }//getKey()
 
+    //getName
+    //returns name
+    public String getName(){
+        return name;
+    }//getName
+
+    //getUsername
+    //returns username
+    public String getUsername(){
+        return username;
+    }//getUsername
+
     //getStudentID
     //returns Student ID
     public int getStudentID(){
