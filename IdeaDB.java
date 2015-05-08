@@ -107,7 +107,7 @@ class IdeaDB {
     public Idea getBestIdea(){
         Idea bestIdea=ideaHeap.findMin();
         if (bestIdea!=null){
-            System.out.println("The best idea is Idea #" + bestIdea.getSeqNum() + "\nrated at" + bestIdea.getRating() + "here is the description: \n" + bestIdea.getDesc());//debug
+            System.out.println("The best idea is Idea #" + bestIdea.getSeqNum() + "\n  Rating: " + bestIdea.getRating() + "\n  Description: \n" + bestIdea.getDesc());//debug
         }
         return bestIdea;
     }
