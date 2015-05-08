@@ -1,49 +1,49 @@
 //heap -- min number is next number helped
 public class Heap {
-    int n; //counter for 
+    int n; //counter for
     Idea[] heap;//array of Ideas
-    
+
     //constructor
     //params: n, Idea[]
     public Heap() {
         n=0;
         heap=new Idea[256];
     }//constructor
-    
-    //isEmptyHeap() checks if heap is empty    
+
+    //isEmptyHeap() checks if heap is empty
     public boolean isEmptyHeap() {
         return n==0;
     }//isEmptyHeap
-    
+
     //findMin();finds and returns the only accessible value in the heap
     public Idea findMin() {
         if (isEmptyHeap()==true) {
-          System.out.println("There are no ideas here");//debug
+          System.out.println("There are no ideas here...");//debug
           return null;
         }//if
         else {
           return heap[0];
         }//else
     }//findMin
-    
 
-    
-    //printHeap() prints all the values in the heap in order  
+
+
+    //printHeap() prints all the values in the heap in order
     // debug
     public void printHeap() {
         for (int i=0;i<(n);i++) {
             System.out.println(heap[i].getKey());
         }//for
     }//printHeap
-    
-    
+
+
 /*    //print with formatting
     public void printHeapFormat() {
         System.out.println();
         printHeap2(0);
         System.out.println();
     }//printTree()
-    
+
     //helper function for printHeapFormat()
     private void printHeap2(int index) {
         if (heap[index] !=null) {
@@ -66,7 +66,7 @@ public class Heap {
             printHeap2(index*2+2);
         }
     */
-    //insert(Idea x); inserts Idea into heap reorders heap   
+    //insert(Idea x); inserts Idea into heap reorders heap
     public void insert(Idea x) {
         heap[n]=x;
         if (n!=0) {
@@ -74,8 +74,8 @@ public class Heap {
         }//if
         n+=1;
     }//insert
-    
-    
+
+
     //helper function for inserted Ideas
      public void swap(int index) {
          int parentIndex=index/2;
@@ -97,13 +97,13 @@ public class Heap {
                      heap[2]=a;
                      heap[0]=b;
                  }//if
-             }//else if 
+             }//else if
              else  {
                  return;
              }//else
-             
+
          }//if (index==1)
-         
+
         //if there are 3 things in the array
         else if (index==2) {
             if (heap[0].getKey()> heap[2].getKey()) {
@@ -114,17 +114,17 @@ public class Heap {
                       return;
                  }//if
         }//else if (index==2)
-         
+
         //for all other swaps at all other lengths, finds parent with direct index
         while (heap[parentIndex].getKey() > heap[index+1].getKey()){
                 Idea b=heap[index+1];
                 heap[index+1]=heap[parentIndex];
                 heap[parentIndex]=b;
-                swap(parentIndex);  
+                swap(parentIndex);
          }//while
         }//swap
-    
-    
+
+
     //helper function for rearranging after Ideas are deleted
     public void swap2(int m) {
         int j=0;
@@ -132,10 +132,10 @@ public class Heap {
         if (heap[m*2+1]==null && heap[m*2+2]==null) {
             return;
         }//if
-        //if there is only a left child 
+        //if there is only a left child
         else if (heap[m*2+1]==null) {
             swap(m*2+2);
-        }//else if 
+        }//else if
         //if there is only a right child
         else if (heap[m*2+2]==null) {
             swap(m*2+1);
@@ -150,7 +150,7 @@ public class Heap {
                     heap[m*2]=null;
                     heap[m*2+1]=a;
                     heap[m*2]=b;
-                    swap(m*2+1); 
+                    swap(m*2+1);
                 }//if parent>right child
                 else {
                     Idea b=heap[m*2+2];
@@ -159,18 +159,18 @@ public class Heap {
                     heap[m*2]=null;
                     heap[m*2+2]=a;
                     heap[m*2]=b;
-                    swap(m*2+2); 
+                    swap(m*2+2);
                 }//else parent>leftchild
              }//while
         }//else
     }
-   
-    
+
+
     //deleteMin(); deletes the min, reassigns the min, reorders tree
     public Idea deleteMin() {
         if (n==0) {
             return null;
-        }//if   
+        }//if
         Idea newMin=heap[n-1];
         heap[0]=newMin;
         heap[n-1]=null;
@@ -179,5 +179,5 @@ public class Heap {
             swap2(0);
         }//if
         return heap[0];
-    }//deleteMin()   
+    }//deleteMin()
 }//public class Heap.java
