@@ -7,7 +7,7 @@ class Queue {
     private int n;
     private Idea[] queue=new Idea[10];
 
-    public Queue1() {
+    public Queue() {
         size=10;
         front=0;
         end=0;
