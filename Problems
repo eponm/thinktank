@@ -1,4 +1,4 @@
 
-4)Prints sequences number of idea after assigning a new idea a rating
+4)Prints sequences number of idea after assigning a new idea a rating √
 5)We need to save out every object, not just the database
-6)When someone enters a string instead of integers for searching an SSN when submitting an idea, it crashes ThinkTank (also when we search in Student Records?)
+6)When someone enters a string instead of integers for searching an SSN when submitting an idea, it crashes ThinkTank (also when we search in Student Records?) √
