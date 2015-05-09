@@ -98,7 +98,7 @@ public class BinaryTree implements Serializable {
         else {
             return null;
         } // else
-    } // else (if no flip)
+    } // searchSSN
 
 
 
