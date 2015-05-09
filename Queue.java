@@ -1,6 +1,8 @@
+
+import java.io.Serializable;
 import java.util.Scanner;
 
-class Queue implements Serializable {
+class Queue  { //implements Serializable
     private int size;
     private int front;
     private int end;
@@ -16,9 +18,13 @@ class Queue implements Serializable {
     }
 
      public void enqueue(Idea x) {
-        System.out.println(queue);
-        System.out.println(end);
-        queue[end]=x;
+        if (n==10) {
+            front=(front+1)%10;
+            queue[end]=x;
+        }
+        else{
+            queue[end]=x;
+         }
         end=(end+1) % 10;
         n++;
     }
@@ -59,4 +65,13 @@ class Queue implements Serializable {
         front=(front+1)% 10;
         return temp;
     }
-}
+
+    public Idea[] getAll() {
+        return queue;
+    }
+
+    public int getSize() {
+        return n;
+    }
+
+} // class
