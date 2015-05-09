@@ -82,7 +82,7 @@ class Student { // implements Serializable
     // to display 10 recent ideas
     public void displayIdeas(){
         if (ideaQueue.isEmpty()==true) {
-            System.out.println("This student has no ideas");
+            System.out.println("This student has no ideas in our database. To add an idea, go to main menu, then go to Add Idea and enter the students SSN number");
         }
         for(int i=0;i<10;i++){
             Idea[] ideas = ideaQueue.getAll();
