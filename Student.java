@@ -23,7 +23,7 @@ class Student { // implements Serializable
     private String username;
     private int socSecNum; // Must be 0001–9999
     private int studentID; // Must be 0001–9999
-    private Queue ideaQueue= new Queue(); // This may need to be its own object.
+    private Queue ideaQueue = new Queue(); // This may need to be its own object.
     private float avgIdeaRating;
 
     private Student ssnLeftChild;
@@ -98,14 +98,12 @@ class Student { // implements Serializable
     public void addToQueue(Idea newIdea){
         System.out.println(ideaQueue);
         ideaQueue.enqueue(newIdea);
-        avgIdeaRating=0;
-        int i=0;
+        int total = 0;
         Idea[] ideas = ideaQueue.getAll();
-        while(ideas[i]!=null){
-            avgIdeaRating=avgIdeaRating+ideas[i].getRating();
-            i++;
+        for (int i=0; i<ideaQueue.getSize()-1; i++) {
+            total = total + ideas[i].getRating();
         } // while
-        avgIdeaRating=avgIdeaRating/i;
+        avgIdeaRating=avgIdeaRating / ideaQueue.getSize();
     }//adds Idea to Queue and re-averages avgIdeaRating
 
     // Following are for SSN trees
@@ -220,6 +218,8 @@ class Student { // implements Serializable
         return this;
     } // setParentN
 
-
+    public int getQueueSize() {
+        return ideaQueue.getSize();
+    }
 
 } // Student
