@@ -10,6 +10,8 @@
 
 */
 
+import java.io.Serializable;
+
 class Idea implements Serializable {
 
     // To see whether or not an idea was in the heap upon last exit

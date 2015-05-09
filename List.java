@@ -4,6 +4,8 @@ A linked list.
 
 */
 
+import java.io.Serializable;
+
 public class List implements Serializable {
 
     private Idea head;

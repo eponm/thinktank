@@ -1,4 +1,5 @@
 import java.io.PrintWriter; // For writing, obviously, I mean like...DUH!
+import java.io.Serializable;
 
 class IdeaDB implements Serializable {
 

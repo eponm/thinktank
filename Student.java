@@ -15,6 +15,8 @@
 
 */
 
+import java.io.Serializable;
+
 class Student { // implements Serializable
 
     private String name;
