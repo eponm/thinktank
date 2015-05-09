@@ -102,11 +102,16 @@ class Student implements Serializable { // implements Serializable
         //System.out.println(ideaQueue);
         ideaQueue.enqueue(newIdea);
         int total = 0;
+        //System.out.println("1");
         Idea[] ideas = ideaQueue.getAll();
+        //System.out.println("2");
         for (int i=0;i<ideaQueue.getSize(); i++) {
             // System.out.println("Idea["+i+"]: "+ideas[i].getRating());  debug
+          //  System.out.println("3");
             total = total + ideas[i].getRating();
+        //    System.out.println("4");
         } // while\
+        //System.out.println("5");
         // System.out.println("total: "+total);  debug
         // System.out.println("size: "+ideaQueue.getSize());   debug
         avgIdeaRating = total / ideaQueue.getSize();
