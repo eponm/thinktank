@@ -133,7 +133,9 @@ class ThinkTank {
 
                 } // if 186
                 else{
-                    System.out.println("! That student was not found in our database, returning to main menu.");
+                    System.out.println();
+                    System.out.println("!!! That student was not found in our database !!! \n If you want to add the student, or try to search the student by their ID number, press C in the main menu.");
+                    System.out.println("Returning to main menu");
                     System.out.println();
                     quit = false;
                 } // else
