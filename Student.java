@@ -84,8 +84,8 @@ class Student implements Serializable { // implements Serializable
         if (ideaQueue.isEmpty()==true) {
             System.out.println("This student has no ideas in our database. To add an idea, go to main menu, then go to Add Idea and enter the students SSN number");
         }
+        Idea[] ideas = ideaQueue.getAll();
         for(int i=0;i<10;i++){
-            Idea[] ideas = ideaQueue.getAll();
             Idea x = ideas[i];
             if(x==null){
                 System.out.println((i+1)+".");
@@ -106,7 +106,9 @@ class Student implements Serializable { // implements Serializable
         for (int i=0; i<ideaQueue.getSize()-1; i++) {
             total = total + ideas[i].getRating();
         } // while
-        avgIdeaRating=avgIdeaRating / ideaQueue.getSize();
+        System.out.println("total: "+total);
+        System.out.println("size: "+ideaQueue.getSize());
+        avgIdeaRating = total / ideaQueue.getSize();
     }//adds Idea to Queue and re-averages avgIdeaRating
 
     // Following are for SSN trees
