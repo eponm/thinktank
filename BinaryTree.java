@@ -84,7 +84,7 @@ public class BinaryTree implements Serializable {
     //searchSNN
     //returns Student
     //Params: target Student SSN
-    public Student searchSNN(int key) {
+    public Student searchSSN(int key) {
         if (head == null) return null; //if there is no head
         else if (key < head.getSSN()) { //if key is smaller than head key
             return searchSNNTwo(head.getLeftSSN(), key);
