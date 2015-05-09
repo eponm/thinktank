@@ -7,10 +7,17 @@ import java.io.Serializable;
         isEmptyTree()
         searchSNN()
             searchSNNTwo()<----private helper function
+        searchID()
+            seachIDTwo()<---------^^
         ssnInsert()
             ssnInsertTwo()<----^^
+        idInsert()
+            idInsertTwo()<----^^
         traverse()
             traverseTwo()<---^^
+        idDelete()
+            idDeleteTwo()<---^^
+            popMaxID()<----^^
         ssnDelete()
             ssnDeleteTwo()<---^^
             popMaxSSN()<----^^

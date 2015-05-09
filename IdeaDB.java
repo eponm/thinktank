@@ -6,7 +6,7 @@ class IdeaDB implements Serializable {
     private List coreList;
     private Heap ideaHeap;
     private BinaryTree studentSSNTree;
-//    private BinaryTree studentIDTree;
+    private BinaryTree studentIDTree;
     private int seqNum;
 
     // Constructor
@@ -15,7 +15,7 @@ class IdeaDB implements Serializable {
         coreList = new List();
         ideaHeap = new Heap();
         studentSSNTree = new BinaryTree();
-//        studentIDTree = new BinaryTree(true);
+        studentIDTree = new BinaryTree();
     } // constructor
 
 
@@ -50,36 +50,36 @@ class IdeaDB implements Serializable {
         newIdea.flip();
 
         // Add the idea to the student's queue
-        Student student = studentSSNTree.search(key);
+        Student student = studentSSNTree.searchSSN(key);
         student.addToQueue(newIdea);
-        int id = student.getStudentID();
-  //      student = studentIDTree.search(id);
-   //     student.addToQueue(newIdea);
+        int id = student.getID();
+        student = studentIDTree.searchID(id);
+        student.addToQueue(newIdea);
     } // insert
 
 
-    public void reInsertIdea(Idea newIdea) {
-        // Get the submittor's key
-        int key = newIdea.getKey();
+  //   public void reInsertIdea(Idea newIdea) {
+  //       // Get the submittor's key
+  //       int key = newIdea.getKey();
 
-        // Put the idea coreList, ideaHeap and studentSSNTree:
-        // Set seqNum in newIdea
-        newIdea.setSeqNum(seqNum);
-        seqNum++;
-        // Add idea to list
-        coreList.insert(newIdea);
-        // Add idea to heap if necessary
-        if (newIdea.isInHeap()) {
-            ideaHeap.insert(newIdea);
-        }
+  //       // Put the idea coreList, ideaHeap and studentSSNTree:
+  //       // Set seqNum in newIdea
+  //       newIdea.setSeqNum(seqNum);
+  //       seqNum++;
+  //       // Add idea to list
+  //       coreList.insert(newIdea);
+  //       // Add idea to heap if necessary
+  //       if (newIdea.isInHeap()) {
+  //           ideaHeap.insert(newIdea);
+  //       }
 
-        // Add the idea to the student's queue
-        Student student = studentSSNTree.search(key);
-        student.addToQueue(newIdea);
-        int id = student.getStudentID();
-  //      student = studentIDTree.search(id);
-   //     student.addToQueue(newIdea);
-    } // insert
+  //       // Add the idea to the student's queue
+  //       Student student = studentSSNTree.search(key);
+  //       student.addToQueue(newIdea);
+  //       int id = student.getID();
+  // //      student = studentIDTree.search(id);
+  //  //     student.addToQueue(newIdea);
+  //   } // insert
 
 
 
@@ -87,16 +87,16 @@ class IdeaDB implements Serializable {
     //adds a student to IdeaDB
     public void addStudent(Student newStudent) {
         // Doesn't double stored data because of how Java handles objects
-        studentSSNTree.insert(newStudent);
-        //studentIDTree.insert(newStudent);
+        studentSSNTree.ssnInsert(newStudent);
+        studentIDTree.idInsert(newStudent);
     }//addStudent
 
 
     //deleteStudent
     //deletes student from both trees
     public void deleteStudent(Student targetStudent){
-        studentSSNTree.delete(targetStudent);
-//        studentIDTree.delete(targetStudent);
+        studentSSNTree.idDelete(targetStudent);
+        studentIDTree.ssnDelete(targetStudent);
     }
     // "Sell" - deletes top-rated idea and returns it
     public Idea sell() {
@@ -113,13 +113,13 @@ class IdeaDB implements Serializable {
         return bestIdea;
     }
 
-    public Student getStudent(int key){
-        //if(usingSSN==true){
-            return studentSSNTree.search(key);
-        //}
-        // else{
-        //     return studentIDTree.search(key);
-        // }
+    public Student getStudent(int key, boolean usingSSN){
+        if(usingSSN==true){
+            return studentSSNTree.searchSSN(key);
+        }
+        else{
+            return studentIDTree.searchID(key);
+        }
     }
 
 } // class

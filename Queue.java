@@ -21,12 +21,14 @@ class Queue  { //implements Serializable
         if (n==10) {
             front=(front+1)%10;
             queue[end]=x;
+            n=10;
         }
         else{
             queue[end]=x;
+            n++;
          }
         end=(end+1) % 10;
-        n++;
+        
     }
 
     public void printQueue() {
