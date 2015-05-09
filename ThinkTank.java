@@ -57,18 +57,34 @@ class ThinkTank {
         System.out.println();
         System.out.println("> Welcome, we are hiveMind and we are here to help you!\n");
 
+
+        //
+        // TOP OF MENU SECTION
+        //
+
         while(quit==false){
+
+            //
+            // MAIN MENU
+            //
+
             System.out.println("=== Main Menu ===");
             System.out.println("> Please pick a function from one of the following:");
+
             System.out.println("  A) Top Idea\n  B) Add Idea\n  C) Student Records\n  Q) Save and quit");
             System.out.print(": ");
             answer = hiveMind.nextLine();
             //System.out.println("+"+answer+"+");  <---debug
+
+
+            //
+            // A: SELL IDEA
+            //
+
             if (answer.equals("A")||answer.equals("a")){
                 System.out.println();
-                bestIdea=ideas.getBestIdea();
-                if(bestIdea==null){
-                    quit=false;
+                if(ideas.getBestIdea() == null){
+                    System.out.println("! There are no ideas here.");
                 } // if bestidea is null
                 else{
                     System.out.println("> Would you like to sell this idea?\n  (Y)es\n  (N)o");
@@ -90,6 +106,11 @@ class ThinkTank {
                 } // else
             } // if 146
 
+
+            //
+            // B: IDEA SUBMISSION
+            //
+
             //submit idea
             else if (answer.equals("B")||answer.equals("b")){
                 System.out.println();
@@ -105,19 +126,19 @@ class ThinkTank {
                     ssn = Integer.parseInt(ans);
                 } // while
                 Student student = ideas.getStudent(ssn, true);
+
                 if(student!=null){
                     System.out.println("> Please input idea description on the following line: ");
                     String ideaText=hiveMind.nextLine();
                     System.out.println("> Please enter an integer rating for the idea. (1–100)") ;
                     System.out.print(": ");
                     String ratingString=hiveMind.nextLine();
-                    boolean done=false;
+                    boolean ideaSubmissionDon=false;
                     int rating;
-                    while(done!=false){
+                    while(ideaSubmissionDon!=false){
                         try{
                             rating = Integer.parseInt(ratingString);
-
-                            done=true;
+                            ideaSubmissionDon=true;
                         } // try
                         catch(NumberFormatException ex){
                             System.out.println("! Please enter an INTEGER between 0-100");
@@ -138,16 +159,25 @@ class ThinkTank {
                     System.out.println("! SSN not found. Try adding that student first.");
                     System.out.println("Returning to main menu...");
                     System.out.println();
-                    quit = false;
                 } // else
             }//else if
+
+
+            //
+            // C: STUDENT RECORDS MENU
+            //
+
             else if (answer.equals("C")||answer.equals("c")){
-                boolean done = false;
-                while(done==false){
+                boolean recordsMenuDone = false;
+                while(recordsMenuDone==false){
                     System.out.println();
                     System.out.println("=== Student Records ===\n  A) Add Student\n  B) Student Lookup\n  C) Main Menu");
                     System.out.print(": ");
+
                     answer = hiveMind.nextLine();
+
+                    // STUDENT ENTRY
+
                     if (answer.equals("A")|| answer.equals("a")){
                         System.out.println();
                         System.out.println("> Student's name");
@@ -176,15 +206,19 @@ class ThinkTank {
                             idNum=Integer.parseInt(idStr);
                         } // while
                         //username= "Please enter student email address"
-                        System.out.println("> Username?");
+                        System.out.println("> Email Address too, please");
                         System.out.print(": ");
                         String userNum= hiveMind.nextLine();
                         Student newStudent = new Student(name, userNum, ssn, idNum);
                         ideas.addStudent(newStudent);
                         System.out.println("> The student has been added to the database.");
                         System.out.println();
-                        done=true;
+                        recordsMenuDone=true;
                     } // if 229
+
+
+                    // STUDENT SEARCH
+
                     else if(answer.equals("B")||answer.equals("b")){
                         System.out.println();
                         System.out.println("=== Student Search ===");
@@ -243,13 +277,14 @@ class ThinkTank {
                             System.out.println();
                             finished=true;
                         } // if
+
                         else{
                             foundStudent.displayStudent();
-                            boolean completed=false;
+                            boolean studentOptionsMenuDone=false;
                             System.out.println("=== Student Options ===");
                             System.out.println("  A) Edit Information\n  B) See Ideas\n  C) Delete Record\n  D) Return to Main Menu");
                             System.out.println();
-                            while(completed==false){
+                            while(studentOptionsMenuDone==false) {
                                 System.out.print(": ");
                                 answer = hiveMind.nextLine();
                                 if(answer.equals("A")||answer.equals("a")){
@@ -263,29 +298,38 @@ class ThinkTank {
                                     String newUsername = hiveMind.nextLine();
                                     foundStudent.editNames(newName,newUsername);
                                     System.out.println("> The student has been updated!");
-                                    completed=true;
+                                    studentOptionsMenuDone=true;
                                 } // if 333
                                 else if(answer.equals("B")||answer.equals("b")){
                                     foundStudent.displayIdeas();
+                                    studentOptionsMenuDone=true;
 
                                 } // else if
                                 else if(answer.equals("C")||answer.equals("c")){
                                     System.out.println();
                                     ideas.deleteStudent(foundStudent);
-                                    completed=true;
+                                    studentOptionsMenuDone=true;
                                 } // else if
                                 else if(answer.equals("D")||answer.equals("d")){
                                     System.out.println();
-                                    completed=true;
+                                    studentOptionsMenuDone=true;
                                 } // else if
                             } // while 330
                         } // else 242
                     } // else if 185
+
+                    // RETURN TO MENU
+
                     else if(answer.equals("C")||answer.equals("c")){
-                        done=true;
+                        recordsMenuDone=true;
                     }
-                }//while loop 143
+                }//while loop
             }
+
+            //
+            // Q: QUIT, OBVIOUSLY
+            //
+
             else if (answer.equals("Q")){
                 quit=true;
             } // else if
@@ -296,23 +340,26 @@ class ThinkTank {
             } // else
         } // big big while loop
 
+
+    // GO TIME
+
     // Strap in, it's time to save
     try { // Try doing it all again in reverse order
         OutputStream file = new FileOutputStream("savedstate.ser");
-        System.out.println("File output stream OK");
+        System.out.println("File output stream OK");//debug
         OutputStream buffer = new BufferedOutputStream(file);
-        System.out.println("Buffered output stream OK");
+        System.out.println("Buffered output stream OK");//debug
         ObjectOutput output = new ObjectOutputStream(buffer);
-        System.out.println("Object output stream OK");
+        System.out.println("Object output stream OK");//debug
         output.writeObject(ideas);
-        System.out.println("Files written OK");
+        System.out.println("Files written OK");//debug
     }
     catch(IOException x) {
         System.out.println("Bad magic happened! Can't output the file. " + x);
     }
 
 
-    System.out.println("Closing. Have a nice day!");
+    System.out.println("\nClosing. Have a nice day!\n");
 
     } // MAIN
 

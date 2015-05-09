@@ -21,7 +21,6 @@ public class Heap implements Serializable { //implements Serializable
     //findMin();finds and returns the only accessible value in the heap
     public Idea findMin() {
         if (isEmptyHeap()==true) {
-          System.out.println("There are no ideas here...");//debug
           return null;
         }//if
         else {
