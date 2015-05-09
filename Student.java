@@ -24,13 +24,13 @@ class Student {
     private Queue ideaQueue; // This may need to be its own object.
     private float avgIdeaRating;
 
-    private Student sleftChild;
-    private Student srightChild;
-    private Student sparentNode;
+    private Student ssnLeftChild;
+    private Student ssnRightChild;
+    private Student ssnParent;
 
-    private Student nleftChild;
-    private Student nrightChild;
-    private Student nparentNode;
+    private Student idLeftChild;
+    private Student idRightChild;
+    private Student idParent;
 
 
     // Constructor
@@ -44,14 +44,14 @@ class Student {
         studentID = studentIDIn;
         Queue ideaQueue = new Queue(10);
 
-        sleftChild = null;
-        srightChild = null;
-        sparentNode = null;
+        ssnLeftChild = null;
+        ssnRightChild = null;
+        ssnParent = null;
 
 
-        nleftChild = null;
-        nrightChild = null;
-        nparentNode = null;
+        idLeftChild = null;
+        idRightChild = null;
+        idParent = null;
 
     } // Constructor
 
@@ -99,18 +99,18 @@ class Student {
 
     //getLeft()
     //gets leftChild
-    public Student getLeftS(){
-        return sleftChild;
+    public Student getLeftSSN(){
+        return ssnLeftChild;
     }//gets leftChild
 
     //getRight()
     //gets rightChild
-    public Student getRightS(){
-        return srightChild;
+    public Student getRightSSN(){
+        return ssnRightChild;
     }//gets rightChild
 
-    public Student getParentS(){
-        return sparentNode;
+    public Student getParentSSN(){
+        return ssnParent;
     }//gets rightChild
 
 
@@ -118,24 +118,24 @@ class Student {
 
     //getLeft()
     //gets leftChild
-    public Student getLeftN(){
-        return nleftChild;
+    public Student getLeftID(){
+        return idLeftChild;
     }//gets leftChild
 
     //getRight()
     //gets rightChild
-    public Student getRightN(){
-        return nrightChild;
+    public Student getRightID(){
+        return idRightChild;
     }//gets rightChild
 
-    public Student getParentN(){
-        return nparentNode;
+    public Student getParentID(){
+        return idParent;
     }//gets rightChild
 
 
     //getKey()
     //returns the last 4 digits of the SSN
-    public int getKey(){
+    public int getSSN(){
         return socSecNum;
     }//getKey()
 
@@ -153,7 +153,7 @@ class Student {
 
     //getStudentID
     //returns Student ID
-    public int getStudentID(){
+    public int getID(){
         return studentID;
     }//getSudentID
 
@@ -168,42 +168,42 @@ class Student {
 
     // Set the left child of a Student in a BST to nextStudent.
     // NOTE: this returns the Student with the modified pointers.
-    public Student setLeftS(Student nextStudent) {
-        sleftChild = nextStudent;
+    public Student setLeftSSN(Student nextStudent) {
+        ssnLeftChild = nextStudent;
         return this;
     } // setLeftChild
 
 
     // Set the right child of a Student in a BST to nextStudent.
     // NOTE: this returns the Student with the modified pointers.
-    public Student setRightS(Student nextStudent) {
-        srightChild = nextStudent;
+    public Student setRightSSN(Student nextStudent) {
+        ssnRightChild = nextStudent;
         return this;
     } // setRightChild
 
-    public Student setParentS(Student nextParent) {
-        sparentNode = nextParent;
+    public Student setParentSSN(Student nextParent) {
+        ssnParent = nextParent;
         return this;
     } // setParentS
 
 
     // Set the left child of a Student in a BST to nextStudent.
     // NOTE: this returns the Student with the modified pointers.
-    public Student setLeftN(Student nextStudent) {
-        nleftChild = nextStudent;
+    public Student setLeftID(Student nextStudent) {
+        idLeftChild = nextStudent;
         return this;
     } // setLeftChild
 
 
     // Set the right child of a Student in a BST to nextStudent.
     // NOTE: this returns the Student with the modified pointers.
-    public Student setRightN(Student nextStudent) {
-        nrightChild = nextStudent;
+    public Student setRightID(Student nextStudent) {
+        idRightChild = nextStudent;
         return this;
     } // setRightChild
 
-    public Student setParentN(Student nextParent) {
-        nparentNode = nextParent;
+    public Student setParentID(Student nextParent) {
+        idParent = nextParent;
         return this;
     } // setParentN
 
