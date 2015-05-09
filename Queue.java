@@ -2,7 +2,7 @@
 import java.io.Serializable;
 import java.util.Scanner;
 
-class Queue  { //implements Serializable
+class Queue implements Serializable { //implements Serializable
     private int size;
     private int front;
     private int end;
@@ -28,7 +28,7 @@ class Queue  { //implements Serializable
             n++;
          }
         end=(end+1) % 10;
-        
+
     }
 
     public void printQueue() {
