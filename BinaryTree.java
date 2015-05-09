@@ -67,17 +67,17 @@ public class BinaryTree implements Serializable {
     // searchID method helper, used when searchIDing for Student that isn't head
     // Params: Student, target Student SSN
     public Student searchIDTwo(Student branch, int key){
-        if (key<branch.getID()){//if key is smaller than branch key
+        if(branch==null){
+            return null;
+        }
+        else if (key<branch.getID()){//if key is smaller than branch key
             return searchIDTwo(branch.getLeftID(),key);
         }
         else if (key>branch.getID()){//if key is smaller than branch key
             return searchIDTwo(branch.getRightID(),key);
         }
-        else if (branch.getID() == key) { //if key equals branch key
+        else{ //if key equals branch key
             return branch;
-        }
-        else {
-            return null;
         }
     } // searchSNN
 
@@ -98,24 +98,24 @@ public class BinaryTree implements Serializable {
         else {
             return null;
         } // else
-    } // else (if no flip)
+    } // searchSSN
 
 
 
     // searchSNN method helper, used when searchSNNing for Student that isn't head
     // Params: Student, target Student SSN
     public Student searchSNNTwo(Student branch, int key){
-        if (key<branch.getSSN()){//if key is smaller than branch key
+        if(branch==null){
+            return null;
+        }
+        else if (key<branch.getSSN()){//if key is smaller than branch key
             return searchSNNTwo(branch.getLeftSSN(),key);
         }
         else if (key>branch.getSSN()){//if key is smaller than branch key
             return searchSNNTwo(branch.getRightSSN(),key);
         }
-        else if (branch.getSSN() == key) { //if key equals branch key
+        else{ //if key equals branch key
             return branch;
-        }
-        else {
-            return null;
         }
     } // searchSNN
 
