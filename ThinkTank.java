@@ -23,107 +23,26 @@ class ThinkTank {
         final Charset ENCODING = StandardCharsets.UTF_8;
         final Path saveFile;
 
-
-        // Look for the save file and read it in through the text parser
-        saveFile = Paths.get("savedstate.txt"); // CHANGE SAVE FILE NAME HERE !
-        TextParser saveReader = new TextParser(String.valueOf(saveFile));
-
-        // Init an IdeaDB
-        // Implicitly initializes the heap and list for ideas
-        IdeaDB ideas = new IdeaDB();
-
         // We're about to try loading a save file.
         // Buckle up, kids.
-        try {
-            Scanner sc = new Scanner(saveFile, ENCODING.name());
-            sc.useDelimiter("=|\n"); // Set the delimiter
-            System.out.println();
 
-            String key = sc.next().trim(); // think
-            String val = sc.next().trim(); // tank
-
-            // If the header is correct, go ahead and load the save file
-            if (key.trim().equals("think") && val.trim().equals("tank")) {
-
-                System.out.println("Loading saved state...");
-
-                key = sc.next(); val = sc.next(); // Move the holders to date=01 Jan
-
-                System.out.println("Save state validation no.: " + val + ".");
-
-                System.out.println("Loading students into database...");
-                key = sc.next().trim(); val = sc.next().trim(); // Move the holders forward to segment=student
-
-                // Start looping through the save file
-                boolean looping = true; // Loops as long as looping is true
-                while (looping) {
-
-                    // Loop through the things
-                    if (key.trim().equals("segment") && val.trim().equals("student")) {
-
-                        // As long as the key is "student"...
-                        while (key == "student") {
-                            // Add each student to the tree
-                            // Get rid of quotes and separate values
-                            String paramSt = val.substring(1, val.length() - 1);
-                            // Split the four params apart
-                            String[] paramAr = paramSt.split("\",\"");
-
-                            // Make the student
-                            // Params: name, username, SSN, studentID
-                            Student newStudent = new Student(paramAr[0], paramAr[1], Integer.parseInt(paramAr[2]), Integer.parseInt(paramAr[3]));
-
-                        } // while key is student
-                    } // if key is segment
-
-                    // Loop through the things
-                    if (key.equals("segment") && val.equals("idea")) {
-                        System.out.println("Loading ideas into database...");
-                        key = sc.next().trim(); val = sc.next().trim(); // Move the holders forward
-
-                        // As long as the key is "idea"...
-                        while (key == "idea") {
-                            // Add each idea to the list
-                            // Get rid of quotes and separate values
-                            String paramSt = val.substring(1, val.length() - 1);
-                            // Split the three params apart
-                            String[] paramAr = paramSt.split("\",\"");
-
-                            // Make the idea
-                            // Params: submittor SSN, description, rating, seqnum
-                            Idea newIdea = new Idea(Integer.parseInt(paramAr[0]), paramAr[1], Integer.parseInt(paramAr[2]));
-                            // Add the idea to the database
-                            ideas.reInsertIdea(newIdea);
-
-                        } // while key is idea
-                    } // if key is segment
-
-                    // else if key is end
-                    else if (key.trim().equals("END") && val.trim().equals("END")) {
-                        looping = false;
-                    } // else if
-
-                    if (sc.hasNext()) {
-                        key = sc.next().trim(); val = sc.next().trim(); // Move the holders forward to segment=student
-                    } // if sc hasnext
-
-                } // while
-
-                System.out.println("> Loaded!");
-
-            } // if key and val are think tank
-
-            else { // Case for broken databases and nonexistent saves
-                System.out.println("! Saved state does not exist or is damaged.") ;
-                System.out.println("> Starting a new database...");
-            } // else
-
-            // If we've made it this far, it must be time to close the scanner, so...
-            sc.close();
+        try ( // Open up some parameters to try:
+            // Make an input stream from the file
+            InputStream file = new FileInputStream("savedstate.ser");
+            // Load it into a buffer
+            InputStream buffer = new BufferedInputStream(file);
+            // Use the buffer for object input
+            ObjectInput input = new ObjectInputStream (buffer);
+        ) {
+            // Now read it into a new object
+            IdeaDB ideas = (IdeaDB)input.readObject();
         } // try
-
-        catch (IOException x) {
-            System.out.println("! Got an IOException: " + x.getMessage());
+        // Catch the bad thing
+        catch(ClassNotFoundException x) {
+            System.out.println("Can't find the class. Maybe was bad magic??")
+        } // catch
+        catch(IOException x) {
+            System.out.println("¡Muy mal magico mas!")
         } // catch
 
         Scanner hiveMind = new Scanner(System.in);
@@ -377,35 +296,18 @@ class ThinkTank {
         } // big big while loop
     } // Something?
 
-
-    System.out.println("> Getting ready to exit...");
-    System.out.println("Writing database to disk...");
-
-
-    // Write save file out
-    try {
-        PrintWriter out = new PrintWriter(new FileWriter("savedstate.txt"));
-        Calendar calendar = new GregorianCalendar();
-        out.write("think = tank\n");
-        out.write("verify = " + calendar.get(Calendar.DAY_OF_MONTH) + " " + calendar.get(Calendar.MONTH)+"\n");
-
-        // Write out students
-        System.out.println("Writing student data...");
-        out.write("segment = student\n");
-        ideas.printStudents(out);
-        System.out.println("Student data done.");
-
-        // Write out ideas
-        System.out.println("Writing idea database...");
-        out.write("segment = idea\n");
-        ideas.printIdeas(out);
-        System.out.println("Idea database done.");
-        out.write("END = END");
-        out.close();
+    // Strap in, it's time to save
+    try ( // Try doing it all again in reverse order
+        OutputStream file = new FileOutputStream("savedstate.ser");
+        OutputStream buffer = new BufferedOutputStream(file);
+        ObjectOutput output = new ObjectOutputStream(buffer);
+    ) {
+        output.writeObject(ideas);
     }
-    catch (IOException x) {
-        System.out.println("! Bad magic happened!!!");
+    catch(IOException x) {
+        System.out.println("Bad magic happened! Can't output the file.");
     }
+
 
     System.out.println("Closing. Have a nice day!");
 

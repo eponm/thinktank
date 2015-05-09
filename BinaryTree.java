@@ -174,7 +174,7 @@ public class BinaryTree implements Serializable {
                     Student temp=head;
                     Student temp2=popMaxSSN(head.getRightSSN(),0); //note how it only gets the maximum leftmost
                     //leaf of the RIGHT side if and only if getLeftSSN() of head=null.
-                    this.delete(temp2);
+                    this.ssnDelete(temp2);
                     head=temp2;
                     head.setRightSSN(temp.getLeftSSN());
                     temp.setRightSSN(null);
@@ -182,7 +182,7 @@ public class BinaryTree implements Serializable {
                 else{// if head has two children
                     Student temp=head;
                     Student temp2=popMaxSSN(head.getLeftSSN(),1);
-                    this.delete(temp2);
+                    this.ssnDelete(temp2);
                     head=temp2;
                     head.setLeftSSN(temp.getLeftSSN());
                     head.setRightSSN(temp.getRightSSN());
@@ -199,7 +199,7 @@ public class BinaryTree implements Serializable {
     //Params: target Student, SSN of Student to be deleted, Parent of target, interger
     //to represent what side of the parent the target is on (0[left] or 1[right])
     public void ssnDeleteTwo(Student target, int key, int side){
-        Student parent = raeget.getParentSSN();
+        Student parent = target.getParentSSN();
         Student successor;
 
         if(key<target.getSSN()){//if Student key is smaller than target key
@@ -270,7 +270,7 @@ public class BinaryTree implements Serializable {
     Student the pointer is on.
     */
     //Params: target Student to be deleted, Parent of target, side of the parent (0 or 1)
-    private Student popMaxSSNSSN(Student branch, int side){
+    private Student popMaxSSN(Student branch, int side){
         if(side==0&&branch.getLeftSSN()!=null){//if going left and there is no left child
             return popMaxSSN(branch.getLeftSSN(),0);
         }
@@ -279,20 +279,20 @@ public class BinaryTree implements Serializable {
         }
         else{//if going and there is a child
             if(side==0){//if going left
-                parent = branch.getParentSSN();
-                parent.setLeftSSNSSN(null);
+                Student parent = branch.getParentSSN();
+                parent.setLeftSSN(null);
                 return branch;
             }
             else{//if going right
-                parent = branch.getParentSSN();
-                parent.setRightSSNSSN(null);
+                Student parent = branch.getParentSSN();
+                parent.setRightSSN(null);
                 return branch;
             }
         }
     }//delete
 
     //Clone of popMaxSSNSSN but used for cases when searchSNNing with ID
-    private Student popMaxSSNID(Student branch, int side){
+    private Student popMaxID(Student branch, int side){
         if(side==0&&branch.getLeftID()!=null){//if going left and there is no left child
             return popMaxSSN(branch.getLeftID(),0);
         }
@@ -301,13 +301,13 @@ public class BinaryTree implements Serializable {
         }
         else{//if going and there is a child
             if(side==0){//if going left
-                parent = branch.getParentID();
-                parent.setLeftSSNID(null);
+                Student parent = branch.getParentID();
+                parent.setLeftID(null);
                 return branch;
             }
             else{//if going right
-                parent = branch.getParentID();
-                parent.setRightSSNID(null);
+                Student parent = branch.getParentID();
+                parent.setRightWID(null);
                 return branch;
             }
         }
