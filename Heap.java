@@ -1,3 +1,6 @@
+
+import java.io.Serializable;
+
 //heap -- min number is next number helped
 public class Heap implements Serializable {
     int n; //counter for

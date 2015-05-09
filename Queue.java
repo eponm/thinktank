@@ -1,3 +1,5 @@
+
+import java.io.Serializable;
 import java.util.Scanner;
 
 class Queue implements Serializable {
