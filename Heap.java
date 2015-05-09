@@ -2,15 +2,15 @@
 import java.io.Serializable;
 
 //heap -- min number is next number helped
-public class Heap implements Serializable {
+public class Heap  { //implements Serializable
     int n; //counter for
-    Idea[] heap;//array of Ideas
+    Idea[] heap=new Idea[256];//array of Ideas
 
     //constructor
     //params: n, Idea[]
     public Heap() {
         n=0;
-        heap=new Idea[256];
+        //heap=new Idea[256];
     }//constructor
 
     //isEmptyHeap() checks if heap is empty
@@ -29,8 +29,6 @@ public class Heap implements Serializable {
         }//else
     }//findMin
 
-
-
     //printHeap() prints all the values in the heap in order
     // debug
     public void printHeap() {
@@ -40,41 +38,17 @@ public class Heap implements Serializable {
     }//printHeap
 
 
-/*    //print with formatting
-    public void printHeapFormat() {
-        System.out.println();
-        printHeap2(0);
-        System.out.println();
-    }//printTree()
 
-    //helper function for printHeapFormat()
-    private void printHeap2(int index) {
-        if (heap[index] !=null) {
-            System.out.println("Idea = " + heap[index].getKey());
-        }
-            //left child
-            if (heap[index*2+1] !=null){
-                System.out.println("left = " + heap[index*2+1].getKey());
-            }
-            else {
-                System.out.print("left = null");
-            }
-            if (heap[index*2+2]!=null) {
-                System.out.println("right = " + heap[index*2+2].getKey());
-            }
-            else{
-                System.out.println("right = null");
-            }
-            printHeap2(index*2+1);
-            printHeap2(index*2+2);
-        }
-    */
+    
     //insert(Idea x); inserts Idea into heap reorders heap
     public void insert(Idea x) {
+        System.out.println(n);
         heap[n]=x;
         if (n!=0) {
             swap(n-1);
         }//if
+        
+        
         n+=1;
     }//insert
 
@@ -82,6 +56,8 @@ public class Heap implements Serializable {
     //helper function for inserted Ideas
      public void swap(int index) {
          int parentIndex=index/2;
+         System.out.println("child=" + heap[index+1].getKey());
+         System.out.println("parent=" + heap[index/2].getKey());
          //for when there are 2 or 3 items in the array
          if (index==1) {
              //if there are only two items
@@ -99,31 +75,33 @@ public class Heap implements Serializable {
                      Idea b=heap[2];
                      heap[2]=a;
                      heap[0]=b;
-                 }//if
-             }//else if
+                 }//if 
+             }//else if  
              else  {
                  return;
-             }//else
+             }//else 
 
-         }//if (index==1)
+         }//if (index==1) 
 
         //if there are 3 things in the array
         else if (index==2) {
-            if (heap[0].getKey()> heap[2].getKey()) {
+            if (heap[0].getKey()> heap[3].getKey()) {
                       Idea a=heap[0];
-                      Idea b=heap[2];
-                      heap[2]=a;
+                      Idea b=heap[3];
+                      heap[3]=a;
                       heap[0]=b;
                       return;
                  }//if
-        }//else if (index==2)
-
-        //for all other swaps at all other lengths, finds parent with direct index
-        while (heap[parentIndex].getKey() > heap[index+1].getKey()){
-                Idea b=heap[index+1];
-                heap[index+1]=heap[parentIndex];
-                heap[parentIndex]=b;
-                swap(parentIndex);
+        }//else if (index==2) 
+        
+         else {
+            //for all other swaps at all other lengths, finds parent with direct index
+            while (heap[parentIndex].getKey() > heap[index+1].getKey()){
+                    Idea b=heap[index+1];
+                    heap[index+1]=heap[parentIndex];
+                    heap[parentIndex]=b;
+                    swap(parentIndex-1);
+            }//else
          }//while
         }//swap
 
@@ -183,4 +161,44 @@ public class Heap implements Serializable {
         }//if
         return heap[0];
     }//deleteMin()
+    
 }//public class Heap.java
+
+
+
+
+
+
+
+
+
+
+/*    //print with formatting
+    public void printHeapFormat() {
+        System.out.println();
+        printHeap2(0);
+        System.out.println();
+    }//printTree()
+
+    //helper function for printHeapFormat()
+    private void printHeap2(int index) {
+        if (heap[index] !=null) {
+            System.out.println("Idea = " + heap[index].getKey());
+        }
+            //left child
+            if (heap[index*2+1] !=null){
+                System.out.println("left = " + heap[index*2+1].getKey());
+            }
+            else {
+                System.out.print("left = null");
+            }
+            if (heap[index*2+2]!=null) {
+                System.out.println("right = " + heap[index*2+2].getKey());
+            }
+            else{
+                System.out.println("right = null");
+            }
+            printHeap2(index*2+1);
+            printHeap2(index*2+2);
+        }
+*/
