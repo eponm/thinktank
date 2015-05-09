@@ -330,7 +330,7 @@ class ThinkTank {
             // Q: QUIT, OBVIOUSLY
             //
 
-            else if (answer.equals("Q")){
+            else if (answer.equals("Q") || answer.equals("q")){
                 quit=true;
             } // else if
             else{
