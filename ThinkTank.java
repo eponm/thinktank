@@ -59,8 +59,8 @@ class ThinkTank {
 
         while(quit==false){
             System.out.println("=== Main Menu ===");
-            System.out.println("> Please pick a function from one of the following. (Enter Q to save and quit)");
-            System.out.println("  A) Top Idea\n  B) Add Idea\n  C) Student Records");
+            System.out.println("> Please pick a function from one of the following:");
+            System.out.println("  A) Top Idea\n  B) Add Idea\n  C) Student Records\n  Q) Save and quit");
             System.out.print(": ");
             answer = hiveMind.nextLine();
             //System.out.println("+"+answer+"+");  <---debug
@@ -152,31 +152,33 @@ class ThinkTank {
                     if (answer.equals("A")|| answer.equals("a")){
                         System.out.println();
                         System.out.println("> Student's name");
+                        System.out.print(": ");
                         String name=hiveMind.nextLine();
-                        System.out.println();
                         //SSN = "Please enter 4 digit student SSN"
                         System.out.println("> Student's SSN (4 digits)");
+                        System.out.print(": ");
                         String ssnStr=hiveMind.nextLine();
                         int ssn=Integer.parseInt(ssnStr);
                         while (ssn>9999) {
-                            System.out.println();
                             System.out.println("> That was larger than 4 digits. Please enter only a 4 digit SSN number");
+                            System.out.print(": ");
                             ssnStr=hiveMind.nextLine();
                             ssn=Integer.parseInt(ssnStr);
                         } // while
                         //studentNumber= "Please enter 4 digit student number"
-                        System.out.println();
                         System.out.println("> Student ID (4 digits)");
+                        System.out.print(": ");
                         String idStr=hiveMind.nextLine();
                         int idNum=Integer.parseInt(idStr);
                         while (idNum>9999) {
-                            System.out.println();
                             System.out.println("! Please enter only a 4 digit ID number.");
+                            System.out.print(": ");
                             idStr=hiveMind.nextLine();
                             idNum=Integer.parseInt(idStr);
                         } // while
                         //username= "Please enter student email address"
                         System.out.println("> Username?");
+                        System.out.print(": ");
                         String userNum= hiveMind.nextLine();
                         Student newStudent = new Student(name, userNum, ssn, idNum);
                         ideas.addStudent(newStudent);
@@ -213,7 +215,7 @@ class ThinkTank {
                             } // if
 
                             else if(answer.equals("B")||answer.equals("b")){
-                                System.out.println();
+
                                 System.out.println("> Please enter the student ID");
                                 System.out.print(": ");
                                 String idStr = hiveMind.nextLine();
