@@ -99,7 +99,7 @@ class Student { // implements Serializable
     //addToQueue()
     //adds Idea to Queue and re-averages avgIdeaRating
     public void addToQueue(Idea newIdea){
-        System.out.println(ideaQueue);
+        //System.out.println(ideaQueue);
         ideaQueue.enqueue(newIdea);
         int total = 0;
         Idea[] ideas = ideaQueue.getAll();

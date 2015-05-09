@@ -32,8 +32,8 @@ class Queue  { //implements Serializable
     }
 
     public void printQueue() {
-        System.out.println(front);
-        System.out.println(end);
+        //System.out.println(front);
+        //System.out.println(end);
         if (front <= end)
            for(int i = front; i < end; i++)
                System.out.println(queue[i].getKey());
