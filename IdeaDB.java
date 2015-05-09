@@ -115,6 +115,7 @@ class IdeaDB implements Serializable {
 
     public Student getStudent(int key, boolean usingSSN){
         if(usingSSN==true){
+            
             return studentSSNTree.searchSSN(key);
         }
         else{
