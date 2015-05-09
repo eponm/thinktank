@@ -67,17 +67,17 @@ public class BinaryTree implements Serializable {
     // searchID method helper, used when searchIDing for Student that isn't head
     // Params: Student, target Student SSN
     public Student searchIDTwo(Student branch, int key){
-        if (key<branch.getID()){//if key is smaller than branch key
+        if(branch==null){
+            return null;
+        }
+        else if (key<branch.getID()){//if key is smaller than branch key
             return searchIDTwo(branch.getLeftID(),key);
         }
         else if (key>branch.getID()){//if key is smaller than branch key
             return searchIDTwo(branch.getRightID(),key);
         }
-        else if (branch.getID() == key) { //if key equals branch key
+        else{ //if key equals branch key
             return branch;
-        }
-        else {
-            return null;
         }
     } // searchSNN
 
@@ -98,24 +98,24 @@ public class BinaryTree implements Serializable {
         else {
             return null;
         } // else
-    } // else (if no flip)
+    } // searchSSN
 
 
 
     // searchSNN method helper, used when searchSNNing for Student that isn't head
     // Params: Student, target Student SSN
     public Student searchSNNTwo(Student branch, int key){
-        if (key<branch.getSSN()){//if key is smaller than branch key
+        if(branch==null){
+            return null;
+        }
+        else if (key<branch.getSSN()){//if key is smaller than branch key
             return searchSNNTwo(branch.getLeftSSN(),key);
         }
         else if (key>branch.getSSN()){//if key is smaller than branch key
             return searchSNNTwo(branch.getRightSSN(),key);
         }
-        else if (branch.getSSN() == key) { //if key equals branch key
+        else{ //if key equals branch key
             return branch;
-        }
-        else {
-            return null;
         }
     } // searchSNN
 
@@ -139,25 +139,25 @@ public class BinaryTree implements Serializable {
         if(newStudent.getSSN()<branch.getSSN()){//if Student is smaller branch
             if(branch.getLeftSSN()==null){//if the branch left child is null
                 branch.setLeftSSN(newStudent);
-                System.out.println("Left was null SSN");
-                System.out.println();
+                //System.out.println("Left was null SSN");
+                //System.out.println();
                 this.traverse();
             }
             else{//recursive call for next left branch down
                 ssnInsertTwo(branch.getLeftSSN(),newStudent);
-                System.out.println("Getting Left SSN");
+                //System.out.println("Getting Left SSN");
             }
         }
         else{//if newStudent is larger than branch
             if(branch.getRightSSN()==null){//if the branch right child is null
                 branch.setRightSSN(newStudent);
                 System.out.println("Right was null SSN");
-                System.out.println();
+                //System.out.println();
                 this.traverse();
             }
             else{//recursive call or next right branch down
                 ssnInsertTwo(branch.getRightSSN(),newStudent);
-                System.out.println("Getting right SSN");
+                //System.out.println("Getting right SSN");
             }
         }
     }
@@ -181,25 +181,25 @@ public class BinaryTree implements Serializable {
         if(newStudent.getID()<branch.getID()){//if Student is smaller branch
             if(branch.getLeftID()==null){//if the branch left child is null
                 branch.setLeftID(newStudent);
-                System.out.println("Left was null ID");//debug
-                System.out.println();
+                //System.out.println("Left was null ID");//debug
+                //System.out.println();
                 this.traverse();//debug
             }
             else{//recursive call for next left branch down
                 idInsertTwo(branch.getLeftID(),newStudent);
-                System.out.println("Getting Left ID");//debug
+                //System.out.println("Getting Left ID");//debug
             }
         }
         else{//if newStudent is larger than branch
             if(branch.getRightID()==null){//if the branch right child is null
                 branch.setRightID(newStudent);
-                System.out.println("Right was null ID");//debug
-                System.out.println();
+                //System.out.println("Right was null ID");//debug
+                //System.out.println();
                 this.traverse();//debug
             }
             else{//recursive call or next right branch down
                 idInsertTwo(branch.getRightID(),newStudent);
-                System.out.println("Getting right ID");//debug
+                //System.out.println("Getting right ID");//debug
             }
         }
     }
