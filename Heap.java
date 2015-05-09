@@ -56,8 +56,6 @@ public class Heap  { //implements Serializable
     //helper function for inserted Ideas
      public void swap(int index) {
          int parentIndex=index/2;
-         System.out.println("child=" + heap[index+1].getKey());
-         System.out.println("parent=" + heap[index/2].getKey());
          //for when there are 2 or 3 items in the array
          if (index==1) {
              //if there are only two items
