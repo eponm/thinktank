@@ -19,6 +19,8 @@ class ThinkTank {
 
     public static void main(String[] args) {
 
+        System.out.println();
+
         final Charset ENCODING = StandardCharsets.UTF_8;
         final Path saveFile;
 
@@ -43,7 +45,7 @@ class ThinkTank {
             System.out.println("Can't find the class. Maybe was bad magic??");
         } // catch
         catch(IOException x) {
-            System.out.println("¡Muy mal magico mas!");
+            System.out.println("Saved state may not exist or is blank. Starting from scratch...");
         } // catch
 
         Scanner hiveMind = new Scanner(System.in);
@@ -52,6 +54,7 @@ class ThinkTank {
         String answer;
         Idea bestIdea;
 
+        System.out.println();
         System.out.println("> Welcome, we are hiveMind and we are here to help you!\n");
 
         while(quit==false){
