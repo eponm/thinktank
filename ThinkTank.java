@@ -130,7 +130,7 @@ class ThinkTank {
                 if(student!=null){
                     System.out.println("> Please input idea description on the following line: ");
                     String ideaText=hiveMind.nextLine();
-                    System.out.println("> Please enter an integer rating for the idea. (1–100)") ;
+                    System.out.println("> Please enter an integer rating for the idea between 0 and 100.") ;
                     System.out.print(": ");
                     String ratingString=hiveMind.nextLine();
                     boolean ideaSubmissionDon=false;
@@ -143,7 +143,7 @@ class ThinkTank {
                         catch(NumberFormatException ex){
                             System.out.println("! Please enter an INTEGER between 0-100");
                         } // catch
-                        System.out.print(": ");
+                        System.out.println(": ");
                         ratingString=hiveMind.nextLine();
                     } // while
                     rating = Integer.parseInt(ratingString);
