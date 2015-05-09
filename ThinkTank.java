@@ -67,7 +67,7 @@ class ThinkTank {
             //
             // MAIN MENU
             //
-
+            System.out.println();
             System.out.println("=== Main Menu ===");
             System.out.println("> Please pick a function from one of the following:");
 

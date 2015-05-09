@@ -43,7 +43,7 @@ class IdeaDB implements Serializable {
         newIdea.setSeqNum(seqNum);
         seqNum++;
         // Add idea to list
-        coreList.insert(newIdea);
+        //coreList.insert(newIdea);
         // Add idea to heap if necessary
         ideaHeap.insert(newIdea);
 

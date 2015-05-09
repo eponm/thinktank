@@ -1,7 +1,4 @@
-1) Average Idea Rating not calculating even though Ideas are in the queue
-2) When inserting ideas they are being inserted to the next 2 slots
-	-i.e. inserting for the first time places the idea in slot 1 and 2 and inserting for the second time inserts the 2nd indea into slot 3 and 4
-3) We need to re display the Student Options menu after displaying Ideas of a student
+
 4)Prints sequences number of idea after assigning a new idea a rating
 5)We need to save out every object, not just the database
-6)When someone enters a string instead of integers for searching an SSN when submitting an idea, it crashes ThinkTank
+6)When someone enters a string instead of integers for searching an SSN when submitting an idea, it crashes ThinkTank (also when we search in Student Records?)
