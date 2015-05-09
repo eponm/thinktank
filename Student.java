@@ -15,13 +15,13 @@
 
 */
 
-class Student implements Serializable {
+class Student { // implements Serializable
 
     private String name;
     private String username;
     private int socSecNum; // Must be 0001–9999
     private int studentID; // Must be 0001–9999
-    private Queue ideaQueue; // This may need to be its own object.
+    private Queue ideaQueue= new Queue(); // This may need to be its own object.
     private float avgIdeaRating;
 
     private Student ssnLeftChild;
@@ -42,7 +42,7 @@ class Student implements Serializable {
         username = usernameIn; // Checks for 4-digit-ness should be done beforehand
         socSecNum = socSecNumIn;
         studentID = studentIDIn;
-        Queue ideaQueue = new Queue(10);
+        //Queue ideaQueue = new Queue();
 
         ssnLeftChild = null;
         ssnRightChild = null;
@@ -63,7 +63,17 @@ class Student implements Serializable {
         System.out.println("    Username: "+username);
         System.out.println("    Average Idea Rating: "+avgIdeaRating);
         System.out.println("    Student ID: "+studentID);
-        System.out.println("    Social Security Number: "+socSecNum);
+        String socString;
+        if (socSecNum<100) {
+            socString= "00" + Integer.toString(socSecNum);
+        }
+        else if (socSecNum<1000) {
+            socString="0" + Integer.toString(socSecNum);
+        }
+        else {
+            socString=Integer.toString(socSecNum);
+        }
+        System.out.println("    Social Security Number: "+socString);
     } // displayStudent
 
     //displayIdeas()
@@ -84,6 +94,7 @@ class Student implements Serializable {
     //addToQueue()
     //adds Idea to Queue and re-averages avgIdeaRating
     public void addToQueue(Idea newIdea){
+        System.out.println(ideaQueue);
         ideaQueue.enqueue(newIdea);
         avgIdeaRating=0;
         int i=0;
