@@ -206,7 +206,7 @@ class ThinkTank {
                             idNum=Integer.parseInt(idStr);
                         } // while
                         //username= "Please enter student email address"
-                        System.out.println("> Username?");
+                        System.out.println("> Email Address too, please");
                         System.out.print(": ");
                         String userNum= hiveMind.nextLine();
                         Student newStudent = new Student(name, userNum, ssn, idNum);
