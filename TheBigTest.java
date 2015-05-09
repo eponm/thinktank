@@ -12,7 +12,7 @@ class TheBigTest {
 
         BinaryTree ssnBST = new BinaryTree();
         BinaryTree studentNumBST = new BinaryTree();
-        Queue testQueue = new Queue();
+        Queue1 testQueue = new Queue1();
         Heap ideaHeap= new Heap();
         
         //5 students, each with at least 2 ideas
@@ -31,6 +31,17 @@ class TheBigTest {
         //student number 4
         //student number 5
 
+        //Testing the queue
+        System.out.println("test queue start with print");
+        System.out.println(testQueue);
+        System.out.println("enqueue then print");
+        testQueue.enqueue(testIdea);
+        testQueue.printQueue();
+        System.out.println("enqueue then print");
+        testQueue.enqueue(anotherIdea);
+        testQueue.printQueue();
+        System.out.println("add to queue");
+        testStudent.addToQueue(testIdea3);
         
 
 //TESTING THE LIST
@@ -58,7 +69,7 @@ class TheBigTest {
         testList.searchRemove(6666);
         testList.printList();
         
-        //testing the Heap
+   /*     //testing the Heap
         System.out.println();
         System.out.println("testing the HEAP!!");
         ideaHeap.insert(testIdea);
