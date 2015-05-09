@@ -34,6 +34,7 @@ class TheBigTest {
         Idea testIdea10= new Idea(2323, "WHAT THE 10th IDEA SO COOL!",82);
         Idea testIdea11 = new Idea(6662,"mbo mbo mobo mobobo mbo bmo",89);
         
+        /*
 
         //Testing the queue
         System.out.println();
@@ -91,7 +92,7 @@ class TheBigTest {
         System.out.println(" ");
         System.out.println("search remove 6666 then print ");
         testList.searchRemove(6666);
-        testList.printList();
+        testList.printList(); */
         
         //testing the Heap
         System.out.println();
@@ -101,8 +102,13 @@ class TheBigTest {
         ideaHeap.insert(testIdea3);
         ideaHeap.insert(testIdea4);
         ideaHeap.insert(testIdea5);
+        ideaHeap.insert(testIdea6);
+        ideaHeap.insert(testIdea7);
+        ideaHeap.insert(testIdea8);
+        ideaHeap.insert(testIdea9);
+        ideaHeap.insert(testIdea10);
         System.out.println("inserted ideas-- printing heap");
-        ideaHeap.printHeapFormat();
+        ideaHeap.printHeap();
 
   /*      TextParser reader = new TextParser("test.txt");
         reader.readAll(); */
