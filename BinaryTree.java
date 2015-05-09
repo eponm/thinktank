@@ -7,10 +7,17 @@ import java.io.Serializable;
         isEmptyTree()
         searchSNN()
             searchSNNTwo()<----private helper function
+        searchID()
+            seachIDTwo()<---------^^
         ssnInsert()
             ssnInsertTwo()<----^^
+        idInsert()
+            idInsertTwo()<----^^
         traverse()
             traverseTwo()<---^^
+        idDelete()
+            idDeleteTwo()<---^^
+            popMaxID()<----^^
         ssnDelete()
             ssnDeleteTwo()<---^^
             popMaxSSN()<----^^
@@ -520,7 +527,7 @@ public class BinaryTree implements Serializable {
     private void printTree2(Student tree, PrintWriter out) {
         if (tree != null) {
             // Params: name, username, SSN, studentID
-            System.out.println("Student = "+"\""+tree.getName()+"\",\"" +tree.getUsername()+"\",\"'"+tree.getSSN()+"\",\""+tree.getStudentID()+"\"\n");
+            System.out.println("Student = "+"\""+tree.getName()+"\",\"" +tree.getUsername()+"\",\"'"+tree.getSSN()+"\",\""+tree.getID()+"\"\n");
             printTree2(tree.getLeftSSN(), out);
             printTree2(tree.getRightSSN(), out);
         } // if
