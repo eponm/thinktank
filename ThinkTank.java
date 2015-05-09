@@ -102,7 +102,7 @@ class ThinkTank {
                     ans=hiveMind.nextLine();
                     ssn = Integer.parseInt(ans);
                 } // while
-                Student student = ideas.getStudent(ssn);
+                Student student = ideas.getStudent(ssn, true);
                 if(student!=null){
                     System.out.println("> Please input idea description on the following line: ");
                     String ideaText=hiveMind.nextLine();
@@ -206,7 +206,7 @@ class ThinkTank {
                                 ssnStr = hiveMind.nextLine();
                                 ssn = Integer.parseInt(ssnStr);
                             } // while
-                            foundStudent=ideas.getStudent(ssn);
+                            foundStudent=ideas.getStudent(ssn, true);
                             finished=true;
                         } // if
 
@@ -226,7 +226,7 @@ class ThinkTank {
                                 id = Integer.parseInt(idStr);
                             } // while
 
-                            foundStudent=ideas.getStudent(id);
+                            foundStudent=ideas.getStudent(id, false);
                             finished=true;
                         } // else if
                         else{
