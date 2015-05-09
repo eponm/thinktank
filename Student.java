@@ -81,6 +81,9 @@ class Student { // implements Serializable
     //displayIdeas()
     // to display 10 recent ideas
     public void displayIdeas(){
+        if (isEmpty==true) {
+            System.out.println("This student has no ideas");
+        }
         for(int i=0;i<10;i++){
             Idea[] ideas = ideaQueue.getAll();
             Idea x = ideas[i];
