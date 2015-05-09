@@ -105,13 +105,12 @@ class IdeaDB implements Serializable {
         temp.flip();
         return temp;
     } // sell
+
+
     public Idea getBestIdea(){
-        Idea bestIdea=ideaHeap.findMin();
-        if (bestIdea!=null){
-            System.out.println("The best idea is Idea #" + bestIdea.getSeqNum() + "\n  Rating: " + bestIdea.getRating() + "\n  Description: \n" + bestIdea.getDesc());//debug
-        }
-        return bestIdea;
+        return ideaHeap.findMin();
     }
+
 
     public Student getStudent(int key, boolean usingSSN){
         if(usingSSN==true){
