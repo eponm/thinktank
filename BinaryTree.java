@@ -17,7 +17,7 @@ import java.io.PrintWriter; // For writing, obviously, I mean like...DUH!
             printTree2()<---^^
 */
 
-public class BinaryTree {
+public class BinaryTree implements Serializable {
     private Student head;
     private boolean flipKeyToNum;
 

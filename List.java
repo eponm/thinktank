@@ -4,7 +4,7 @@ A linked list.
 
 */
 
-public class List {
+public class List implements Serializable {
 
     private Idea head;
     private int length;

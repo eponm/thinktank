@@ -1,5 +1,5 @@
 //heap -- min number is next number helped
-public class Heap {
+public class Heap implements Serializable {
     int n; //counter for
     Idea[] heap;//array of Ideas
 

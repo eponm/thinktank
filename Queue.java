@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-class Queue {
+class Queue implements Serializable {
     private int size;
     private int front;
     private int end;

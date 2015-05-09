@@ -1,6 +1,6 @@
 import java.io.PrintWriter; // For writing, obviously, I mean like...DUH!
 
-class IdeaDB {
+class IdeaDB implements Serializable {
 
     private List coreList;
     private Heap ideaHeap;

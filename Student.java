@@ -15,7 +15,7 @@
 
 */
 
-class Student {
+class Student implements Serializable {
 
     private String name;
     private String username;
