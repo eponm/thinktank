@@ -17,7 +17,7 @@
 
 import java.io.Serializable;
 
-class Student { // implements Serializable
+class Student implements Serializable { // implements Serializable
 
     private String name;
     private String username;
