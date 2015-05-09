@@ -187,12 +187,12 @@ class ThinkTank {
                         System.out.println("> Student's SSN (4 digits)");
                         System.out.print(": ");
                         String ssnStr=hiveMind.nextLine();
-                       // try {
-                    //        int ssn=Integer.parseInt(ssnStr);
-                    //    }
-                    //    catch(NumberFormatException e) {
-                    //    System.out.println("Please input a valid integer");
-                    //        }
+                        try {
+                            int ssn=Integer.parseInt(ssnStr);
+                        }
+                        catch(NumberFormatException e) {
+                        System.out.println("Please input a valid integer");
+                            }
                         
                         while(//ssnStr != num?
                             //that was not a number
