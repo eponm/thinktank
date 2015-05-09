@@ -1,10 +1,9 @@
-
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.Scanner; // For scanning, obviously.
 
 import java.io.PrintWriter; // For writing, obviously, I mean like...DUH!
 import java.io.FileWriter; //for WRiting, obcviously
+
+import java.io.*;
 
 // FOLLOWING IMPORT REQUIRED IN ALL UPSTREAM MODULES
 import java.io.IOException; // For helpfully throwing exceptions if necessary
@@ -23,6 +22,8 @@ class ThinkTank {
         final Charset ENCODING = StandardCharsets.UTF_8;
         final Path saveFile;
 
+        IdeaDB ideas = new IdeaDB();
+
         // We're about to try loading a save file.
         // Buckle up, kids.
 
@@ -35,14 +36,14 @@ class ThinkTank {
             ObjectInput input = new ObjectInputStream (buffer);
         ) {
             // Now read it into a new object
-            IdeaDB ideas = (IdeaDB)input.readObject();
+            ideas = (IdeaDB)input.readObject();
         } // try
         // Catch the bad thing
         catch(ClassNotFoundException x) {
-            System.out.println("Can't find the class. Maybe was bad magic??")
+            System.out.println("Can't find the class. Maybe was bad magic??");
         } // catch
         catch(IOException x) {
-            System.out.println("¡Muy mal magico mas!")
+            System.out.println("¡Muy mal magico mas!");
         } // catch
 
         Scanner hiveMind = new Scanner(System.in);
@@ -50,7 +51,6 @@ class ThinkTank {
         boolean quit = false;
         String answer;
         Idea bestIdea;
-
 
         System.out.println("> Welcome, we are hiveMind and we are here to help you!\n");
 
