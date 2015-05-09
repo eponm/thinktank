@@ -52,9 +52,6 @@ class IdeaDB implements Serializable {
         // Add the idea to the student's queue
         Student student = studentSSNTree.searchSSN(key);
         student.addToQueue(newIdea);
-        int id = student.getID();
-        student = studentIDTree.searchID(id);
-        student.addToQueue(newIdea);
     } // insert
 
 
