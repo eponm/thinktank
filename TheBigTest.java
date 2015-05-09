@@ -13,7 +13,7 @@ class TheBigTest {
        // BinaryTree ssnBST = new BinaryTree();
     //    BinaryTree studentNumBST = new BinaryTree();
         Queue testQueue = new Queue();
-      //  Heap ideaHeap= new Heap();
+        Heap ideaHeap= new Heap();
         
         //5 students, each with at least 2 ideas
         //student number 1: has 10 ideas
@@ -28,8 +28,12 @@ class TheBigTest {
         Student testStudent3 = new Student ("testNmae3", "tnsd3" , 0124,6780);
         Idea testIdea5= new Idea(5555,"I'M A GENIUS GOD DAMMIT!!",10);
         Idea testIdea6= new Idea(4444, "wwwwwwwwooooooofff",11);
-        //student number 4
-        //student number 5
+        Idea testIdea7 = new Idea(3333,"whosdfij",12);
+        Idea testIdea8 = new Idea(4444, "ighdi", 55);
+        Idea testIdea9 = new Idea(2424, "887777 people on balloons", 91);
+        Idea testIdea10= new Idea(2323, "WHAT THE 10th IDEA SO COOL!",82);
+        Idea testIdea11 = new Idea(6662,"mbo mbo mobo mobobo mbo bmo",89);
+        
 
         //Testing the queue
         System.out.println();
@@ -51,6 +55,11 @@ class TheBigTest {
         testStudent.addToQueue(testIdea4);
         testStudent.addToQueue(testIdea5);
         testStudent.addToQueue(testIdea6);
+        testStudent.addToQueue(testIdea7);
+        testStudent.addToQueue(testIdea8);
+        testStudent.addToQueue(testIdea9);
+        testStudent.addToQueue(testIdea10);
+        testStudent.addToQueue(testIdea11);
         System.out.println("display");
         System.out.println();
         System.out.println("display student");
@@ -58,8 +67,7 @@ class TheBigTest {
         System.out.println("display idea");
         testStudent.displayIdeas();
         System.out.println();
-        /*
-
+        
 //TESTING THE LIST
         System.out.println("TESTING THE LIST***************");
         List testList = new List();
@@ -85,7 +93,7 @@ class TheBigTest {
         testList.searchRemove(6666);
         testList.printList();
         
-   /*     //testing the Heap
+        //testing the Heap
         System.out.println();
         System.out.println("testing the HEAP!!");
         ideaHeap.insert(testIdea);
