@@ -65,8 +65,13 @@ class Queue  { //implements Serializable
         front=(front+1)% 10;
         return temp;
     }
-    
+
     public Idea[] getAll() {
         return queue;
     }
-}
+
+    public int getSize() {
+        return n;
+    }
+
+} // class
