@@ -2,7 +2,7 @@
 import java.io.Serializable;
 
 //heap -- min number is next number helped
-public class Heap  { //implements Serializable
+public class Heap implements Serializable { //implements Serializable
     int n; //counter for
     Idea[] heap=new Idea[256];//array of Ideas
 
@@ -39,7 +39,7 @@ public class Heap  { //implements Serializable
 
 
 
-    
+
     //insert(Idea x); inserts Idea into heap reorders heap
     public void insert(Idea x) {
         System.out.println(n);
@@ -47,8 +47,8 @@ public class Heap  { //implements Serializable
         if (n!=0) {
             swap(n-1);
         }//if
-        
-        
+
+
         n+=1;
     }//insert
 
@@ -73,13 +73,13 @@ public class Heap  { //implements Serializable
                      Idea b=heap[2];
                      heap[2]=a;
                      heap[0]=b;
-                 }//if 
-             }//else if  
+                 }//if
+             }//else if
              else  {
                  return;
-             }//else 
+             }//else
 
-         }//if (index==1) 
+         }//if (index==1)
 
         //if there are 3 things in the array
         else if (index==2) {
@@ -90,8 +90,8 @@ public class Heap  { //implements Serializable
                       heap[0]=b;
                       return;
                  }//if
-        }//else if (index==2) 
-        
+        }//else if (index==2)
+
          else {
             //for all other swaps at all other lengths, finds parent with direct index
             while (heap[parentIndex].getKey() > heap[index+1].getKey()){
@@ -159,7 +159,7 @@ public class Heap  { //implements Serializable
         }//if
         return heap[0];
     }//deleteMin()
-    
+
 }//public class Heap.java
 
 
