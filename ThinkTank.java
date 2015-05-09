@@ -55,7 +55,6 @@ class ThinkTank {
         System.out.println("> Welcome, we are hiveMind and we are here to help you!\n");
 
         while(quit==false){
-            System.out.println();
             System.out.println("=== Main Menu ===");
             System.out.println("> Please pick a function from one of the following. (Enter Q to save and quit)");
             System.out.println("  A) Top Idea\n  B) Add Idea\n  C) Student Records");
@@ -293,15 +292,18 @@ class ThinkTank {
         } // big big while loop
 
     // Strap in, it's time to save
-    try ( // Try doing it all again in reverse order
+    try { // Try doing it all again in reverse order
         OutputStream file = new FileOutputStream("savedstate.ser");
+        System.out.println("File output stream OK");
         OutputStream buffer = new BufferedOutputStream(file);
+        System.out.println("Buffered output stream OK");
         ObjectOutput output = new ObjectOutputStream(buffer);
-    ) {
+        System.out.println("Object output stream OK");
         output.writeObject(ideas);
+        System.out.println("Files written OK");
     }
     catch(IOException x) {
-        System.out.println("Bad magic happened! Can't output the file.");
+        System.out.println("Bad magic happened! Can't output the file. " + x);
     }
 
 
