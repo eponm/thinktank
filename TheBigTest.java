@@ -10,10 +10,10 @@ class TheBigTest {
 
     public static void main(String[] args) throws IOException {
 
-        BinaryTree ssnBST = new BinaryTree();
-        BinaryTree studentNumBST = new BinaryTree();
-        Queue1 testQueue = new Queue1();
-        Heap ideaHeap= new Heap();
+       // BinaryTree ssnBST = new BinaryTree();
+    //    BinaryTree studentNumBST = new BinaryTree();
+        Queue testQueue = new Queue();
+      //  Heap ideaHeap= new Heap();
         
         //5 students, each with at least 2 ideas
         //student number 1: has 10 ideas
@@ -32,6 +32,7 @@ class TheBigTest {
         //student number 5
 
         //Testing the queue
+        System.out.println();
         System.out.println("test queue start with print");
         System.out.println(testQueue);
         System.out.println("enqueue then print");
@@ -42,7 +43,22 @@ class TheBigTest {
         testQueue.printQueue();
         System.out.println("add to queue");
         testStudent.addToQueue(testIdea3);
-        
+        System.out.println("display ideas");
+        testStudent.displayIdeas();
+        System.out.println("adding more to the student's queue");
+        testStudent.addToQueue(anotherIdea);
+        testStudent.addToQueue(testIdea3);
+        testStudent.addToQueue(testIdea4);
+        testStudent.addToQueue(testIdea5);
+        testStudent.addToQueue(testIdea6);
+        System.out.println("display");
+        System.out.println();
+        System.out.println("display student");
+        testStudent.displayStudent();
+        System.out.println("display idea");
+        testStudent.displayIdeas();
+        System.out.println();
+        /*
 
 //TESTING THE LIST
         System.out.println("TESTING THE LIST***************");
