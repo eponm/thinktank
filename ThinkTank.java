@@ -187,6 +187,15 @@ class ThinkTank {
                         System.out.println("> Student's SSN (4 digits)");
                         System.out.print(": ");
                         String ssnStr=hiveMind.nextLine();
+                        try {
+                            int ssn=Integer.parseInt(ssnStr);
+                        }
+                        catch(NumberFormatException e) {
+                        System.out.println("Please input a valid integer");
+                            }
+                        
+                        while(//ssnStr != num?
+                            //that was not a number
                         int ssn=Integer.parseInt(ssnStr);
                         while (ssn>9999) {
                             System.out.println("> That was larger than 4 digits. Please enter only a 4 digit SSN number");
@@ -330,7 +339,7 @@ class ThinkTank {
             // Q: QUIT, OBVIOUSLY
             //
 
-            else if (answer.equals("Q")){
+            else if (answer.equals("Q") || answer.equals("q")){
                 quit=true;
             } // else if
             else{
