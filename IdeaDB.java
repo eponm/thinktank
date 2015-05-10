@@ -1,6 +1,20 @@
 import java.io.PrintWriter; // For writing, obviously, I mean like...DUH!
 import java.io.Serializable;
 
+/* the IdeaDB includes methods to
+    INSERT
+    - put idea into Core list of ideas and into Heap of ideas
+    - put student into the two trees ordered by ID and by SSN
+    ACCESS
+    - search, remove, access and save the student ideas/students in student Trees
+    - access Best Idea and sell it
+    OUTPUT
+    - print all the Students
+    - print all the ideas
+ */
+
+
+
 class IdeaDB implements Serializable {
 
     private List coreList;
@@ -18,10 +32,11 @@ class IdeaDB implements Serializable {
         studentIDTree = new BinaryTree();
     } // constructor
 
-
+    //save the studentSSNTree
     public Student[] saveTreeArray() {
         Student[] arr = studentSSNTree.treeToArray();
         return arr;
+
     } // saveTreeArray
 
 
@@ -44,16 +59,20 @@ class IdeaDB implements Serializable {
     }
 
 
+
+    //printStudents out to screen
     public boolean printStudents(PrintWriter out) {
         studentSSNTree.printTree(out);
         return true;
-    }
+    }//printStudents
 
 
+    //printIdeas out to screen
     public boolean printIdeas(PrintWriter out) {
         for (int i=0; i<coreList.length(); i++) {
             // Params: submittor SSN, description, rating, seqnum
             out.write("idea = \""+coreList.access(i).getKey()+"\",\"" +coreList.access(i).getDesc()+"\",\"'"+coreList.access(i).getSeqNum()+"\",\""+coreList.access(i).getRating()+"\""+coreList.access(i).isInHeap()+"\n");
+
         } // for
         return true;
     } // printIdeas
@@ -129,20 +148,21 @@ class IdeaDB implements Serializable {
         return temp;
     } // sell
 
-
+    //getBestIdea() gets the best idea
     public Idea getBestIdea(){
         return ideaHeap.findMin();
-    }
+    }//getBestIdea()
 
 
+    //getStudent() returns the student
     public Student getStudent(int key, boolean usingSSN){
         if(usingSSN==true){
 
             return studentSSNTree.searchSSN(key);
-        }
+        }//if
         else{
             return studentIDTree.searchID(key);
-        }
-    }
+        }//else
+    }//student
 
 } // class

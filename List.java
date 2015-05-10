@@ -76,7 +76,7 @@ public class List implements Serializable {
         return null;
     }
 
-
+    //search used to remove item from the list
     public void searchRemove(int keyToFind) {
         int count = 0;
         Idea current = head;
@@ -103,9 +103,9 @@ public class List implements Serializable {
         } // else
     } //searchRemove
 
-
+    //prints the IdeaList
     public void printList() {
-        System.out.println(length);
+       // System.out.println(length);
         Idea currentIdea = this.access(0);
         for (int i = 0; i < length; i++) {
             System.out.println(currentIdea.getKey());
