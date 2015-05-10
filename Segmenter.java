@@ -1,3 +1,5 @@
+import java.io.Serializable;
+
 class Segmenter implements Serializable {
     private int listLength;
     private int treeSize;
