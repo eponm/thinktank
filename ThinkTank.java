@@ -47,8 +47,12 @@ class ThinkTank {
         catch(ClassNotFoundException x) {
             System.out.println("Can't find the class. Maybe was bad magic??");
         } // catch
+        catch(EOFException x) {
+            System.out.print("");
+        } // catch
         catch(IOException x) {
             System.out.println("Saved state may not exist or is blank. Starting from scratch...");
+            System.out.println(x);
         } // catch
 
         int numStuds = seg.getTreeSize();
@@ -62,7 +66,7 @@ class ThinkTank {
 
         try ( // Open up some parameters to try:
             // Make an input stream from the file
-            InputStream file2 = new FileInputStream("savedstud.ser");
+            InputStream file2 = new FileInputStream("savedstd.ser");
             // Load it into a buffer
             InputStream buffer2 = new BufferedInputStream(file2);
             // Use the buffer for object input
@@ -77,9 +81,19 @@ class ThinkTank {
         catch(ClassNotFoundException x) {
             System.out.println("Can't find the class. Maybe was bad magic??");
         } // catch
-        catch(IOException x) {
-            System.out.println("Saved state may not exist or is blank. Starting from scratch...");
+        catch(EOFException x) {
+            System.out.print("");
         } // catch
+        catch(IOException x) {
+            System.out.println("Saved students may not exist or is blank. Starting from scratch...");
+            System.out.println(x);
+        } // catch
+
+        Student tempS;
+        for (int j=0; j<numStuds; j++) {
+            tempS = studA[j];
+            ideas.addStudent(tempS);
+        }
 
         //
         // LOAD IDEAS
@@ -102,8 +116,12 @@ class ThinkTank {
         catch(ClassNotFoundException x) {
             System.out.println("Can't find the class. Maybe was bad magic??");
         } // catch
+        catch(EOFException x) {
+            System.out.print("");
+        } // catch
         catch(IOException x) {
-            System.out.println("Saved state may not exist or is blank. Starting from scratch...");
+            System.out.println("Saved ideas may not exist or is blank. Starting from scratch...");
+            System.out.println(x);
         } // catch
 
         Scanner hiveMind = new Scanner(System.in);
@@ -114,6 +132,12 @@ class ThinkTank {
 
         System.out.println();
         System.out.println("> Welcome, we are hiveMind and we are here to help you!");
+
+        Idea tempI;
+        for (int q=0; q<numIdeas; q++) {
+            tempI = ideaA[q];
+            ideas.insertIdea(tempI);
+        }
 
 
         //
@@ -375,7 +399,7 @@ class ThinkTank {
                             foundStudent.displayStudent();
                             boolean studentOptionsMenuDone=false;
                             System.out.println("=== Student Options ===");
-                            System.out.println("  A) Edit Information\n  B) See Ideas\n  C) Delete Record\n  D) Return to Main Menu");
+                            System.out.println("  A) Edit Information\n  B) See Ideas\n  C) Delete Record\n  D) Return to previous menu");
                             System.out.println();
                             while(studentOptionsMenuDone==false) {
                                 System.out.print(": ");
@@ -459,17 +483,17 @@ class ThinkTank {
 
     try {
 
-        OutputStream file = new FileOutputStream("savedstd.ser");
+        OutputStream file2 = new FileOutputStream("savedstd.ser");
         System.out.println("Student output stream OK");//debug
-        OutputStream buffer = new BufferedOutputStream(file);
+        OutputStream buffer2 = new BufferedOutputStream(file2);
         System.out.println("Buffered output stream OK");//debug
-        ObjectOutput output = new ObjectOutputStream(buffer);
+        ObjectOutput output2 = new ObjectOutputStream(buffer2);
         System.out.println("Object output stream OK");//debug
 
         // Write out students
         Student[] treeArray = ideas.saveTreeArray();
         for (int i=0; i<ideas.getTreeSize(); i++) {
-            output.writeObject(treeArray[i]);
+            output2.writeObject(treeArray[i]);
         } // for loop
     }
     catch(IOException x) {
@@ -478,17 +502,17 @@ class ThinkTank {
 
     try {
 
-        OutputStream file = new FileOutputStream("savedideas.ser");
+        OutputStream file3 = new FileOutputStream("savedideas.ser");
         System.out.println("Idea output stream OK");//debug
-        OutputStream buffer = new BufferedOutputStream(file);
+        OutputStream buffer3 = new BufferedOutputStream(file3);
         System.out.println("Buffered output stream OK");//debug
-        ObjectOutput output = new ObjectOutputStream(buffer);
+        ObjectOutput output3 = new ObjectOutputStream(buffer3);
         System.out.println("Object output stream OK");//debug
 
         // Write out ideas
         Idea[] ideaArray = ideas.saveIdeaArray();
         for (int i=0; i<ideas.getListLength(); i++) {
-            output.writeObject(ideaArray[i]);
+            output3.writeObject(ideaArray[i]);
         } // for
     }
     catch(IOException x) {
