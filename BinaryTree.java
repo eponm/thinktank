@@ -207,25 +207,55 @@ public class BinaryTree implements Serializable {
 
     //traverse
     //prints tree to consol from left to right
+    //make sure it takes ssn and id
     public void traverse(){
         if(head!=null){
-            traverseTwo(head.getLeftSSN());
-            System.out.print(head.getSSN()+" ");
-            traverseTwo(head.getRightSSN());
+            traverseTwo(head.getLeftID());
+            System.out.print(head.getID()+" ");
+            traverseTwo(head.getRightID());
         }
     }
-
+    
     //traverse helper
     private void traverseTwo(Student branch){
         if(branch!=null){
             System.out.println("gettingLeft traverse");
-            traverseTwo(branch.getLeftSSN());
-            System.out.println(branch.getSSN()+" ");
+            traverseTwo(branch.getLeftID());
+            System.out.println(branch.getID()+" ");
             System.out.println("gettingRight traverse");
-            traverseTwo(branch.getRightSSN());
+            traverseTwo(branch.getRightID());
         }
     }//traverse
 
+    
+    //for printing to save
+    //I believe you asked to return the object address, so here it is. 
+    //You have to call it for the first node on each tree 
+    public void saveTraverse(Student head) {
+        if (head!=null) {
+            saveTraverseSSN(head);
+            save2(head);
+            saveTraverseSSN(head);
+        }//if
+    }//saveTraverse
+    
+    public Student save2(Student head) {
+        return head;
+    }//save2
+    
+    /* public void saveTraverseID(Student head) {
+        if (head!=null) {
+            saveTraverseID(head);
+            saveTID2(head);
+            saveTraverseID(head);
+        }
+    }
+    
+    public Student saveTID2(Student head) {
+        return head;
+    } */
+
+    
 
     //delete
     //deletes a target node in a BST
