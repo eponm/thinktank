@@ -76,6 +76,7 @@ class Student implements Serializable { // implements Serializable
             socString=Integer.toString(socSecNum);
         }
         System.out.println("    Social Security Number: "+socString);
+        System.out.println();
     } // displayStudent
 
     //displayIdeas()
@@ -84,16 +85,18 @@ class Student implements Serializable { // implements Serializable
         if (ideaQueue.isEmpty()==true) {
             System.out.println("This student has no ideas in our database. To add an idea, go to main menu, then go to Add Idea and enter the students SSN number");
         }
-        Idea[] ideas = ideaQueue.getAll();
-        for(int i=0;i<10;i++){
-            Idea x = ideas[i];
-            if(x==null){
-                System.out.println((i+1)+".");
-            } // if
-            else{
-                System.out.println((i+1)+". "+"Rating: "+x.getRating()+" Description: "+x.getDesc());
-            } // else
-        } // for
+        else {
+            Idea[] ideas = ideaQueue.getAll();
+            for(int i=0;i<10;i++){
+                Idea x = ideas[i];
+                if(x==null){
+                    System.out.println((i+1)+".");
+                } // if
+                else{
+                    System.out.println((i+1)+". "+"Rating: "+x.getRating()+" Description: "+x.getDesc());
+                } // else
+            } // for
+        } // else
     }//display Ideas in queue
 
     //addToQueue()

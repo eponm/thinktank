@@ -55,7 +55,7 @@ class ThinkTank {
         Idea bestIdea;
 
         System.out.println();
-        System.out.println("> Welcome, we are hiveMind and we are here to help you!\n");
+        System.out.println("> Welcome, we are hiveMind and we are here to help you!");
 
 
         //
@@ -83,10 +83,10 @@ class ThinkTank {
 
             if (answer.equals("A")||answer.equals("a")){
                 System.out.println();
-                if(ideas.getBestIdea() == null){
+                if (ideas.getBestIdea() == null){
                     System.out.println("! There are no ideas here.");
                 } // if bestidea is null
-                else{
+                else {
                     System.out.println("> Would you like to sell this idea?\n  (Y)es\n  (N)o");
                     System.out.print(": ");
                     answer = hiveMind.next();
@@ -103,6 +103,10 @@ class ThinkTank {
                             System.out.println("! Output error: "+e);
                         } // catch
                     } // if
+
+                    else if (answer.equals("N")||answer.equals("n")) {
+                        System.out.println("Maybe next time! \nReturning to menu...");
+                    } // else if
                 } // else
             } // if 146
 
@@ -158,7 +162,6 @@ class ThinkTank {
                     System.out.println();
                     System.out.println("! SSN not found. Try adding that student first.");
                     System.out.println("Returning to main menu...");
-                    System.out.println();
                 } // else
             }//else if
 
@@ -235,7 +238,7 @@ class ThinkTank {
                         String userNum= hiveMind.nextLine();
                         Student newStudent = new Student(name, userNum, ssn, idNum);
                         ideas.addStudent(newStudent);
-                        System.out.println("> The student has been added to the database.");
+                        System.out.println("The student has been added to the database.");
                         System.out.println();
                         recordsMenuDone=true;
                     } // if 229
@@ -247,9 +250,9 @@ class ThinkTank {
                         System.out.println();
                         System.out.println("=== Student Search ===");
                         System.out.println("> Would you like to search or by SSN or student ID?\n  A) SSN\n  B) StudentID");
-                        boolean finished=false;
+                        boolean studentSearchMenuDone=false;
                         Student foundStudent=null;
-                        while(finished==false){
+                        while(studentSearchMenuDone==false){
 
                             System.out.print(": ");
                             answer = hiveMind.nextLine();
@@ -268,7 +271,7 @@ class ThinkTank {
                                     ssn = Integer.parseInt(ssnStr);
                                 } // while
                                 foundStudent=ideas.getStudent(ssn, true);
-                                finished=true;
+                                studentSearchMenuDone=true;
                             } // if
 
                             else if(answer.equals("B")||answer.equals("b")){
@@ -288,7 +291,7 @@ class ThinkTank {
                                 } // while
 
                                 foundStudent=ideas.getStudent(id, false);
-                                finished=true;
+                                studentSearchMenuDone=true;
                             } // else if
                             else{
                                 System.out.println("! Not a menu option.");
@@ -299,7 +302,7 @@ class ThinkTank {
                             System.out.println("! There is no student in our records with that number.");
                             System.out.println("Returning to main menu...");
                             System.out.println();
-                            finished=true;
+                            studentSearchMenuDone=true;
                         } // if
 
                         else{
