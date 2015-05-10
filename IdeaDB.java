@@ -22,6 +22,25 @@ class IdeaDB implements Serializable {
     public Student[] saveTreeArray() {
         Student[] arr = studentSSNTree.treeToArray();
         return arr;
+    } // saveTreeArray
+
+
+    public Idea[] saveIdeaArray() {
+        Idea[] arr = new Idea[coreList.length()];
+        for (int i=0; i<coreList.length(); i++) {
+            arr[i] = coreList.access(i);
+        } // for
+        return arr;
+    } // saveIdeaArray
+
+
+    public int getTreeSize() {
+        return studentSSNTree.size();
+    }
+
+
+    public int getListSize() {
+        return coreList.length();
     }
 
 
@@ -35,9 +54,9 @@ class IdeaDB implements Serializable {
         for (int i=0; i<coreList.length(); i++) {
             // Params: submittor SSN, description, rating, seqnum
             out.write("idea = \""+coreList.access(i).getKey()+"\",\"" +coreList.access(i).getDesc()+"\",\"'"+coreList.access(i).getSeqNum()+"\",\""+coreList.access(i).getRating()+"\""+coreList.access(i).isInHeap()+"\n");
-        }
+        } // for
         return true;
-    }
+    } // printIdeas
 
 
     // insertIdea - adds a new idea
@@ -50,7 +69,7 @@ class IdeaDB implements Serializable {
         newIdea.setSeqNum(seqNum);
         seqNum++;
         // Add idea to list
-        //coreList.insert(newIdea);
+        coreList.insert(newIdea);
         // Add idea to heap if necessary
         ideaHeap.insert(newIdea);
 
