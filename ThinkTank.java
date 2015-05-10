@@ -87,6 +87,12 @@ class ThinkTank {
                     System.out.println("! There are no ideas here.");
                 } // if bestidea is null
                 else {
+                    System.out.println("**** The Best Idea is ****");
+                    System.out.println("");
+                    System.out.println(ideas.getBestIdea().getDesc());
+                    System.out.println("");
+                    System.out.println("**************************");
+                    System.out.println("");
                     System.out.println("> Would you like to sell this idea?\n  (Y)es\n  (N)o");
                     System.out.print(": ");
                     answer = hiveMind.next();
