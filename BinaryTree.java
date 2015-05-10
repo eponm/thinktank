@@ -37,7 +37,9 @@ public class BinaryTree implements Serializable {
         n = 0;
     }//Constructor
 
-
+    public int size() {
+        return n;
+    }
 
     //isEmptyTree
     //Returns boolean value True if head points to null, else returns False
