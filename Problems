@@ -1,4 +1,3 @@
-
-4)Prints sequences number of idea after assigning a new idea a rating
-5)We need to save out every object, not just the database
-6)When someone enters a string instead of integers for searching an SSN when submitting an idea, it crashes ThinkTank (also when we search in Student Records?)
+1)Change ID num checks to match SSN checks in ThinkTank (214-230)---->(191-208)
+	Check rest of thinktank (Idea adding?) if we need to add in this style of while/try-catch loop for entering SSN/Ids
+2)Saves?

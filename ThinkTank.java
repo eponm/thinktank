@@ -187,26 +187,41 @@ class ThinkTank {
                         System.out.println("> Student's SSN (4 digits)");
                         System.out.print(": ");
                         String ssnStr=hiveMind.nextLine();
-                        try {
-                            int ssn=Integer.parseInt(ssnStr);
-                        }
-                        catch(NumberFormatException e) {
-                        System.out.println("Please input a valid integer");
-                            }
-                        
-                        while(//ssnStr != num?
-                            //that was not a number
+                        boolean ssnIsNum=false;
+                        while(ssnIsNum==false){//while ssn imput isn't number
+                            try {//try to parse imput as an int
+                                int ssn=Integer.parseInt(ssnStr);
+                                if(ssn<10000){
+                                    ssnIsNum=true;
+                                }
+                                else{
+                                    System.out.println("> That was larger than 4 digits. Please enter only a 4 digit SSN number");
+                                    System.out.print(": ");
+                                    ssnStr=hiveMind.nextLine();
+                                }
+                            }//try 192
+                            catch(NumberFormatException e) {//if throws a numberformat exeception
+                                System.out.println("> Please input a valid integer (4 digits)");
+                                System.out.print(":");
+                                ssnStr=hiveMind.nextLine();
+                            }//catch 19
+                        }//while 191
                         int ssn=Integer.parseInt(ssnStr);
-                        while (ssn>9999) {
-                            System.out.println("> That was larger than 4 digits. Please enter only a 4 digit SSN number");
-                            System.out.print(": ");
-                            ssnStr=hiveMind.nextLine();
-                            ssn=Integer.parseInt(ssnStr);
-                        } // while
-                        //studentNumber= "Please enter 4 digit student number"
                         System.out.println("> Student ID (4 digits)");
                         System.out.print(": ");
                         String idStr=hiveMind.nextLine();
+                        boolean idIsNum=false;
+                        while(idIsNum==false){//while id imput isnt number
+                            try{//try to parse imput as an int
+                                int id=Integer.parseInt(idStr);
+                                idIsNum=true;
+                            }//try 215
+                            catch(NumberFormatException e){//if throws error
+                                System.out.println("> Please input a valid integer");
+                                System.out.print(":");
+                                ssnStr=hiveMind.nextLine();
+                            }//catch 219
+                        }//while 214
                         int idNum=Integer.parseInt(idStr);
                         while (idNum>9999) {
                             System.out.println("! Please enter only a 4 digit ID number.");
