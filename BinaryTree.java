@@ -37,10 +37,6 @@ public class BinaryTree implements Serializable {
         n = 0;
     }//Constructor
 
-    public int size() {
-        return n;
-    }
-
     //isEmptyTree
     //Returns boolean value True if head points to null, else returns False
     public boolean isEmptyTree(){
@@ -146,7 +142,7 @@ public class BinaryTree implements Serializable {
                 branch.setLeftSSN(newStudent);
                 //System.out.println("Left was null SSN");
                 //System.out.println();
-                t//his.traverse();
+                //this.traverse();
             }
             else{//recursive call for next left branch down
                 ssnInsertTwo(branch.getLeftSSN(),newStudent);
