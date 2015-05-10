@@ -1,8 +1,12 @@
 
 import java.io.Serializable;
 
-//heap -- min number is next number helped
-public class Heap implements Serializable { //implements Serializable
+/*heap -- min number is next number helped
+    Takes all ideas, orders by priority
+    only the *best* idea is accessible from the heap,
+    once it is sold it is deleted from the heap
+*/
+public class Heap implements Serializable { 
     int n; //counter for
     Idea[] heap=new Idea[256];//array of Ideas
 
@@ -36,18 +40,13 @@ public class Heap implements Serializable { //implements Serializable
         }//for
     }//printHeap
 
-
-
-
     //insert(Idea x); inserts Idea into heap reorders heap
     public void insert(Idea x) {
-        System.out.println(n);
+        //System.out.println(n);
         heap[n]=x;
         if (n!=0) {
             swap(n-1);
         }//if
-
-
         n+=1;
     }//insert
 
@@ -141,7 +140,7 @@ public class Heap implements Serializable { //implements Serializable
                 }//else parent>leftchild
              }//while
         }//else
-    }
+    }//swap2
 
 
     //deleteMin(); deletes the min, reassigns the min, reorders tree
@@ -160,42 +159,3 @@ public class Heap implements Serializable { //implements Serializable
     }//deleteMin()
 
 }//public class Heap.java
-
-
-
-
-
-
-
-
-
-
-/*    //print with formatting
-    public void printHeapFormat() {
-        System.out.println();
-        printHeap2(0);
-        System.out.println();
-    }//printTree()
-
-    //helper function for printHeapFormat()
-    private void printHeap2(int index) {
-        if (heap[index] !=null) {
-            System.out.println("Idea = " + heap[index].getKey());
-        }
-            //left child
-            if (heap[index*2+1] !=null){
-                System.out.println("left = " + heap[index*2+1].getKey());
-            }
-            else {
-                System.out.print("left = null");
-            }
-            if (heap[index*2+2]!=null) {
-                System.out.println("right = " + heap[index*2+2].getKey());
-            }
-            else{
-                System.out.println("right = null");
-            }
-            printHeap2(index*2+1);
-            printHeap2(index*2+2);
-        }
-*/
