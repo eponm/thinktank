@@ -23,7 +23,11 @@ public class List implements Serializable {
         return length;
     } //length
 
-
+    // Returns int length of list
+    public int getLength(){
+        return length;
+    }//getLength
+    
     // Returns the boolean state of an empty list
     public boolean isEmptyList() {
         return head == null;

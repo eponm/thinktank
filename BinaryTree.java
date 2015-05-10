@@ -574,4 +574,11 @@ public class BinaryTree implements Serializable {
             printTree2(tree.getRightSSN(), out);
         } // if
     } // printTree2
+    
+    //returns size of the tree
+    public int size() {
+        return n;
+    }//size
+    
+    
 } // BinaryTree

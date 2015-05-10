@@ -122,14 +122,14 @@ class Idea implements Serializable {
 
 
     // Will switch whether an idea will be read into the heap again on the next load of the saved state
-    public boolean flip() {
+    public void flip() {
+        System.out.println(inHeap);
         if (inHeap == false) {
             inHeap = true;
         } // else
         else {
             inHeap = false;
         } // else
-        return inHeap;
     } // flip
 
 

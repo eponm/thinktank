@@ -149,7 +149,7 @@ public class Heap implements Serializable {
             return null;
         }//if
         Idea newMin=heap[n-1];
-        temp=heap[0];
+        Idea temp=heap[0];
         heap[0]=newMin;
         heap[n-1]=null;
         n--;
