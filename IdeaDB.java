@@ -55,7 +55,7 @@ class IdeaDB implements Serializable {
     }
 
     //returns size of core list of ideas
-    public int getListSize() {
+    public int getListLength() {
         return coreList.length();
     }
 

@@ -40,7 +40,7 @@ class ThinkTank {
             ObjectInput input = new ObjectInputStream(buffer);
         ) {
             // Now read it into a new object
-            segmenter = (Segmenter)input.readObject();
+            seg = (Segmenter)input.readObject();
             ideas = (IdeaDB)input.readObject();
         } // try
         // Catch the bad thing
@@ -51,8 +51,8 @@ class ThinkTank {
             System.out.println("Saved state may not exist or is blank. Starting from scratch...");
         } // catch
 
-        int numStuds = segmenter.getTreeSize;
-        int numIdeas = segmenter.getListLength;
+        int numStuds = seg.getTreeSize();
+        int numIdeas = seg.getListLength();
         Student[] studA = new Student[numStuds];
         Idea[] ideaA = new Idea[numIdeas];
 
@@ -70,7 +70,7 @@ class ThinkTank {
         ) {
             // Now read it into a new object
             for (int i=0; i<numStuds; i++) {
-                studA[i] = (IdeaDB)input.readObject();
+                studA[i] = (Student)input2.readObject();
             } // for
         } // try
         // Catch the bad thing
@@ -95,7 +95,7 @@ class ThinkTank {
         ) {
             // Now read it into a new object
             for (int i=0; i<numIdeas; i++) {
-                ideaA[i] = (Idea)input.readObject();
+                ideaA[i] = (Idea)input3.readObject();
             } // for
         } // try
         // Catch the bad thing
@@ -105,11 +105,6 @@ class ThinkTank {
         catch(IOException x) {
             System.out.println("Saved state may not exist or is blank. Starting from scratch...");
         } // catch
-        finally {
-            file.close();
-            buffer.close();
-            input.close();
-        }
 
         Scanner hiveMind = new Scanner(System.in);
 
@@ -440,8 +435,8 @@ class ThinkTank {
 
     // GO TIME
 
-    segmenter.setTreeSize(idea.getTreeSize());
-    segmenter.setListLength(ideas.getListLength());
+    seg.setTreeSize(ideas.getTreeSize());
+    seg.setListLength(ideas.getListLength());
 
     // Strap in, it's time to save
     try { // Try doing it all again in reverse order
@@ -452,7 +447,7 @@ class ThinkTank {
         ObjectOutput output = new ObjectOutputStream(buffer);
         System.out.println("Object output stream OK");//debug
         // Write out DB
-        output.writeObject(segmenter);
+        output.writeObject(seg);
         output.writeObject(ideas);
 
         System.out.println("Files written OK");//debug
@@ -491,7 +486,7 @@ class ThinkTank {
 
         // Write out ideas
         Idea[] ideaArray = ideas.saveIdeaArray();
-        for (int i=0; i<ideas.getListSize(); i++) {
+        for (int i=0; i<ideas.getListLength(); i++) {
             output.writeObject(ideaArray[i]);
         } // for
     }
