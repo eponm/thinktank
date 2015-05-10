@@ -371,6 +371,7 @@ class ThinkTank {
                         } // if
 
                         else{
+                            System.out.println();
                             foundStudent.displayStudent();
                             boolean studentOptionsMenuDone=false;
                             System.out.println("=== Student Options ===");
