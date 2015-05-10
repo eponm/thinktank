@@ -1,35 +1,35 @@
 class Segmenter{
-	private int listLength;
-	private int treeSize;
+    private int listLength;
+    private int treeSize;
 
-	//Constructor 
-	public Segmenter(){
-		listLength=0;
-		treeSize=0
-	}
+    //Constructor 
+    public Segmenter(){
+        listLength=0;
+        treeSize=0;
+    }
 
-	//*************getMethods************
+    //*************getMethods************
 
-	//Returns listLength int
-	public int getListLength(){
-		return listLength;
-	}//getListLength
+    //Returns listLength int
+    public int getListLength(){
+        return listLength;
+    }//getListLength
 
 
-	//Returns tree size int
-	public int getTreeSize(){
-		return treeSize;
-	}//get List Length
+    //Returns tree size int
+    public int getTreeSize(){
+        return treeSize;
+    }//get List Length
 
-	//**************setMethods************
+    //**************setMethods************
 
-	//Sets listLength to given int
-	public void setListLength(int newSize){
-		listLength=newSize;
-	}//setListLength
+    //Sets listLength to given int
+    public void setListLength(int newSize){
+        listLength=newSize;
+    }//setListLength
 
-	//Sets treeSize to given int
-	public void setTreeSize(int newSize){
-		treeSize=newSize;
-	}//setTreeSize
+    //Sets treeSize to given int
+    public void setTreeSize(int newSize){
+        treeSize=newSize;
+    }//setTreeSize
 }
