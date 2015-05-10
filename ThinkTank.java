@@ -169,26 +169,34 @@ class ThinkTank {
                     System.out.println("! There are no ideas here.");
                 } // if bestidea is null
                 else {
-                    System.out.println("> Would you like to sell this idea?\n  (Y)es\n  (N)o");
-                    System.out.print(": ");
-                    answer = hiveMind.next();
-                    if (answer.equals("Y")||answer.equals("y")){
-                        bestIdea = ideas.sell();
-                        try {
-                            PrintWriter scribe = new PrintWriter("BestIdea.txt");
-                            scribe.println(bestIdea.getDesc());
-                            scribe.close();
-                            Path bestIdeaPath = Paths.get("BestIdea.txt");
-                            System.out.println(bestIdeaPath);
-                        } // try
-                        catch(IOException e){
-                            System.out.println("! Output error: "+e);
-                        } // catch
-                    } // if
+                    boolean ideaSellChoice=false;
+                    while(ideaSellChoice==false){
+                        System.out.println("> Would you like to sell this idea?\n  (Y)es\n  (N)o");
+                        System.out.print(": ");
+                        answer = hiveMind.next();
+                        if (answer.equals("Y")||answer.equals("y")){
+                            bestIdea = ideas.sell();
+                            try {
+                                PrintWriter scribe = new PrintWriter("BestIdea.txt");
+                                scribe.println(bestIdea.getDesc());
+                                scribe.close();
+                                Path bestIdeaPath = Paths.get("BestIdea.txt");
+                                System.out.println(bestIdeaPath);
+                                ideaSellChoice=true;
+                            } // try
+                            catch(IOException e){
+                                System.out.println("! Output error: "+e);
+                            } // catch
+                        } // if
 
-                    else if (answer.equals("N")||answer.equals("n")) {
-                        System.out.println("Maybe next time! \nReturning to menu...");
-                    } // else if
+                        else if (answer.equals("N")||answer.equals("n")) {
+                            System.out.println("Maybe next time! \nReturning to menu...");
+                            ideaSellChoice=true;
+                        } // else if
+                        else{
+                            System.out.println("! Not a correct menu selection");
+                        }
+                    }//while 172
                 } // else
             } // if 146
 
