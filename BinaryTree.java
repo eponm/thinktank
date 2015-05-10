@@ -232,20 +232,6 @@ public class BinaryTree implements Serializable {
     }//traverse
 
 
-    //for printing to save
-    //I believe you asked to return the object address, so here it is.
-    //You have to call it for the first node on each tree
-    public void saveTraverse(Student head) {
-        Student[] a = Student[n];
-        while (head!=null) {
-
-        }//if
-    }//saveTraverse
-
-    public Student save2(Student head) {
-        return head;
-    }//save2
-
     /* public void saveTraverseID(Student head) {
         if (head!=null) {
             saveTraverseID(head);
@@ -551,12 +537,13 @@ public class BinaryTree implements Serializable {
 
 
     // Returns an array with a preorder traversal of the SSN tree
-    public void treeToArray() {
+    public Student[] treeToArray() {
         Student[] a = new Student[n];
-        treeToArray2(root, a, 0);
+        treeToArray2(head, a, 0);
+        return a;
     } // treeToArray
 
-    private void treeToArray2(Node root, Student[] a, int pos) {
+    private void treeToArray2(Student root, Student[] a, int pos) {
         if (root == null) {
             System.out.println("! No binary tree to save.");
             return;
