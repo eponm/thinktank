@@ -21,13 +21,15 @@ class ThinkTank {
 
         System.out.println();
 
-        final Charset ENCODING = StandardCharsets.UTF_8;
-        final Path saveFile;
-
+        Segmenter seg = new Segmenter();
         IdeaDB ideas = new IdeaDB();
 
         // We're about to try loading a save file.
-        // Buckle up, kids.
+        // Buckle up, kids
+
+        //
+        // LOAD DATABASE
+        //
 
         try ( // Open up some parameters to try:
             // Make an input stream from the file
@@ -35,9 +37,10 @@ class ThinkTank {
             // Load it into a buffer
             InputStream buffer = new BufferedInputStream(file);
             // Use the buffer for object input
-            ObjectInput input = new ObjectInputStream (buffer);
+            ObjectInput input = new ObjectInputStream(buffer);
         ) {
             // Now read it into a new object
+            segmenter = (Segmenter)input.readObject();
             ideas = (IdeaDB)input.readObject();
         } // try
         // Catch the bad thing
@@ -47,6 +50,66 @@ class ThinkTank {
         catch(IOException x) {
             System.out.println("Saved state may not exist or is blank. Starting from scratch...");
         } // catch
+
+        int numStuds = segmenter.getTreeSize;
+        int numIdeas = segmenter.getListLength;
+        Student[] studA = new Student[numStuds];
+        Idea[] ideaA = new Idea[numIdeas];
+
+        //
+        // LOAD STUDENTS
+        //
+
+        try ( // Open up some parameters to try:
+            // Make an input stream from the file
+            InputStream file2 = new FileInputStream("savedstud.ser");
+            // Load it into a buffer
+            InputStream buffer2 = new BufferedInputStream(file2);
+            // Use the buffer for object input
+            ObjectInput input2 = new ObjectInputStream(buffer2);
+        ) {
+            // Now read it into a new object
+            for (int i=0; i<numStuds; i++) {
+                studA[i] = (IdeaDB)input.readObject();
+            } // for
+        } // try
+        // Catch the bad thing
+        catch(ClassNotFoundException x) {
+            System.out.println("Can't find the class. Maybe was bad magic??");
+        } // catch
+        catch(IOException x) {
+            System.out.println("Saved state may not exist or is blank. Starting from scratch...");
+        } // catch
+
+        //
+        // LOAD IDEAS
+        //
+
+        try ( // Open up some parameters to try:
+            // Make an input stream from the file
+            InputStream file3 = new FileInputStream("savedideas.ser");
+            // Load it into a buffer
+            InputStream buffer3 = new BufferedInputStream(file3);
+            // Use the buffer for object input
+            ObjectInput input3 = new ObjectInputStream(buffer3);
+        ) {
+            // Now read it into a new object
+            for (int i=0; i<numIdeas; i++) {
+                ideaA[i] = (Idea)input.readObject();
+            } // for
+        } // try
+        // Catch the bad thing
+        catch(ClassNotFoundException x) {
+            System.out.println("Can't find the class. Maybe was bad magic??");
+        } // catch
+        catch(IOException x) {
+            System.out.println("Saved state may not exist or is blank. Starting from scratch...");
+        } // catch
+        finally {
+            file.close();
+            buffer.close();
+            input.close();
+        }
 
         Scanner hiveMind = new Scanner(System.in);
 
@@ -121,48 +184,35 @@ class ThinkTank {
                 System.out.println("=== Submit Idea ===");
                 System.out.println("> Please enter the last 4 digits of the submittor's SSN.");
                 System.out.print(": ");
-                String ssnStr = hiveMind.nextLine();
-                boolean ssnIsNum = false;
-                while(ssnIsNum==false){//while ssn imput isn't number
-                    try {//try to parse imput as an int
-                        int ssn=Integer.parseInt(ssnStr);
-                        if(ssn<10000){
-                            ssnIsNum=true;
-                        }//if
-                        else{
-                            System.out.println("> That was larger than 4 digits. Please enter only a 4 digit SSN number");
-                            System.out.print(": ");
-                            ssnStr=hiveMind.nextLine();
-                        }//else
-                    }//try 
-                    catch(NumberFormatException e) {//if throws a numberformat exeception
-                        System.out.println("> Please input a valid integer (4 digits)");
-                        System.out.print(":");
-                        ssnStr=hiveMind.nextLine();
-                    }//catch 
-                }//while 126
-                int ssn = Integer.parseInt(ssnStr);
+                String ans = hiveMind.nextLine();
+                int ssn=Integer.parseInt(ans);
+                while(ssn>10000){
+                    System.out.println("! The submittor's SSN must be 4 digits.");
+                    System.out.print(": ");
+                    ans=hiveMind.nextLine();
+                    ssn = Integer.parseInt(ans);
+                } // while
                 Student student = ideas.getStudent(ssn, true);
+
                 if(student!=null){
                     System.out.println("> Please input idea description on the following line: ");
-                    System.out.print(": ");
                     String ideaText=hiveMind.nextLine();
                     System.out.println("> Please enter an integer rating for the idea between 0 and 100.") ;
                     System.out.print(": ");
                     String ratingString=hiveMind.nextLine();
                     boolean ideaSubmissionDon=false;
                     int rating;
-                    while(ideaSubmissionDon==false){
+                    while(ideaSubmissionDon!=false){
                         try{
                             rating = Integer.parseInt(ratingString);
                             ideaSubmissionDon=true;
                         } // try
                         catch(NumberFormatException ex){
                             System.out.println("! Please enter an INTEGER between 0-100");
-                            System.out.println(": ");
-                            ratingString=hiveMind.nextLine();
                         } // catch
-                    } // while 154
+                        System.out.println(": ");
+                        ratingString=hiveMind.nextLine();
+                    } // while
                     rating = Integer.parseInt(ratingString);
                     if (rating>100){
                         rating=100;
@@ -203,7 +253,6 @@ class ThinkTank {
                         System.out.println("> Student's SSN (4 digits)");
                         System.out.print(": ");
                         String ssnStr=hiveMind.nextLine();
-
                         boolean ssnIsNum=false;
                         while(ssnIsNum==false){//while ssn imput isn't number
                             try {//try to parse imput as an int
@@ -223,7 +272,6 @@ class ThinkTank {
                                 ssnStr=hiveMind.nextLine();
                             }//catch 19
                         }//while 191
-
                         int ssn=Integer.parseInt(ssnStr);
                         System.out.println("> Student ID (4 digits)");
                         System.out.print(": ");
@@ -254,7 +302,7 @@ class ThinkTank {
                         String userNum= hiveMind.nextLine();
                         Student newStudent = new Student(name, userNum, ssn, idNum);
                         ideas.addStudent(newStudent);
-                        System.out.println("> The student has been added to the database!");
+                        System.out.println("The student has been added to the database.");
                         System.out.println();
                         recordsMenuDone=true;
                     } // if 229
@@ -278,65 +326,45 @@ class ThinkTank {
                                 System.out.println("> Please enter the last 4 digits of the student's SSN");
                                 System.out.print(": ");
                                 String ssnStr = hiveMind.nextLine();
-                                boolean ssnIsNum=false;
-                                while(ssnIsNum==false){//while ssn imput isn't number
-                                    try {//try to parse imput as an int
-                                        int ssn=Integer.parseInt(ssnStr);
-                                        if(ssn<10000){
-                                            ssnIsNum=true;
-                                        }//if 270
-                                        else{
-                                            System.out.println("> That was larger than 4 digits. Please enter only a 4 digit SSN number");
-                                            System.out.print(": ");
-                                            ssnStr=hiveMind.nextLine();
-                                        }//else 273
-                                    }//try 268
-                                    catch(NumberFormatException e) {//if throws a numberformat exeception
-                                        System.out.println("> Please input a valid integer (4 digits)");
-                                        System.out.print(":");
-                                        ssnStr=hiveMind.nextLine();
-                                    }//catch 279
-                                }//while 267
                                 int ssn = Integer.parseInt(ssnStr);
-                                foundStudent = ideas.getStudent(ssn, true);
+
+                                while(ssn>9999){
+                                    System.out.println("! The SSN must be 4 digits");
+                                    System.out.print(": ");
+                                    ssnStr = hiveMind.nextLine();
+                                    ssn = Integer.parseInt(ssnStr);
+                                } // while
+                                foundStudent=ideas.getStudent(ssn, true);
                                 studentSearchMenuDone=true;
-                            }
+                            } // if
+
                             else if(answer.equals("B")||answer.equals("b")){
 
                                 System.out.println("> Please enter the student ID");
                                 System.out.print(": ");
                                 String idStr = hiveMind.nextLine();
-                                boolean idIsNum=false;
-                                while(idIsNum==false){//while id imput isn't number
-                                    try {//try to parse imput as an int
-                                        int id=Integer.parseInt(idStr);
-                                        if(id<10000){
-                                            idIsNum=true;
-                                        }//if 294
-                                        else{
-                                            System.out.println("> That was larger than 4 digits. Please enter only a 4 digit ID number");
-                                            System.out.print(": ");
-                                            idStr=hiveMind.nextLine();
-                                        }//else 297
-                                    }//try 292
-                                    catch(NumberFormatException e) {//if throws a numberformat exeception
-                                        System.out.println("> Please input a valid integer (4 digits)");
-                                        System.out.print(":");
-                                        idStr=hiveMind.nextLine();
-                                    }//catch 303
-                                }//while 291
                                 int id = Integer.parseInt(idStr);
-                               foundStudent = ideas.getStudent(id, false);
-                               studentSearchMenuDone=true;
-                            } // else if 285
+
+                                while(id>9999){
+                                    System.out.println();
+                                    System.out.println("! The ID must be 4 digits");
+                                    System.out.println();
+                                    System.out.print(": ");
+                                    idStr = hiveMind.nextLine();
+                                    id = Integer.parseInt(idStr);
+                                } // while
+
+                                foundStudent=ideas.getStudent(id, false);
+                                studentSearchMenuDone=true;
+                            } // else if
                             else{
                                 System.out.println("! Not a menu option.");
                             } // else
-                        }//while loop (256)
+                        }//while loop (239)
 
                         if(foundStudent==null){
                             System.out.println("! There is no student in our records with that number.");
-                            System.out.println("Returning to records menu...");
+                            System.out.println("Returning to main menu...");
                             System.out.println();
                             studentSearchMenuDone=true;
                         } // if
@@ -371,7 +399,6 @@ class ThinkTank {
                                 else if(answer.equals("C")||answer.equals("c")){
                                     System.out.println();
                                     ideas.deleteStudent(foundStudent);
-                                    System.out.println("> The record has been deleted!");
                                     studentOptionsMenuDone=true;
                                 } // else if
                                 else if(answer.equals("D")||answer.equals("d")){
@@ -407,21 +434,64 @@ class ThinkTank {
 
     // GO TIME
 
+    segmenter.setTreeSize(idea.getTreeSize());
+    segmenter.setListLength(ideas.getListLength());
+
     // Strap in, it's time to save
     try { // Try doing it all again in reverse order
-        OutputStream file = new FileOutputStream("savedstate.ser");
-        System.out.println("File output stream OK");//debug
+        OutputStream file = new FileOutputStream("saveddb.ser");
+        System.out.println("DB output stream OK");//debug
         OutputStream buffer = new BufferedOutputStream(file);
         System.out.println("Buffered output stream OK");//debug
         ObjectOutput output = new ObjectOutputStream(buffer);
         System.out.println("Object output stream OK");//debug
+        // Write out DB
+        output.writeObject(segmenter);
         output.writeObject(ideas);
+
         System.out.println("Files written OK");//debug
     }
     catch(IOException x) {
         System.out.println("Bad magic happened! Can't output the file. " + x);
     }
 
+    try {
+
+        OutputStream file = new FileOutputStream("savedstd.ser");
+        System.out.println("Student output stream OK");//debug
+        OutputStream buffer = new BufferedOutputStream(file);
+        System.out.println("Buffered output stream OK");//debug
+        ObjectOutput output = new ObjectOutputStream(buffer);
+        System.out.println("Object output stream OK");//debug
+
+        // Write out students
+        Student[] treeArray = ideas.saveTreeArray();
+        for (int i=0; i<ideas.getTreeSize(); i++) {
+            output.writeObject(treeArray[i]);
+        } // for loop
+    }
+    catch(IOException x) {
+        System.out.println("Bad magic happened! Can't output the file. " + x);
+    }
+
+    try {
+
+        OutputStream file = new FileOutputStream("savedideas.ser");
+        System.out.println("Idea output stream OK");//debug
+        OutputStream buffer = new BufferedOutputStream(file);
+        System.out.println("Buffered output stream OK");//debug
+        ObjectOutput output = new ObjectOutputStream(buffer);
+        System.out.println("Object output stream OK");//debug
+
+        // Write out ideas
+        Idea[] ideaArray = ideas.saveIdeaArray();
+        for (int i=0; i<ideas.getListSize(); i++) {
+            output.writeObject(ideaArray[i]);
+        } // for
+    }
+    catch(IOException x) {
+        System.out.println("Bad magic happened! Can't output the file. " + x);
+    }
 
     System.out.println("\nClosing. Have a nice day!\n");
 
