@@ -19,10 +19,17 @@ class IdeaDB implements Serializable {
     } // constructor
 
 
+    public Student[] saveTreeArray() {
+        Student[] arr = studentSSNTree.treeToArray();
+        return arr;
+    }
+
+
     public boolean printStudents(PrintWriter out) {
         studentSSNTree.printTree(out);
         return true;
     }
+
 
     public boolean printIdeas(PrintWriter out) {
         for (int i=0; i<coreList.length(); i++) {
@@ -111,7 +118,7 @@ class IdeaDB implements Serializable {
 
     public Student getStudent(int key, boolean usingSSN){
         if(usingSSN==true){
-            
+
             return studentSSNTree.searchSSN(key);
         }
         else{
