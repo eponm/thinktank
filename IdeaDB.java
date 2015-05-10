@@ -1,7 +1,7 @@
 import java.io.PrintWriter; // For writing, obviously, I mean like...DUH!
 import java.io.Serializable;
 
-/* the IdeaDB includes methods to 
+/* the IdeaDB includes methods to
     INSERT
     - put idea into Core list of ideas and into Heap of ideas
     - put student into the two trees ordered by ID and by SSN
@@ -36,7 +36,28 @@ class IdeaDB implements Serializable {
     public Student[] saveTreeArray() {
         Student[] arr = studentSSNTree.treeToArray();
         return arr;
-    }//saveTreeArray()
+
+    } // saveTreeArray
+
+
+    public Idea[] saveIdeaArray() {
+        Idea[] arr = new Idea[coreList.length()];
+        for (int i=0; i<coreList.length(); i++) {
+            arr[i] = coreList.access(i);
+        } // for
+        return arr;
+    } // saveIdeaArray
+
+
+    public int getTreeSize() {
+        return studentSSNTree.size();
+    }
+
+
+    public int getListSize() {
+        return coreList.length();
+    }
+
 
 
     //printStudents out to screen
@@ -51,9 +72,10 @@ class IdeaDB implements Serializable {
         for (int i=0; i<coreList.length(); i++) {
             // Params: submittor SSN, description, rating, seqnum
             out.write("idea = \""+coreList.access(i).getKey()+"\",\"" +coreList.access(i).getDesc()+"\",\"'"+coreList.access(i).getSeqNum()+"\",\""+coreList.access(i).getRating()+"\""+coreList.access(i).isInHeap()+"\n");
-        }//for
+
+        } // for
         return true;
-    }//printIdeas
+    } // printIdeas
 
 
     // insertIdea - adds a new idea
