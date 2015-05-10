@@ -156,7 +156,7 @@ public class Heap implements Serializable {
         if (n>1) {
             swap2(0);
         }//if
-        return heap[temp];
+        return temp;
     }//deleteMin()
 
 }//public class Heap.java
