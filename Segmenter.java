@@ -2,7 +2,6 @@ class Segmenter{
     private int listLength;
     private int treeSize;
 
-    //Constructor
     public Segmenter(){
         listLength=0;
         treeSize=0;
