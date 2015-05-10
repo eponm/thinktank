@@ -51,7 +51,7 @@ class IdeaDB implements Serializable {
 
     //returns size of SSN tree
     public int getTreeSize() {
-        return studentSSNTree.getTreeSize();
+        return studentSSNTree.size();
     }
 
     //returns size of core list of ideas
