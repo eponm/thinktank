@@ -146,7 +146,7 @@ public class BinaryTree implements Serializable {
                 branch.setLeftSSN(newStudent);
                 //System.out.println("Left was null SSN");
                 //System.out.println();
-                this.traverse();
+                t//his.traverse();
             }
             else{//recursive call for next left branch down
                 ssnInsertTwo(branch.getLeftSSN(),newStudent);
@@ -156,9 +156,9 @@ public class BinaryTree implements Serializable {
         else{//if newStudent is larger than branch
             if(branch.getRightSSN()==null){//if the branch right child is null
                 branch.setRightSSN(newStudent);
-                System.out.println("Right was null SSN");
+                //System.out.println("Right was null SSN");
                 //System.out.println();
-                this.traverse();
+                //this.traverse();
             }
             else{//recursive call or next right branch down
                 ssnInsertTwo(branch.getRightSSN(),newStudent);
@@ -189,7 +189,7 @@ public class BinaryTree implements Serializable {
                 branch.setLeftID(newStudent);
                 //System.out.println("Left was null ID");//debug
                 //System.out.println();
-                this.traverse();//debug
+                //this.traverse();//debug
             }
             else{//recursive call for next left branch down
                 idInsertTwo(branch.getLeftID(),newStudent);
@@ -201,7 +201,7 @@ public class BinaryTree implements Serializable {
                 branch.setRightID(newStudent);
                 //System.out.println("Right was null ID");//debug
                 //System.out.println();
-                this.traverse();//debug
+                //this.traverse();//debug
             }
             else{//recursive call or next right branch down
                 idInsertTwo(branch.getRightID(),newStudent);
@@ -225,10 +225,10 @@ public class BinaryTree implements Serializable {
     //traverse helper
     private void traverseTwo(Student branch){
         if(branch!=null){
-            System.out.println("gettingLeft traverse");
+            //System.out.println("gettingLeft traverse");
             traverseTwo(branch.getLeftID());
             System.out.println(branch.getID()+" ");
-            System.out.println("gettingRight traverse");
+            //System.out.println("gettingRight traverse");
             traverseTwo(branch.getRightID());
         }
     }//traverse
