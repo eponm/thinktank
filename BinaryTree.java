@@ -27,12 +27,14 @@ import java.io.Serializable;
 
 public class BinaryTree implements Serializable {
     private Student head;
+    int n;
 
     //Constructor
     //sets head to null
     // public BinaryTree(boolean keyFlip) {
     public BinaryTree(){
         head = null;
+        n = 0;
     }//Constructor
 
 
@@ -130,6 +132,7 @@ public class BinaryTree implements Serializable {
         else { // if there is a head
             ssnInsertTwo(head,newStudent);
         }
+        n++;
     }
 
 
@@ -172,6 +175,7 @@ public class BinaryTree implements Serializable {
         else { // if there is a head
             idInsertTwo(head,newStudent);
         }
+        n++;
     }
 
 
@@ -215,7 +219,7 @@ public class BinaryTree implements Serializable {
             traverseTwo(head.getRightID());
         }
     }
-    
+
     //traverse helper
     private void traverseTwo(Student branch){
         if(branch!=null){
@@ -227,22 +231,7 @@ public class BinaryTree implements Serializable {
         }
     }//traverse
 
-    
-    //for printing to save
-    //I believe you asked to return the object address, so here it is. 
-    //You have to call it for the first node on each tree 
-    public void saveTraverse(Student head) {
-        if (head!=null) {
-            saveTraverseSSN(head);
-            save2(head);
-            saveTraverseSSN(head);
-        }//if
-    }//saveTraverse
-    
-    public Student save2(Student head) {
-        return head;
-    }//save2
-    
+
     /* public void saveTraverseID(Student head) {
         if (head!=null) {
             saveTraverseID(head);
@@ -250,12 +239,12 @@ public class BinaryTree implements Serializable {
             saveTraverseID(head);
         }
     }
-    
+
     public Student saveTID2(Student head) {
         return head;
     } */
 
-    
+
 
     //delete
     //deletes a target node in a BST
@@ -305,6 +294,7 @@ public class BinaryTree implements Serializable {
                 }
             }
         }
+        n--;
     }
 
 
@@ -421,6 +411,7 @@ public class BinaryTree implements Serializable {
                 }
             }
         }
+        n--;
     }
 
 
@@ -545,12 +536,31 @@ public class BinaryTree implements Serializable {
     }//delete
 
 
+    // Returns an array with a preorder traversal of the SSN tree
+    public Student[] treeToArray() {
+        Student[] a = new Student[n];
+        treeToArray2(head, a, 0);
+        return a;
+    } // treeToArray
+
+    private void treeToArray2(Student root, Student[] a, int pos) {
+        if (root == null) {
+            System.out.println("! No binary tree to save.");
+            return;
+        } // if
+        // Add the current node to the array
+        a[pos] = root;
+        pos++;
+        treeToArray2(root.getLeftSSN(), a, pos);
+        treeToArray2(root.getRightSSN(), a, pos);
+    } // treeToArray2
+
+
     //printTree()
     //prints Students in BST with their left and right Children
     public void printTree(PrintWriter out) {
         printTree2(head, out);
     }
-
 
     //helper function
     //Params: Student

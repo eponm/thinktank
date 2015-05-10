@@ -203,6 +203,7 @@ class ThinkTank {
                         System.out.println("> Student's SSN (4 digits)");
                         System.out.print(": ");
                         String ssnStr=hiveMind.nextLine();
+
                         boolean ssnIsNum=false;
                         while(ssnIsNum==false){//while ssn imput isn't number
                             try {//try to parse imput as an int
@@ -222,6 +223,7 @@ class ThinkTank {
                                 ssnStr=hiveMind.nextLine();
                             }//catch 19
                         }//while 191
+
                         int ssn=Integer.parseInt(ssnStr);
                         System.out.println("> Student ID (4 digits)");
                         System.out.print(": ");

@@ -44,13 +44,13 @@ class Student implements Serializable { // implements Serializable
         username = usernameIn; // Checks for 4-digit-ness should be done beforehand
         socSecNum = socSecNumIn;
         studentID = studentIDIn;
-        //Queue ideaQueue = new Queue();
-
+        
+        //for SSN ordered tree
         ssnLeftChild = null;
         ssnRightChild = null;
         ssnParent = null;
 
-
+        //for ID ordered tree
         idLeftChild = null;
         idRightChild = null;
         idParent = null;
@@ -102,21 +102,12 @@ class Student implements Serializable { // implements Serializable
     //addToQueue()
     //adds Idea to Queue and re-averages avgIdeaRating
     public void addToQueue(Idea newIdea){
-        //System.out.println(ideaQueue);
         ideaQueue.enqueue(newIdea);
         int total = 0;
-        //System.out.println("1");
         Idea[] ideas = ideaQueue.getAll();
-        //System.out.println("2");
         for (int i=0;i<ideaQueue.getSize(); i++) {
-            // System.out.println("Idea["+i+"]: "+ideas[i].getRating());  debug
-          //  System.out.println("3");
             total = total + ideas[i].getRating();
-        //    System.out.println("4");
-        } // while\
-        //System.out.println("5");
-        // System.out.println("total: "+total);  debug
-        // System.out.println("size: "+ideaQueue.getSize());   debug
+        } // while
         avgIdeaRating = total / ideaQueue.getSize();
     }//adds Idea to Queue and re-averages avgIdeaRating
 
@@ -206,6 +197,7 @@ class Student implements Serializable { // implements Serializable
         return this;
     } // setRightChild
 
+    //sets SSN of the parent
     public Student setParentSSN(Student nextParent) {
         ssnParent = nextParent;
         return this;
@@ -227,11 +219,13 @@ class Student implements Serializable { // implements Serializable
         return this;
     } // setRightChild
 
+    //sets ID of the parent
     public Student setParentID(Student nextParent) {
         idParent = nextParent;
         return this;
     } // setParentN
 
+    //returns size of the queue
     public int getQueueSize() {
         return ideaQueue.getSize();
     }
