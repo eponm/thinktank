@@ -28,7 +28,6 @@ class Queue implements Serializable { //implements Serializable
             n++;
          }
         end=(end+1) % 10;
-
     }
 
     public void printQueue() {

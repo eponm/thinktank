@@ -214,24 +214,25 @@ class ThinkTank {
                         System.out.print(": ");
                         String idStr=hiveMind.nextLine();
                         boolean idIsNum=false;
-                        while(idIsNum==false){//while id imput isnt number
-                            try{//try to parse imput as an int
+                        while(idIsNum==false){//while id imput isn't number
+                            try {//try to parse imput as an int
                                 int id=Integer.parseInt(idStr);
-                                idIsNum=true;
-                            }//try 215
-                            catch(NumberFormatException e){//if throws error
-                                System.out.println("> Please input a valid integer");
+                                if(id<10000){
+                                    idIsNum=true;
+                                }
+                                else{
+                                    System.out.println("> That was larger than 4 digits. Please enter only a 4 digit ID number");
+                                    System.out.print(": ");
+                                    idStr=hiveMind.nextLine();
+                                }
+                            }//try 218
+                            catch(NumberFormatException e) {//if throws a numberformat exeception
+                                System.out.println("> Please input a valid integer (4 digits)");
                                 System.out.print(":");
-                                ssnStr=hiveMind.nextLine();
-                            }//catch 219
-                        }//while 214
-                        int idNum=Integer.parseInt(idStr);
-                        while (idNum>9999) {
-                            System.out.println("! Please enter only a 4 digit ID number.");
-                            System.out.print(": ");
-                            idStr=hiveMind.nextLine();
-                            idNum=Integer.parseInt(idStr);
-                        } // while
+                                idStr=hiveMind.nextLine();
+                            }//catch 229
+                        }//while 217
+                        int idNum = Integer.parseInt(idStr);
                         //username= "Please enter student email address"
                         System.out.println("> Email Address too, please");
                         System.out.print(": ");
