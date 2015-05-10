@@ -126,20 +126,21 @@ class IdeaDB implements Serializable {
         return temp;
     } // sell
 
-
+    //getBestIdea() gets the best idea
     public Idea getBestIdea(){
         return ideaHeap.findMin();
-    }
+    }//getBestIdea()
 
 
+    //getStudent() returns the student
     public Student getStudent(int key, boolean usingSSN){
         if(usingSSN==true){
 
             return studentSSNTree.searchSSN(key);
-        }
+        }//if
         else{
             return studentIDTree.searchID(key);
-        }
-    }
+        }//else
+    }//student
 
 } // class
