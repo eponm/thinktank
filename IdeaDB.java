@@ -39,7 +39,7 @@ class IdeaDB implements Serializable {
 
     } // saveTreeArray
 
-
+    //saves the Ideas in an array to a save file
     public Idea[] saveIdeaArray() {
         Idea[] arr = new Idea[coreList.length()];
         for (int i=0; i<coreList.length(); i++) {
@@ -49,15 +49,15 @@ class IdeaDB implements Serializable {
     } // saveIdeaArray
 
 
+    //returns size of SSN tree
     public int getTreeSize() {
         return studentSSNTree.size();
     }
 
-
+    //returns size of core list of ideas
     public int getListSize() {
         return coreList.length();
     }
-
 
 
     //printStudents out to screen
