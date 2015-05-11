@@ -41,11 +41,8 @@ class ThinkTank {
 
         ) {
             // Now read it into a new object
-            System.out.println("here");
             seg = (Segmenter)input.readObject();
-            System.out.println(seg);
             ideas = (IdeaDB)input.readObject();
-            System.out.println(ideas);
         } // try
         // Catch the bad thing
         catch(ClassNotFoundException x) {
@@ -56,7 +53,7 @@ class ThinkTank {
             System.out.println("reading segmenter and IdeaDB in");
         } // catch
         catch(IOException x) {
-            System.out.println("Saved state may not exist or is blank. Making a new one...");
+            System.out.println("Saved state may not exist or is blank. Baking some bread...");
             //System.out.println(x);
         } // catch
 
@@ -127,7 +124,7 @@ class ThinkTank {
             System.out.println("reading in ideas");
         } // catch
         catch(IOException x) {
-            System.out.println("Saved ideas may not exist or is blank. Baking some bread...");
+            System.out.println("Saved ideas may not exist or is blank. Making a new one...");
             //System.out.println(x);
         } // catch
 
@@ -503,7 +500,7 @@ class ThinkTank {
 
 
     // GO TIME
-    System.out.println("Saving...");
+
     seg.setTreeSize(ideas.getTreeSize());
     seg.setListLength(ideas.getListLength());
 
@@ -523,6 +520,7 @@ class ThinkTank {
         //output.writeObject(ideas);
 
         // Write out DB
+        System.out.println(seg);
         output.writeObject(seg);
         output.writeObject(ideas);
         output.flush();
