@@ -131,6 +131,7 @@ class IdeaDB implements Serializable {
         // Doesn't double stored data because of how Java handles objects
         studentSSNTree.ssnInsert(newStudent);
         studentIDTree.idInsert(newStudent);
+
     }//addStudent
 
 

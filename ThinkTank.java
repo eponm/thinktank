@@ -56,7 +56,7 @@ class ThinkTank {
             System.out.println("reading segmenter and IdeaDB in");
         } // catch
         catch(IOException x) {
-            System.out.println("Saved state may not exist or is blank. Baking some bread...");
+            System.out.println("Saved state may not exist or is blank. Making a new one...");
             //System.out.println(x);
         } // catch
 
@@ -127,7 +127,7 @@ class ThinkTank {
             System.out.println("reading in ideas");
         } // catch
         catch(IOException x) {
-            System.out.println("Saved ideas may not exist or is blank. Making a new one...");
+            System.out.println("Saved ideas may not exist or is blank. Baking some bread...");
             //System.out.println(x);
         } // catch
 
@@ -503,14 +503,16 @@ class ThinkTank {
 
 
     // GO TIME
-
+    System.out.println("Saving...");
     seg.setTreeSize(ideas.getTreeSize());
     seg.setListLength(ideas.getListLength());
 
+
+    try (
         FileOutputStream file = new FileOutputStream("saveddb.ser");
         OutputStream buffer = new BufferedOutputStream(file);
         ObjectOutput output = new ObjectOutputStream(buffer);
-
+    ){
         //overwrite file
         final long initialPosition= file.getChannel().position();
         System.out.print(initialPosition);
@@ -521,13 +523,11 @@ class ThinkTank {
         //output.writeObject(ideas);
 
         // Write out DB
-        System.out.println(seg);
         output.writeObject(seg);
         output.writeObject(ideas);
         output.flush();
 
        // output.close();
-
 
         System.out.println("Data saved. Exiting...");//debug
 
@@ -573,7 +573,7 @@ class ThinkTank {
         System.out.println("Bad magic happened! Can't output the file. " + x);
     }
 
-    System.out.println("\nClosing. Have a nice day!\n");
+    System.out.println("\nClosed. Have a nice day!\n");
 
     } // MAIN
 
