@@ -33,7 +33,7 @@ class ThinkTank {
 
         try ( // Open up some parameters to try:
             // Make an input stream from the file
-            InputStream file = new FileInputStream("savedstate.ser");
+            InputStream file = new FileInputStream("saveddb.ser");
             // Load it into a buffer
             InputStream buffer = new BufferedInputStream(file);
             // Use the buffer for object input
@@ -52,8 +52,8 @@ class ThinkTank {
             System.out.println("Can't find the class. Maybe was bad magic??");
         } // catch
         catch(EOFException x) {
-            System.out.println("EOFException");
-            System.out.print("");
+            System.out.println("EOFException: ");
+            System.out.println("reading segmenter and IdeaDB in");
         } // catch
         catch(IOException x) {
             System.out.println("Saved state may not exist or is blank. Starting from scratch...");
@@ -87,7 +87,8 @@ class ThinkTank {
             System.out.println("Can't find the class. Maybe was bad magic??");
         } // catch
         catch(EOFException x) {
-            System.out.print("");
+            System.out.println("EOFException: ");
+            System.out.println("reading in students");
         } // catch
         catch(IOException x) {
             System.out.println("Saved students may not exist or is blank. Starting from scratch...");
@@ -122,7 +123,8 @@ class ThinkTank {
             System.out.println("Can't find the class. Maybe was bad magic??");
         } // catch
         catch(EOFException x) {
-            System.out.print("");
+            System.out.println("EOFException: ");
+            System.out.println("reading in ideas");
         } // catch
         catch(IOException x) {
             System.out.println("Saved ideas may not exist or is blank. Starting from scratch...");
