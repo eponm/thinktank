@@ -164,11 +164,14 @@ class ThinkTank {
             //
 
             if (answer.equals("A")||answer.equals("a")){
+                Idea topIdea=ideas.getBestIdea();
                 System.out.println();
-                if (ideas.getBestIdea() == null){
+                if (topIdea== null){
                     System.out.println("! There are no ideas here.");
                 } // if bestidea is null
                 else {
+                    System.out.println("> Idea Description: "+topIdea.getDesc());
+                    System.out.println();
                     boolean ideaSellChoice=false;
                     while(ideaSellChoice==false){
                         System.out.println("> Would you like to sell this idea?\n  (Y)es\n  (N)o");
@@ -224,12 +227,12 @@ class ThinkTank {
                             System.out.print(": ");
                             ssnStr=hiveMind.nextLine();
                         }//else
-                    }//try
+                    }//try 
                     catch(NumberFormatException e) {//if throws a numberformat exeception
                         System.out.println("> Please input a valid integer (4 digits)");
                         System.out.print(":");
                         ssnStr=hiveMind.nextLine();
-                    }//catch
+                    }//catch 
                 }//while 126
                 int ssn = Integer.parseInt(ssnStr);
                 Student student = ideas.getStudent(ssn, true);
@@ -501,14 +504,16 @@ class ThinkTank {
     // Strap in, it's time to save
     try { // Try doing it all again in reverse order
         OutputStream file = new FileOutputStream("saveddb.ser");
-        //System.out.println("DB output stream OK");//debug
+        System.out.println("DB output stream OK");//debug
         OutputStream buffer = new BufferedOutputStream(file);
-        //System.out.println("Buffered output stream OK");//debug
+        System.out.println("Buffered output stream OK");//debug
         ObjectOutput output = new ObjectOutputStream(buffer);
-        //System.out.println("Object output stream OK");//debug
+        System.out.println("Object output stream OK");//debug
         // Write out DB
         output.writeObject(seg);
         output.writeObject(ideas);
+
+        System.out.println("Files written OK");//debug
     }
     catch(IOException x) {
         System.out.println("Bad magic happened! Can't output the file. " + x);
@@ -517,11 +522,11 @@ class ThinkTank {
     try {
 
         OutputStream file2 = new FileOutputStream("savedstd.ser");
-        //System.out.println("Student output stream OK");//debug
+        System.out.println("Student output stream OK");//debug
         OutputStream buffer2 = new BufferedOutputStream(file2);
-        //System.out.println("Buffered output stream OK");//debug
+        System.out.println("Buffered output stream OK");//debug
         ObjectOutput output2 = new ObjectOutputStream(buffer2);
-        //System.out.println("Object output stream OK");//debug
+        System.out.println("Object output stream OK");//debug
 
         // Write out students
         Student[] treeArray = ideas.saveTreeArray();
@@ -536,11 +541,11 @@ class ThinkTank {
     try {
 
         OutputStream file3 = new FileOutputStream("savedideas.ser");
-        //System.out.println("Idea output stream OK");//debug
+        System.out.println("Idea output stream OK");//debug
         OutputStream buffer3 = new BufferedOutputStream(file3);
-        //System.out.println("Buffered output stream OK");//debug
+        System.out.println("Buffered output stream OK");//debug
         ObjectOutput output3 = new ObjectOutputStream(buffer3);
-        //System.out.println("Object output stream OK");//debug
+        System.out.println("Object output stream OK");//debug
 
         // Write out ideas
         Idea[] ideaArray = ideas.saveIdeaArray();
