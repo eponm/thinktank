@@ -280,6 +280,12 @@ public class BinaryTree implements Serializable {
                     Student temp=head;
                     Student temp2=popMaxID(head.getRightID(),0); //note how it only gets the maximum leftmost
                     //leaf of the RIGHT side if and only if getLeftID() of head=null.
+                    if(temp2==head.getRightID()){
+                        head=temp2;
+                        head.setParentID(null);
+                        temp.setRightID(null);
+                        return;
+                    }
                     head=temp2;
                     Student rightChild = temp.getRightID();
                     head.setRightID(rightChild);
@@ -289,6 +295,12 @@ public class BinaryTree implements Serializable {
                 else if(head.getRightID()==null){//if head only has left child
                     Student temp=head;
                     Student temp2=popMaxID(head.getLeftID(),1);
+                    if(temp2==head.getLeftID()){
+                        head=temp2;
+                        head.setParentID(null);
+                        temp.setLeftID(null);
+                        return;
+                    }
                     head=temp2;
                     Student leftChild = temp.getLeftID();
                     head.setLeftID(leftChild);
@@ -298,14 +310,25 @@ public class BinaryTree implements Serializable {
                 else{// if head has two children
                     Student temp=head;
                     Student temp2=popMaxID(head.getLeftID(),1);
+                    if(temp2==head.getLeftID()){
+                        head=temp2;
+                        Student rightChild = temp.getRightID();
+                        head.setRightID(temp.getRightID());
+                        head.setParentID(null);
+                        rightChild.setParentID(head);
+                        temp.setRightID(null);
+                    }
                     head=temp2;
                     Student leftChild = temp.getLeftID();
                     Student rightChild = temp.getRightID();
                     head.setLeftID(temp.getLeftID());
                     head.setRightID(temp.getRightID());
+                    head.setParentID(null);
                     leftChild.setParentID(head);
                     rightChild.setParentID(head);
                     temp.setLeftID(null);
+                    temp.setRightID(null);
+
                 }
             }
         }
@@ -452,6 +475,12 @@ public class BinaryTree implements Serializable {
                     Student temp=head;
                     Student temp2=popMaxSSN(head.getRightSSN(),0); //note how it only gets the maximum leftmost
                     //leaf of the RIGHT sSSNe if and only if getLeftSSN() of head=null.
+                    if(temp2==head.getRightSSN()){
+                        head=temp2;
+                        head.setParentSSN(null);
+                        temp.setRightSSN(null);
+                        return;
+                    }
                     head=temp2;
                     head.setParentSSN(null);
                     Student rightChild = temp.getRightSSN();
@@ -462,6 +491,12 @@ public class BinaryTree implements Serializable {
                 else if(head.getRightSSN()==null){//if head only has left child
                     Student temp=head;
                     Student temp2=popMaxSSN(head.getLeftSSN(),1);
+                    if(temp2==head.getLeftSSN()){
+                        head=temp2;
+                        head.setParentSSN(null);
+                        temp.setLeftSSN(null);
+                        return;
+                    }
                     head=temp2;
                     head.setParentSSN(null);
                     Student leftChild = temp.getLeftSSN();
@@ -472,6 +507,14 @@ public class BinaryTree implements Serializable {
                 else{// if head has two children
                     Student temp=head;
                     Student temp2=popMaxSSN(head.getLeftSSN(),1);
+                    if(temp2==head.getLeftSSN()){
+                        Student rightChild = temp.getRightSSN();
+                        head.setParentSSN(null);
+                        head.setRightSSN(temp.getRightSSN());
+                        rightChild.setParentSSN(head);
+                        temp.setRightSSN(null);
+                        return;
+                    }
                     head=temp2;
                     Student leftChild = temp.getLeftSSN();
                     Student rightChild = temp.getRightSSN();
