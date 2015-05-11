@@ -38,7 +38,7 @@ class ThinkTank {
             InputStream buffer = new BufferedInputStream(file);
             // Use the buffer for object input
             ObjectInput input = new ObjectInputStream(buffer);
-            
+
         ) {
             // Now read it into a new object
             System.out.println("here");
@@ -56,8 +56,8 @@ class ThinkTank {
             System.out.println("reading segmenter and IdeaDB in");
         } // catch
         catch(IOException x) {
-            System.out.println("Saved state may not exist or is blank. Starting from scratch...");
-            System.out.println(x);
+            System.out.println("Saved state may not exist or is blank. Baking some bread...");
+            //System.out.println(x);
         } // catch
 
         int numStuds = seg.getTreeSize();
@@ -92,7 +92,7 @@ class ThinkTank {
         } // catch
         catch(IOException x) {
             System.out.println("Saved students may not exist or is blank. Starting from scratch...");
-            System.out.println(x);
+            //System.out.println(x);
         } // catch
 
         Student tempS;
@@ -127,8 +127,8 @@ class ThinkTank {
             System.out.println("reading in ideas");
         } // catch
         catch(IOException x) {
-            System.out.println("Saved ideas may not exist or is blank. Starting from scratch...");
-            System.out.println(x);
+            System.out.println("Saved ideas may not exist or is blank. Making a new one...");
+            //System.out.println(x);
         } // catch
 
         Scanner hiveMind = new Scanner(System.in);
@@ -139,13 +139,13 @@ class ThinkTank {
 
         System.out.println();
         System.out.println("> Welcome, we are hiveMind and we are here to help you!");
-
+/*
         Idea tempI;
         for (int q=0; q<numIdeas; q++) {
             tempI = ideaA[q];
             ideas.insertIdea(tempI);
         }
-
+*/
 
         //
         // TOP OF MENU SECTION
@@ -234,12 +234,12 @@ class ThinkTank {
                             System.out.print(": ");
                             ssnStr=hiveMind.nextLine();
                         }//else
-                    }//try 
+                    }//try
                     catch(NumberFormatException e) {//if throws a numberformat exeception
                         System.out.println("> Please input a valid integer (4 digits)");
                         System.out.print(":");
                         ssnStr=hiveMind.nextLine();
-                    }//catch 
+                    }//catch
                 }//while 126
                 int ssn = Integer.parseInt(ssnStr);
                 Student student = ideas.getStudent(ssn, true);
@@ -525,7 +525,7 @@ class ThinkTank {
         System.out.println("Buffered output stream OK");//debug
         ObjectOutput output = new ObjectOutputStream(buffer);
         System.out.println("Object output stream OK");//debug
-        
+
         //overwrite file
         final long initialPosition= file.getChannel().position();
         System.out.print(initialPosition);
