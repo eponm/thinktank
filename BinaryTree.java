@@ -538,19 +538,21 @@ public class BinaryTree implements Serializable {
     public Student[] treeToArray() {
         Student[] a = new Student[n];
         treeToArray2(head, a, 0);
+        for (int i=0; i<n; i++) {
+            System.out.println(a[i]);
+        }
         return a;
     } // treeToArray
 
-    private void treeToArray2(Student root, Student[] a, int pos) {
-        if (root == null) {
-            System.out.println("! No binary tree to save.");
+    public void treeToArray2(Student head, Student[] a, int pos) {
+        if (head == null) {
             return;
         } // if
         // Add the current node to the array
-        a[pos] = root;
+        a[pos] = head;
         pos++;
-        treeToArray2(root.getLeftSSN(), a, pos);
-        treeToArray2(root.getRightSSN(), a, pos);
+        treeToArray2(head.getLeftSSN(), a, pos);
+        treeToArray2(head.getRightSSN(), a, pos);
     } // treeToArray2
 
 
