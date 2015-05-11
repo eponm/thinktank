@@ -6,7 +6,7 @@ import java.io.Serializable;
     only the *best* idea is accessible from the heap,
     once it is sold it is deleted from the heap
 */
-public class Heap implements Serializable { 
+public class Heap implements Serializable {
     int n; //counter for
     Idea[] heap=new Idea[256];//array of Ideas
 
@@ -32,8 +32,6 @@ public class Heap implements Serializable {
         }//else
     }//findMin
 
-    //printHeap() prints all the values in the heap in order
-    // debug
     public void printHeap() {
         for (int i=0;i<(n);i++) {
             System.out.println(heap[i].getKey());
