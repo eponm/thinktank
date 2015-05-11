@@ -260,7 +260,7 @@ public class BinaryTree implements Serializable {
         */
         if(head==null) return;
         else{
-            int key = head.getID();
+            int key = target.getID();
             if(key<head.getID()){//if Student key is larger than head
                 int side=0;
                 idDeleteTwo(head.getLeftID(),key,side);
@@ -743,11 +743,11 @@ public class BinaryTree implements Serializable {
             printTree2(tree.getRightSSN(), out);
         } // if
     } // printTree2
-    
+
     //returns size of the tree
     public int size() {
         return n;
     }//size
-    
-    
+
+
 } // BinaryTree
