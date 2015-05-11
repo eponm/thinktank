@@ -216,9 +216,9 @@ public class BinaryTree implements Serializable {
     //make sure it takes ssn and id
     public void traverse(){
         if(head!=null){
-            traverseTwo(head.getLeftID());
-            System.out.print(head.getID()+" ");
-            traverseTwo(head.getRightID());
+            traverseTwo(head.getLeftSSN());
+            System.out.print(head.getSSN()+" ");
+            traverseTwo(head.getRightSSN());
         }
     }
 
@@ -226,10 +226,10 @@ public class BinaryTree implements Serializable {
     private void traverseTwo(Student branch){
         if(branch!=null){
             //System.out.println("gettingLeft traverse");
-            traverseTwo(branch.getLeftID());
-            System.out.println(branch.getID()+" ");
+            traverseTwo(branch.getLeftSSN());
+            System.out.print(branch.getSSN()+" ");
             //System.out.println("gettingRight traverse");
-            traverseTwo(branch.getRightID());
+            traverseTwo(branch.getRightSSN());
         }
     }//traverse
 
@@ -342,26 +342,46 @@ public class BinaryTree implements Serializable {
                 if(side==0){//if target is on the left side of parent
                     if(target.getLeftID()==null){//if the target has a right child
                         successor=popMaxID(target.getRightID(),0);
+                        if(successor == target.getRightID()){
+                            parent.setLeftID(successor);
+                            successor.setParentSSN(parent);
+                            return;
+                        }
                         parent.setLeftID(successor);
                         successor.setRightID(target.getRightID());
                         successor.setParentID(parent);
                     }
                     else{//if target has a left child
                         successor=popMaxID(target.getLeftID(),1);
+                        if(successor == target.getLeftID()){
+                            parent.setLeftID(successor);
+                            successor.setParentSSN(parent);
+                            return;
+                        }
                         parent.setLeftID(successor);
                         successor.setLeftID(target.getLeftID());
                         successor.setParentID(parent);
                     }
                 }
                 else{//if target is on the right side of the parent
-                    if(target.getLeftID()==null){//if target has a left child
+                    if(target.getLeftID()==null){//if target has a Right child
                         successor=popMaxID(target.getRightID(),0);
+                        if(successor == target.getRightID()){
+                            parent.setRightID(successor);
+                            successor.setParentSSN(parent);
+                            return;
+                        }
                         parent.setRightID(successor);
                         successor.setRightID(target.getRightID());
                         successor.setParentID(parent);
                     }
-                    else{//if target has a right child
+                    else{//if target has a left child
                         successor=popMaxID(target.getLeftID(),1);
+                        if(successor == target.getLeftID()){
+                            parent.setLeftID(successor);
+                            successor.setParentSSN(parent);
+                            return;
+                        }
                         parent.setRightID(successor);
                         successor.setLeftID(target.getLeftID());
                         successor.setParentID(parent);
@@ -371,6 +391,12 @@ public class BinaryTree implements Serializable {
             else{//if the target has two children
                 if(side==0){//if the target is on the left side of the parent
                     successor=popMaxID(target.getLeftID(),1);
+                    if(successor == target.getLeftID()){
+                        parent.setLeftID(successor);
+                        successor.setParentID(parent);
+                        successor.setRightID(target.getRightID());
+                        return;
+                    }
                     parent.setLeftID(successor);
                     successor.setRightID(target.getRightID());
                     successor.setLeftID(target.getLeftID());
@@ -378,6 +404,12 @@ public class BinaryTree implements Serializable {
                 }
                 else{//if the target is on the right side of the parent
                     successor=popMaxID(target.getLeftID(),1);
+                    if(successor == target.getRightID()){
+                        parent.setRightID(successor);
+                        successor.setParentID(parent);
+                        successor.setRightID(target.getRightID());
+                        return;
+                    }
                     parent.setRightID(successor);
                     successor.setRightID(target.getRightID());
                     successor.setLeftID(target.getLeftID());
@@ -395,6 +427,7 @@ public class BinaryTree implements Serializable {
         */
         if(head==null) return;
         else{
+            n--;
             int key = head.getSSN();
             if(key<head.getSSN()){//if Student key is larger than head
                 int side=0;
@@ -444,7 +477,6 @@ public class BinaryTree implements Serializable {
                 }
             }
         }
-        n--;
     }
 
 
@@ -478,12 +510,24 @@ public class BinaryTree implements Serializable {
                 if(side==0){//if target is on the left side of parent
                     if(target.getLeftSSN()==null){//if the target has a right child
                         successor=popMaxSSN(target.getRightSSN(),0);
+                        if(successor == target.getRightSSN()){
+                            parent.setLeftSSN(successor);
+                            successor.setParentSSN(parent);
+                            return;
+                        }
                         parent.setLeftSSN(successor);
                         successor.setRightSSN(target.getRightSSN());
                         successor.setParentSSN(parent);
                     }
                     else{//if target has a left child
                         successor=popMaxSSN(target.getLeftSSN(),1);
+                        if(successor == target.getLeftSSN()){
+                            System.out.println("yes");
+                            parent.setLeftSSN(successor);
+                            successor.setParentSSN(parent);
+                            return;
+                        }
+                        System.out.println("no");
                         parent.setLeftSSN(successor);
                         successor.setLeftSSN(target.getLeftSSN());
                         successor.setParentSSN(parent);
@@ -492,12 +536,22 @@ public class BinaryTree implements Serializable {
                 else{//if target is on the right side of the parent
                     if(target.getLeftSSN()==null){//if target has a left child
                         successor=popMaxSSN(target.getRightSSN(),0);
+                        if(successor == target.getRightSSN()){
+                            parent.setRightSSN(successor);
+                            successor.setParentSSN(parent);
+                            return;
+                        }
                         parent.setRightSSN(successor);
                         successor.setRightSSN(target.getRightSSN());
                         successor.setParentSSN(parent);
                     }
                     else{//if target has a right child
                         successor=popMaxSSN(target.getLeftSSN(),1);
+                        if(successor == target.getLeftSSN()){
+                            parent.setRightSSN(successor);
+                            successor.setParentSSN(parent);
+                            return;
+                        }
                         parent.setRightSSN(successor);
                         successor.setLeftSSN(target.getLeftSSN());
                         successor.setParentSSN(parent);
@@ -507,6 +561,12 @@ public class BinaryTree implements Serializable {
             else{//if the target has two children
                 if(side==0){//if the target is on the left side of the parent
                     successor=popMaxSSN(target.getLeftSSN(),1);
+                    if(successor == target.getLeftSSN()){
+                        parent.setLeftSSN(successor);
+                        successor.setParentSSN(parent);
+                        successor.setRightSSN(target.getRightSSN());
+                        return;
+                    }
                     parent.setLeftSSN(successor);
                     successor.setRightSSN(target.getRightSSN());
                     successor.setLeftSSN(target.getLeftSSN());
@@ -514,6 +574,12 @@ public class BinaryTree implements Serializable {
                 }
                 else{//if the target is on the right side of the parent
                     successor=popMaxSSN(target.getLeftSSN(),1);
+                    if(successor == target.getLeftSSN()){
+                        parent.setRightSSN(successor);
+                        successor.setParentSSN(parent);
+                        successor.setRightSSN(target.getRightSSN());
+                        return;
+                    }
                     parent.setRightSSN(successor);
                     successor.setRightSSN(target.getRightSSN());
                     successor.setLeftSSN(target.getLeftSSN());
