@@ -95,11 +95,11 @@ class ThinkTank {
             //System.out.println(x);
         } // catch
 
-        Student tempS;
-        for (int j=0; j<numStuds; j++) {
-            tempS = studA[j];
-            ideas.addStudent(tempS);
-        }
+        //Student tempS;
+        //for (int j=0; j<numStuds; j++) {
+          //  tempS = studA[j];
+            //ideas.addStudent(tempS);
+        //}
 
         //
         // LOAD IDEAS
@@ -163,7 +163,6 @@ class ThinkTank {
             System.out.println("  A) Top Idea\n  B) Add Idea\n  C) Student Records\n  Q) Save and quit");
             System.out.print(": ");
             answer = hiveMind.nextLine();
-            //System.out.println("+"+answer+"+");  <---debug
 
 
             //
@@ -508,23 +507,9 @@ class ThinkTank {
     seg.setTreeSize(ideas.getTreeSize());
     seg.setListLength(ideas.getListLength());
 
-    // Strap in, it's time to save
-    try { // Try doing it all again in reverse order
-/*//<<<<<<< HEAD
-        OutputStream file = new FileOutputStream("saveddb.ser");
-      //  System.out.println("DB output stream OK");//debug
-        OutputStream buffer = new BufferedOutputStream(file);
-//        System.out.println("Buffered output stream OK");//debug
-        ObjectOutput output = new ObjectOutputStream(buffer);
-  //      System.out.println("Object output stream OK");//debug
-        System.out.println(output);
-*/
         FileOutputStream file = new FileOutputStream("saveddb.ser");
-        System.out.println("DB output stream OK");//debug
         OutputStream buffer = new BufferedOutputStream(file);
-        System.out.println("Buffered output stream OK");//debug
         ObjectOutput output = new ObjectOutputStream(buffer);
-        System.out.println("Object output stream OK");//debug
 
         //overwrite file
         final long initialPosition= file.getChannel().position();
@@ -544,7 +529,7 @@ class ThinkTank {
        // output.close();
 
 
-        System.out.println("Files written OK");//debug
+        System.out.println("Data saved. Exiting...");//debug
 
     }
     catch(IOException x) {
@@ -553,25 +538,17 @@ class ThinkTank {
 
     try {
 
-//<<<<<<< HEAD
- /*       OutputStream file2 = new FileOutputStream("savedstd.ser");
-     //   System.out.println("Student output stream OK");//debug
-        OutputStream buffer2 = new BufferedOutputStream(file2);
-       // System.out.println("Buffered output stream OK");//debug
-        ObjectOutputStream output2 = new ObjectOutputStream(buffer2);
-    //    System.out.println("Object output stream OK");//debug
-======= */
         OutputStream file2 = new FileOutputStream("savedstd.ser");
-        System.out.println("Student output stream OK");//debug
         OutputStream buffer2 = new BufferedOutputStream(file2);
-        System.out.println("Buffered output stream OK");//debug
         ObjectOutput output2 = new ObjectOutputStream(buffer2);
-        System.out.println("Object output stream OK");//debug
 
 
         // Write out students
         Student[] treeArray = ideas.saveTreeArray();
         for (int i=0; i<ideas.getTreeSize(); i++) {
+        if(treeArray[i] == null){
+            continue;
+        }
             output2.writeObject(treeArray[i]);
         } // for loop
         output2.close();
@@ -581,22 +558,9 @@ class ThinkTank {
     }
 
     try {
-
- /*       //<<<<<<< HEAD
         OutputStream file3 = new FileOutputStream("savedideas.ser");
-        //System.out.println("Idea output stream OK");//debug
         OutputStream buffer3 = new BufferedOutputStream(file3);
-    //    System.out.println("Buffered output stream OK");//debug
-        ObjectOutputStream output3 = new ObjectOutputStream(file3);
-      //  System.out.println("Object output stream OK");//debug
-//======= */
-        OutputStream file3 = new FileOutputStream("savedideas.ser");
-        System.out.println("Idea output stream OK");//debug
-        OutputStream buffer3 = new BufferedOutputStream(file3);
-        System.out.println("Buffered output stream OK");//debug
         ObjectOutput output3 = new ObjectOutputStream(buffer3);
-        System.out.println("Object output stream OK");//debug
-
 
         // Write out ideas
         Idea[] ideaArray = ideas.saveIdeaArray();
