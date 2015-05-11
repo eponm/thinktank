@@ -512,22 +512,20 @@ class ThinkTank {
     ){
         //overwrite file
         final long initialPosition= file.getChannel().position();
-        System.out.print(initialPosition);
         file.getChannel().position(initialPosition);
         file.getChannel().truncate(initialPosition);
         //file.reset();
-       // output.writeObject(seg);
+        // output.writeObject(seg);
         //output.writeObject(ideas);
 
         // Write out DB
-        System.out.println(seg);
         output.writeObject(seg);
         output.writeObject(ideas);
         output.flush();
 
        // output.close();
 
-        System.out.println("Data saved. Exiting...");//debug
+        System.out.println("\nData saved. Exiting...");//debug
 
     }
     catch(IOException x) {

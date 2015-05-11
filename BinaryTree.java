@@ -141,26 +141,19 @@ public class BinaryTree implements Serializable {
             if(branch.getLeftSSN()==null){//if the branch left child is null
                 branch.setLeftSSN(newStudent);
                 newStudent.setParentSSN(branch);
-                //System.out.println("Left was null SSN");
-                //System.out.println();
-                //this.traverse();
             }
             else{//recursive call for next left branch down
                 ssnInsertTwo(branch.getLeftSSN(),newStudent);
-                //System.out.println("Getting Left SSN");
             }
         }
         else{//if newStudent is larger than branch
             if(branch.getRightSSN()==null){//if the branch right child is null
                 branch.setRightSSN(newStudent);
                 newStudent.setParentSSN(branch);
-                //System.out.println("Right was null SSN");
-                //System.out.println();
-                //this.traverse();
+
             }
             else{//recursive call or next right branch down
                 ssnInsertTwo(branch.getRightSSN(),newStudent);
-                //System.out.println("Getting right SSN");
             }
         }
     }
@@ -217,10 +210,8 @@ public class BinaryTree implements Serializable {
     //traverse helper
     private void traverseTwo(Student branch){
         if(branch!=null){
-            //System.out.println("gettingLeft traverse");
             traverseTwo(branch.getLeftSSN());
             System.out.print(branch.getSSN()+" ");
-            //System.out.println("gettingRight traverse");
             traverseTwo(branch.getRightSSN());
         }
     }//traverse
@@ -397,7 +388,6 @@ public class BinaryTree implements Serializable {
         }
     }
     public void ssnDelete(Student target){
-        System.out.println("delete");
         /*
         make note that tree prioritizes elements of higher value
         i.e. : when replacing elements, the tree will go LEFT, then the right-most
@@ -409,17 +399,14 @@ public class BinaryTree implements Serializable {
             n--;
             int key = target.getSSN();
             if(key<head.getSSN()){//if Student key is larger than head
-                System.out.println("Key<head");
                 int side=0;
                 ssnDeleteTwo(head.getLeftSSN(),key,side);
             }
             else if(key>head.getSSN()){//if Student key is smaller than head
-                System.out.println("Key > head");
                 int side=1;
                 ssnDeleteTwo(head.getRightSSN(),key,side);
             }
             else{//if Student key equals head
-                System.out.print("Student equlas head");
                 /*
                 pricipal of prioritizing higher values illustrated in this case:
                 */
@@ -629,9 +616,6 @@ public class BinaryTree implements Serializable {
     public Student[] treeToArray() {
         Student[] a = new Student[n];
         treeToArray2(head, a, 0);
-        for (int i=0; i<n; i++) {
-            System.out.println(a[i]);
-        }
         return a;
     } // treeToArray
 

@@ -100,31 +100,6 @@ class IdeaDB implements Serializable {
     } // insert
 
 
-  //   public void reInsertIdea(Idea newIdea) {
-  //       // Get the submittor's key
-  //       int key = newIdea.getKey();
-
-  //       // Put the idea coreList, ideaHeap and studentSSNTree:
-  //       // Set seqNum in newIdea
-  //       newIdea.setSeqNum(seqNum);
-  //       seqNum++;
-  //       // Add idea to list
-  //       coreList.insert(newIdea);
-  //       // Add idea to heap if necessary
-  //       if (newIdea.isInHeap()) {
-  //           ideaHeap.insert(newIdea);
-  //       }
-
-  //       // Add the idea to the student's queue
-  //       Student student = studentSSNTree.search(key);
-  //       student.addToQueue(newIdea);
-  //       int id = student.getID();
-  // //      student = studentIDTree.search(id);
-  //  //     student.addToQueue(newIdea);
-  //   } // insert
-
-
-
     //addStudent
     //adds a student to IdeaDB
     public void addStudent(Student newStudent) {
