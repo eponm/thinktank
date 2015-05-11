@@ -33,7 +33,7 @@ class ThinkTank {
 
         try ( // Open up some parameters to try:
             // Make an input stream from the file
-            InputStream file = new FileInputStream("savedstate.ser");
+            InputStream file = new FileInputStream("saveddb.ser");
             // Load it into a buffer
             InputStream buffer = new BufferedInputStream(file);
             // Use the buffer for object input
@@ -517,19 +517,29 @@ class ThinkTank {
   //      System.out.println("Object output stream OK");//debug
         System.out.println(output);
 */
-        OutputStream file = new FileOutputStream("saveddb.ser");
+        FileOutputStream file = new FileOutputStream("saveddb.ser");
         System.out.println("DB output stream OK");//debug
         OutputStream buffer = new BufferedOutputStream(file);
         System.out.println("Buffered output stream OK");//debug
         ObjectOutput output = new ObjectOutputStream(buffer);
         System.out.println("Object output stream OK");//debug
+        
+        //overwrite file
+        final long initialPosition= file.getChannel().position();
+        System.out.print(initialPosition);
+        file.getChannel().position(initialPosition);
+        file.getChannel().truncate(initialPosition);
+        //file.reset();
+       // output.writeObject(seg);
+        //output.writeObject(ideas);
 
         // Write out DB
         System.out.println(seg);
         output.writeObject(seg);
         output.writeObject(ideas);
+        output.flush();
 
-        output.close();
+       // output.close();
 
 
         System.out.println("Files written OK");//debug
