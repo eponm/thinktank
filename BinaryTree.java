@@ -140,6 +140,7 @@ public class BinaryTree implements Serializable {
         if(newStudent.getSSN()<branch.getSSN()){//if Student is smaller branch
             if(branch.getLeftSSN()==null){//if the branch left child is null
                 branch.setLeftSSN(newStudent);
+                newStudent.setParentSSN(branch);
                 //System.out.println("Left was null SSN");
                 //System.out.println();
                 //this.traverse();
@@ -152,6 +153,7 @@ public class BinaryTree implements Serializable {
         else{//if newStudent is larger than branch
             if(branch.getRightSSN()==null){//if the branch right child is null
                 branch.setRightSSN(newStudent);
+                newStudent.setParentSSN(branch);
                 //System.out.println("Right was null SSN");
                 //System.out.println();
                 //this.traverse();
@@ -183,6 +185,7 @@ public class BinaryTree implements Serializable {
         if(newStudent.getID()<branch.getID()){//if Student is smaller branch
             if(branch.getLeftID()==null){//if the branch left child is null
                 branch.setLeftID(newStudent);
+                newStudent.setParentID(branch);
                 //System.out.println("Left was null ID");//debug
                 //System.out.println();
                 //this.traverse();//debug
@@ -195,6 +198,7 @@ public class BinaryTree implements Serializable {
         else{//if newStudent is larger than branch
             if(branch.getRightID()==null){//if the branch right child is null
                 branch.setRightID(newStudent);
+                newStudent.setParentID(branch);
                 //System.out.println("Right was null ID");//debug
                 //System.out.println();
                 //this.traverse();//debug
