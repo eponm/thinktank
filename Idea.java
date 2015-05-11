@@ -103,7 +103,6 @@ class Idea implements Serializable {
         seqNum = seqNumIn;
     } //setSeqNum
 
-
     // Set the submittorKey
     public void setKey(int keyIn) {
         submittorKey = keyIn;
@@ -123,7 +122,6 @@ class Idea implements Serializable {
 
     // Will switch whether an idea will be read into the heap again on the next load of the saved state
     public void flip() {
-        System.out.println(inHeap);
         if (inHeap == false) {
             inHeap = true;
         } // else
